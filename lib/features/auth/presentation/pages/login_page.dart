@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ruh/core/utils/theme_extensions.dart';
 import '../../../../core/utils/app_toast.dart';
 import '../../../../core/utils/failure_extensions.dart';
 import '../../../../core/utils/l10n_extensions.dart';
@@ -47,12 +48,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          context.tr.login_page_title,
-          style: TextStyle(fontSize: 20.sp),
-        ),
-      ),
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           state.mapOrNull(
@@ -77,42 +72,86 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      context.tr.welcome_back,
-                      style: Theme.of(context).textTheme.headlineMedium,
+                      context.tr.ruh_therapy,
+                      style: TextStyle(
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.bold,
+                        color: context.primary,
+                      ),
+                    ),
+                    SizedBox(height: 8.h),
+                    Text(
+                      context.tr.ruh_therapy_welcome_back,
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                     SizedBox(height: 32.h),
 
-                    // Email Field
-                    TextFormField(
-                      controller: _emailController,
-                      decoration: InputDecoration(
-                        labelText: context.tr.email,
-                        prefixIcon: const Icon(Icons.email_outlined),
-                      ),
-                      validator: (value) => Validators.email(value, context),
-                      keyboardType: TextInputType.emailAddress,
-                    ),
-                    SizedBox(height: 16.h),
+                    Card(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 16.w,
+                          vertical: 26.h,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Email Field
+                            Text(
+                              context.tr.email,
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(height: 8.h),
+                            TextFormField(
+                              controller: _emailController,
+                              decoration: InputDecoration(
+                                hintText: context.tr.enter_your_email,
+                                prefixIcon: const Icon(Icons.email_outlined),
+                              ),
+                              validator: (value) =>
+                                  Validators.email(value, context),
+                              keyboardType: TextInputType.emailAddress,
+                            ),
+                            SizedBox(height: 16.h),
 
-                    // Password Field
-                    TextFormField(
-                      controller: _passwordController,
-                      decoration: InputDecoration(
-                        labelText: context.tr.password,
-                        prefixIcon: const Icon(Icons.lock_outline),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            _isObscure
-                                ? Icons.visibility_outlined
-                                : Icons.visibility_off_outlined,
-                          ),
-                          onPressed: () =>
-                              setState(() => _isObscure = !_isObscure),
+                            // Password Field
+                            Text(
+                              context.tr.password,
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(height: 8.h),
+                            TextFormField(
+                              controller: _passwordController,
+                              decoration: InputDecoration(
+                                hintText: context.tr.enter_your_password,
+                                prefixIcon: const Icon(Icons.lock_outline),
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    _isObscure
+                                        ? Icons.visibility_outlined
+                                        : Icons.visibility_off_outlined,
+                                  ),
+                                  onPressed: () =>
+                                      setState(() => _isObscure = !_isObscure),
+                                ),
+                              ),
+                              obscureText: _isObscure,
+                              validator: (value) =>
+                                  Validators.password(value, context),
+                            ),
+                          ],
                         ),
                       ),
-                      obscureText: _isObscure,
-                      validator: (value) => Validators.password(value, context),
                     ),
+
                     SizedBox(height: 32.h),
 
                     // Login Button
