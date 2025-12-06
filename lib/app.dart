@@ -28,6 +28,7 @@ class App extends StatelessWidget {
             ),
           ],
           child: MaterialApp.router(
+            debugShowCheckedModeBanner: false,
             title: 'Flutter Template',
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
