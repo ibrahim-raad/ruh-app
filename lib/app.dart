@@ -29,7 +29,7 @@ class App extends StatelessWidget {
           ],
           child: MaterialApp.router(
             debugShowCheckedModeBanner: false,
-            title: 'Flutter Template',
+            title: 'Ruh Therapy',
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
             themeMode: ThemeMode.system,
