@@ -1,0 +1,16 @@
+{
+  "@@locale": "en",
+  "app_name": "Flutter Template",
+  "login_page_title": "Login Page",
+  "welcome_back": "Welcome Back",
+  "email": "Email",
+  "password": "Password",
+  "login": "Login",
+  "required_field": "This field is required",
+  "invalid_email": "Please enter a valid email",
+  "password_too_short": "Password must be at least 8 characters",
+  "login_success": "Login Success!",
+  "connection_error": "Connection Error. Please check your internet.",
+  "server_error": "Server Error. Please try again later.",
+  "unknown_error": "Something went wrong."
+}

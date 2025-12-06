@@ -1,0 +1,85 @@
+name: ruh
+description: "Ruh Therapy helps you connect with trusted therapists and find calm through guided reflection."
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ^3.10.1
+
+dependencies:
+  cached_network_image: ^3.4.1
+  dio: ^5.9.0
+  equatable: ^2.0.7
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_bloc: ^9.1.1
+  flutter_screenutil: ^5.9.3
+  flutter_svg: ^2.2.3
+  fpdart: ^1.2.0
+  freezed_annotation: ^3.1.0
+  get_it: ^9.1.1
+  go_router: ^17.0.0
+  injectable: ^2.7.0
+  intl: ^0.20.2
+  json_annotation: ^4.9.0
+  jwt_decoder: ^2.0.1
+  logger: ^2.6.2
+  path: ^1.9.1
+  path_provider: ^2.1.5
+  shared_preferences: ^2.5.3
+  flutter_dotenv: ^6.0.0
+  dio_cookie_manager: ^3.3.0
+  cookie_jar: ^4.0.8
+  toastification: ^3.0.3
+  loading_animation_widget: ^1.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  build_runner: ^2.10.4
+  freezed: ^3.2.3
+  injectable_generator: ^2.9.1
+  json_serializable: ^6.11.2
+  flutter_launcher_icons: ^0.14.4
+  pretty_dio_logger: ^1.4.0
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+  assets:
+    - .env
+    - assets/app_icon.png
+    - assets/fonts/
+    - assets/images/
+    - assets/icons/
+    - assets/l10n/
+
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto/static/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto/static/Roboto-Italic.ttf
+        - asset: assets/fonts/Roboto/static/Roboto-Medium.ttf
+        - asset: assets/fonts/Roboto/static/Roboto-MediumItalic.ttf
+        - asset: assets/fonts/Roboto/static/Roboto-Bold.ttf
+        - asset: assets/fonts/Roboto/static/Roboto-BoldItalic.ttf
+        - asset: assets/fonts/Roboto/static/Roboto-Black.ttf
+        - asset: assets/fonts/Roboto/static/Roboto-BlackItalic.ttf
+        - asset: assets/fonts/Roboto/static/Roboto-Light.ttf
+        - asset: assets/fonts/Roboto/static/Roboto-LightItalic.ttf
+        - asset: assets/fonts/Roboto/static/Roboto-Thin.ttf
+        - asset: assets/fonts/Roboto/static/Roboto-ThinItalic.ttf
+        - asset: assets/fonts/Roboto/static/Roboto-ExtraLight.ttf
+        - asset: assets/fonts/Roboto/static/Roboto-ExtraLightItalic.ttf
+        - asset: assets/fonts/Roboto/static/Roboto-ExtraBold.ttf
+        - asset: assets/fonts/Roboto/static/Roboto-ExtraBoldItalic.ttf
+
+# run: flutter pub run flutter_launcher_icons
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/app_icon.png"
