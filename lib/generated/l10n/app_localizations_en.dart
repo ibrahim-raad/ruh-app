@@ -47,4 +47,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unknown_error => 'Something went wrong.';
+
+  @override
+  String get enter_your_email => 'Enter your email';
+
+  @override
+  String get enter_your_password => 'Enter your password';
+
+  @override
+  String get ruh_therapy => 'Ruh Therapy';
+
+  @override
+  String get ruh_therapy_welcome_back => 'Welcome back to your journey';
 }

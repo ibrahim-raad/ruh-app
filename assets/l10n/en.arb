@@ -12,5 +12,9 @@
   "login_success": "Login Success!",
   "connection_error": "Connection Error. Please check your internet.",
   "server_error": "Server Error. Please try again later.",
-  "unknown_error": "Something went wrong."
+  "unknown_error": "Something went wrong.",
+  "enter_your_email": "Enter your email",
+  "enter_your_password": "Enter your password",
+  "ruh_therapy": "Ruh Therapy",
+  "ruh_therapy_welcome_back": "Welcome back to your journey"
 }

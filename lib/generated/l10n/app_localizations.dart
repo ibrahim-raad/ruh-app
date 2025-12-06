@@ -177,6 +177,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Something went wrong.'**
   String get unknown_error;
+
+  /// No description provided for @enter_your_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email'**
+  String get enter_your_email;
+
+  /// No description provided for @enter_your_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get enter_your_password;
+
+  /// No description provided for @ruh_therapy.
+  ///
+  /// In en, this message translates to:
+  /// **'Ruh Therapy'**
+  String get ruh_therapy;
+
+  /// No description provided for @ruh_therapy_welcome_back.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back to your journey'**
+  String get ruh_therapy_welcome_back;
 }
 
 class _AppLocalizationsDelegate
