@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:ruh/features/splash/presentation/pages/splash_page.dart';
 import '../di/injection.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
-import '../../features/auth/presentation/bloc/auth_state.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
+import '../../features/onboarding/presentation/pages/onboarding_page.dart';
 import 'app_routes.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -14,14 +14,6 @@ final appRouter = GoRouter(
   initialLocation: AppRoutes.splash,
   refreshListenable: _AuthStream(getIt<AuthBloc>()),
   redirect: (context, state) {
-    final authState = getIt<AuthBloc>().state;
-    final isLoggedIn = authState.maybeMap(
-      authenticated: (_) => true,
-      orElse: () => false,
-    );
-
-    if (isLoggedIn) return AppRoutes.home;
-
     return null;
   },
   routes: [
@@ -32,6 +24,10 @@ final appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.login,
       builder: (context, state) => const LoginPage(),
+    ),
+    GoRoute(
+      path: AppRoutes.onboarding,
+      builder: (context, state) => const OnboardingPage(),
     ),
   ],
 );

@@ -22,6 +22,18 @@ import '../../features/auth/data/repositories/auth_repository_impl.dart'
 import '../../features/auth/domain/repositories/auth_repository.dart' as _i787;
 import '../../features/auth/domain/usecases/login_user.dart' as _i778;
 import '../../features/auth/presentation/bloc/auth_bloc.dart' as _i797;
+import '../../features/onboarding/data/datasources/onboarding_local_datasource.dart'
+    as _i804;
+import '../../features/onboarding/data/repositories/onboarding_repository_impl.dart'
+    as _i452;
+import '../../features/onboarding/domain/repositories/onboarding_repository.dart'
+    as _i430;
+import '../../features/onboarding/domain/usecases/complete_onboarding.dart'
+    as _i561;
+import '../../features/onboarding/domain/usecases/get_onboarding_items.dart'
+    as _i260;
+import '../../features/onboarding/presentation/bloc/onboarding_bloc.dart'
+    as _i792;
 import '../../features/splash/data/datasources/splash_local_datasource.dart'
     as _i201;
 import '../../features/splash/data/repositories/splash_repository_impl.dart'
@@ -53,11 +65,21 @@ extension GetItInjectableX on _i174.GetIt {
       () => networkModule.cookieJar,
       preResolve: true,
     );
+    gh.lazySingleton<_i804.OnboardingLocalDataSource>(
+      () => _i804.OnboardingLocalDataSourceImpl(),
+    );
     gh.lazySingleton<_i905.TokenStorage>(
       () => _i905.TokenStorage(gh<_i460.SharedPreferences>()),
     );
     gh.lazySingleton<_i201.SplashLocalDataSource>(
       () => _i201.SplashLocalDataSource(gh<_i460.SharedPreferences>()),
+    );
+    gh.lazySingleton<_i430.OnboardingRepository>(
+      () =>
+          _i452.OnboardingRepositoryImpl(gh<_i804.OnboardingLocalDataSource>()),
+    );
+    gh.lazySingleton<_i260.GetOnboardingItems>(
+      () => _i260.GetOnboardingItems(gh<_i430.OnboardingRepository>()),
     );
     gh.lazySingleton<_i361.Dio>(
       () => networkModule.refreshDio(gh<_i557.PersistCookieJar>()),
@@ -65,6 +87,15 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i210.SplashRepository>(
       () => _i554.SplashRepositoryImpl(gh<_i201.SplashLocalDataSource>()),
+    );
+    gh.lazySingleton<_i561.CompleteOnboarding>(
+      () => _i561.CompleteOnboarding(gh<_i210.SplashRepository>()),
+    );
+    gh.factory<_i792.OnboardingBloc>(
+      () => _i792.OnboardingBloc(
+        gh<_i260.GetOnboardingItems>(),
+        gh<_i561.CompleteOnboarding>(),
+      ),
     );
     gh.factory<_i745.AuthInterceptor>(
       () => _i745.AuthInterceptor(
