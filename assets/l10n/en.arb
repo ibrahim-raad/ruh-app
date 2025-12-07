@@ -22,5 +22,8 @@
   "skip": "Skip",
   "next": "Next",
   "done": "Done",
-  "get_started": "Get Started"
+  "get_started": "Get Started",
+  "forgot_your_password": "Forgot your password?",
+  "dont_have_an_account": "Don't have an account?",
+  "sign_up": "Sign up"
 }

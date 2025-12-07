@@ -78,4 +78,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get get_started => 'Get Started';
+
+  @override
+  String get forgot_your_password => 'Forgot your password?';
+
+  @override
+  String get dont_have_an_account => 'Don\'t have an account?';
+
+  @override
+  String get sign_up => 'Sign up';
 }

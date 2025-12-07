@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -120,14 +121,36 @@ class _LoginPageState extends State<LoginPage> {
                             SizedBox(height: 16.h),
 
                             // Password Field
-                            Text(
-                              context.tr.password,
-                              style: TextStyle(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w600,
-                              ),
+                            Row(
+                              children: [
+                                Text(
+                                  context.tr.password,
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                Spacer(),
+                                InkWell(
+                                  // TODO: Implement forgot password navigation
+                                  onTap: () => {
+                                    AppToast.showError(
+                                      context,
+                                      context.tr.forgot_your_password,
+                                    ),
+                                  },
+                                  child: Text(
+                                    context.tr.forgot_your_password,
+                                    style: TextStyle(
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w500,
+                                      color: context.primary,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                            SizedBox(height: 8.h),
+                            SizedBox(height: 12.h),
                             TextFormField(
                               controller: _passwordController,
                               decoration: InputDecoration(
@@ -162,6 +185,29 @@ class _LoginPageState extends State<LoginPage> {
                           onPressed: _onLoginPressed,
                           child: Text(context.tr.login),
                         ),
+                      ),
+                    ),
+                    SizedBox(height: 34.h),
+                    RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: context.tr.dont_have_an_account,
+                            style: TextStyle(color: context.onSurfaceVariant),
+                          ),
+                          WidgetSpan(child: SizedBox(width: 6.w)),
+                          TextSpan(
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                AppToast.showSuccess(
+                                  context,
+                                  context.tr.sign_up,
+                                );
+                              },
+                            text: context.tr.sign_up,
+                            style: TextStyle(color: context.primary),
+                          ),
+                        ],
                       ),
                     ),
                   ],
