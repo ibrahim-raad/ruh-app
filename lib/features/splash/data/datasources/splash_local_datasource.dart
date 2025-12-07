@@ -10,8 +10,8 @@ class SplashLocalDataSource {
   static const String _kFirstTime = 'is_first_time';
 
   Future<bool> get isFirstTimeCompleted async =>
-      _prefs.getBool(_kFirstTime) ?? false;
+      _prefs.getBool(_kFirstTime) ?? true;
 
   Future<void> setFirstTimeCompleted() async =>
-      _prefs.setBool(_kFirstTime, true);
+      _prefs.setBool(_kFirstTime, false);
 }

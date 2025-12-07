@@ -25,8 +25,7 @@ class SplashPage extends StatelessWidget {
             navigateToHome: (_) =>
                 context.go(AppRoutes.login), // TODO: Change to home
             navigateToLogin: (_) => context.go(AppRoutes.login),
-            navigateToOnboarding: (_) =>
-                context.go(AppRoutes.login), // TODO: Change to onboarding
+            navigateToOnboarding: (_) => context.go(AppRoutes.onboarding),
           );
         },
         child: Scaffold(
