@@ -41,7 +41,6 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, User>> getCurrentUser() async {
-    // Implement later
-    throw UnimplementedError();
+    return Left(ServerFailure('Not implemented'));
   }
 }
