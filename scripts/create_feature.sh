@@ -119,7 +119,7 @@ import '../../domain/entities/${NAME}.dart';
 part '${NAME}_state.freezed.dart';
 
 @freezed
-class ${CLASS_NAME}State with _\$${CLASS_NAME}State {
+abstract class ${CLASS_NAME}State with _\$${CLASS_NAME}State {
   const factory ${CLASS_NAME}State.initial() = _Initial;
   const factory ${CLASS_NAME}State.loading() = _Loading;
   const factory ${CLASS_NAME}State.success(${CLASS_NAME} data) = _Success;
@@ -179,6 +179,13 @@ class ${CLASS_NAME}Page extends StatelessWidget {
   }
 }
 EOF
+
+# generate freezed
+dart run build_runner build --delete-conflicting-outputs
+
+# format code
+
+dart format .
 
 echo "✅ Feature '$NAME' created successfully!"
 echo "📁 Structure located at: $BASE_DIR"
