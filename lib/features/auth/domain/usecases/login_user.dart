@@ -1,10 +1,10 @@
 import 'package:ruh/features/auth/domain/dtos/login_dto.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../core/errors/failures.dart';
-import '../../../../core/usecases/usecase.dart';
-import '../entities/user.dart';
-import '../repositories/auth_repository.dart';
+import 'package:ruh/core/errors/failures.dart';
+import 'package:ruh/core/usecases/usecase.dart';
+import 'package:ruh/features/auth/domain/entities/user.dart';
+import 'package:ruh/features/auth/domain/repositories/auth_repository.dart';
 
 @lazySingleton
 class LoginUser implements UseCase<User, LoginDto> {
