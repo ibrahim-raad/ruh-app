@@ -23,6 +23,8 @@ extension FailureX on Failure {
           return context.tr.server_error;
         case AppError.unknownError:
           return context.tr.unknown_error;
+        case AppError.cacheError:
+          return context.tr.cache_error;
         default:
           return message;
       }
