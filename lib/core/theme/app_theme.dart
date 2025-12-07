@@ -110,6 +110,9 @@ class AppTheme {
       style: ElevatedButton.styleFrom(
         backgroundColor: _lightPrimary,
         foregroundColor: _lightOnPrimary,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.r),
+        ),
         textStyle: TextStyle(
           fontFamily: 'Manrope',
           fontWeight: FontWeight.bold,
@@ -207,6 +210,9 @@ class AppTheme {
       style: ElevatedButton.styleFrom(
         backgroundColor: _darkPrimary,
         foregroundColor: _darkOnPrimary,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.r),
+        ),
         textStyle: TextStyle(
           fontFamily: 'Manrope',
           fontWeight: FontWeight.bold,

@@ -154,10 +154,8 @@ class _LoginPageState extends State<LoginPage> {
 
                     SizedBox(height: 32.h),
 
-                    // Login Button
                     SizedBox(
                       width: double.infinity,
-                      height: 48.h,
                       child: state.maybeMap(
                         loading: (_) => const Center(child: AppLoader()),
                         orElse: () => ElevatedButton(
