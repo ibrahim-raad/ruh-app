@@ -59,4 +59,8 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get ruh_therapy_welcome_back => 'Welcome back to your journey';
+
+  @override
+  String get ruh_therapy_description =>
+      'Healing the soul through reflection and connection';
 }

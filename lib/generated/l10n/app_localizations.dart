@@ -201,6 +201,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Welcome back to your journey'**
   String get ruh_therapy_welcome_back;
+
+  /// No description provided for @ruh_therapy_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Healing the soul through reflection and connection'**
+  String get ruh_therapy_description;
 }
 
 class _AppLocalizationsDelegate
