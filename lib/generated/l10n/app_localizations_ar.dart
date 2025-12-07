@@ -63,4 +63,19 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get ruh_therapy_description =>
       'Healing the soul through reflection and connection';
+
+  @override
+  String get cache_error => 'Cache Error. Please try again later.';
+
+  @override
+  String get skip => 'Skip';
+
+  @override
+  String get next => 'Next';
+
+  @override
+  String get done => 'Done';
+
+  @override
+  String get get_started => 'Get Started';
 }

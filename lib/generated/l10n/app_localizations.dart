@@ -207,6 +207,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Healing the soul through reflection and connection'**
   String get ruh_therapy_description;
+
+  /// No description provided for @cache_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Cache Error. Please try again later.'**
+  String get cache_error;
+
+  /// No description provided for @skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get skip;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// No description provided for @get_started.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get get_started;
 }
 
 class _AppLocalizationsDelegate

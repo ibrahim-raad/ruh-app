@@ -17,5 +17,10 @@
   "enter_your_password": "Enter your password",
   "ruh_therapy": "Ruh Therapy",
   "ruh_therapy_welcome_back": "Welcome back to your journey",
-  "ruh_therapy_description": "Healing the soul through reflection and connection"
+  "ruh_therapy_description": "Healing the soul through reflection and connection",
+  "cache_error": "Cache Error. Please try again later.",
+  "skip": "Skip",
+  "next": "Next",
+  "done": "Done",
+  "get_started": "Get Started"
 }
