@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ruh/features/splash/presentation/pages/splash_page.dart';
 import '../di/injection.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
 import '../../features/auth/presentation/bloc/auth_state.dart';
@@ -10,7 +11,7 @@ final navigatorKey = GlobalKey<NavigatorState>();
 
 final appRouter = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: AppRoutes.login,
+  initialLocation: AppRoutes.splash,
   refreshListenable: _AuthStream(getIt<AuthBloc>()),
   redirect: (context, state) {
     final authState = getIt<AuthBloc>().state;
@@ -19,20 +20,19 @@ final appRouter = GoRouter(
       orElse: () => false,
     );
 
-    final isLoggingIn = state.matchedLocation == AppRoutes.login;
-
-    if (!isLoggedIn && !isLoggingIn) return AppRoutes.login;
-    if (isLoggedIn && isLoggingIn) return AppRoutes.home;
+    if (isLoggedIn) return AppRoutes.home;
 
     return null;
   },
   routes: [
     GoRoute(
+      path: AppRoutes.splash,
+      builder: (context, state) => const SplashPage(),
+    ),
+    GoRoute(
       path: AppRoutes.login,
       builder: (context, state) => const LoginPage(),
     ),
-    // Add Home Route here later
-    // GoRoute(path: AppRoutes.home, builder: (context, state) => const HomePage()),
   ],
 );
 

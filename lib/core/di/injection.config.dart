@@ -22,6 +22,15 @@ import '../../features/auth/data/repositories/auth_repository_impl.dart'
 import '../../features/auth/domain/repositories/auth_repository.dart' as _i787;
 import '../../features/auth/domain/usecases/login_user.dart' as _i778;
 import '../../features/auth/presentation/bloc/auth_bloc.dart' as _i797;
+import '../../features/splash/data/datasources/splash_local_datasource.dart'
+    as _i201;
+import '../../features/splash/data/repositories/splash_repository_impl.dart'
+    as _i554;
+import '../../features/splash/domain/repositories/splash_repository.dart'
+    as _i210;
+import '../../features/splash/domain/usecases/check_startup_status.dart'
+    as _i23;
+import '../../features/splash/presentation/bloc/splash_bloc.dart' as _i442;
 import '../network/api_client.dart' as _i557;
 import '../network/interceptors/auth_interceptor.dart' as _i745;
 import '../utils/token_storage.dart' as _i905;
@@ -47,9 +56,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i905.TokenStorage>(
       () => _i905.TokenStorage(gh<_i460.SharedPreferences>()),
     );
+    gh.lazySingleton<_i201.SplashLocalDataSource>(
+      () => _i201.SplashLocalDataSource(gh<_i460.SharedPreferences>()),
+    );
     gh.lazySingleton<_i361.Dio>(
       () => networkModule.refreshDio(gh<_i557.PersistCookieJar>()),
       instanceName: 'refreshDio',
+    );
+    gh.lazySingleton<_i210.SplashRepository>(
+      () => _i554.SplashRepositoryImpl(gh<_i201.SplashLocalDataSource>()),
     );
     gh.factory<_i745.AuthInterceptor>(
       () => _i745.AuthInterceptor(
@@ -72,8 +87,17 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i905.TokenStorage>(),
       ),
     );
+    gh.lazySingleton<_i23.CheckStartupStatus>(
+      () => _i23.CheckStartupStatus(
+        gh<_i210.SplashRepository>(),
+        gh<_i787.AuthRepository>(),
+      ),
+    );
     gh.lazySingleton<_i778.LoginUser>(
       () => _i778.LoginUser(gh<_i787.AuthRepository>()),
+    );
+    gh.factory<_i442.SplashBloc>(
+      () => _i442.SplashBloc(gh<_i23.CheckStartupStatus>()),
     );
     gh.factory<_i797.AuthBloc>(
       () => _i797.AuthBloc(gh<_i778.LoginUser>(), gh<_i787.AuthRepository>()),
