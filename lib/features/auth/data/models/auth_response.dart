@@ -1,16 +1,16 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../domain/entities/user.dart';
 
-part 'login_response.freezed.dart';
-part 'login_response.g.dart';
+part 'auth_response.freezed.dart';
+part 'auth_response.g.dart';
 
 @freezed
-abstract class LoginResponse with _$LoginResponse {
-  const factory LoginResponse({required User user, required TokenDto tokens}) =
-      _LoginResponse;
+abstract class AuthResponse with _$AuthResponse {
+  const factory AuthResponse({required User user, required TokenDto tokens}) =
+      _AuthResponse;
 
-  factory LoginResponse.fromJson(Map<String, dynamic> json) =>
-      _$LoginResponseFromJson(json);
+  factory AuthResponse.fromJson(Map<String, dynamic> json) =>
+      _$AuthResponseFromJson(json);
 }
 
 @freezed

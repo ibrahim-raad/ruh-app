@@ -4,44 +4,47 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ruh/core/router/app_routes.dart';
+import 'package:ruh/core/utils/app_toast.dart';
+import 'package:ruh/core/utils/failure_extensions.dart';
+import 'package:ruh/core/utils/l10n_extensions.dart';
 import 'package:ruh/core/utils/theme_extensions.dart';
-import '../../../../core/utils/app_toast.dart';
-import '../../../../core/utils/failure_extensions.dart';
-import '../../../../core/utils/l10n_extensions.dart';
-import '../../../../core/utils/validators.dart';
-import '../../../../shared/widgets/app_loader.dart';
-import '../../domain/dtos/login_dto.dart';
-import '../bloc/auth_bloc.dart';
-import '../bloc/auth_event.dart';
-import '../bloc/auth_state.dart';
+import 'package:ruh/core/utils/validators.dart';
+import 'package:ruh/features/auth/domain/dtos/register_dto.dart';
+import 'package:ruh/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:ruh/features/auth/presentation/bloc/auth_event.dart';
+import 'package:ruh/features/auth/presentation/bloc/auth_state.dart';
+import 'package:ruh/shared/widgets/app_loader.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _fullNameController = TextEditingController();
   bool _isObscure = true;
 
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _fullNameController.dispose();
     super.dispose();
   }
 
-  void _onLoginPressed() {
+  void _onRegisterPressed() {
     if (_formKey.currentState!.validate()) {
       context.read<AuthBloc>().add(
-        AuthEvent.login(
-          LoginDto(
+        AuthEvent.register(
+          RegisterDto(
             email: _emailController.text,
             password: _passwordController.text,
+            fullName: _fullNameController.text,
           ),
         ),
       );
@@ -55,9 +58,7 @@ class _LoginPageState extends State<LoginPage> {
         listener: (context, state) {
           state.mapOrNull(
             authenticated: (_) {
-              // Navigate to Home
-              // context.go('/home');
-              AppToast.showSuccess(context, context.tr.login_success);
+              AppToast.showSuccess(context, context.tr.register_success);
             },
             failure: (state) {
               final message = state.failure.getErrorMessage(context);
@@ -84,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     SizedBox(height: 8.h),
                     Text(
-                      context.tr.ruh_therapy_welcome_back,
+                      context.tr.begin_your_journey,
                       style: TextStyle(
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w500,
@@ -101,6 +102,26 @@ class _LoginPageState extends State<LoginPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            // Full Name Field
+                            Text(
+                              context.tr.full_name,
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            SizedBox(height: 8.h),
+                            TextFormField(
+                              controller: _fullNameController,
+                              decoration: InputDecoration(
+                                hintText: context.tr.enter_your_full_name,
+                                prefixIcon: const Icon(Icons.person_outline),
+                              ),
+                              validator: (value) =>
+                                  Validators.required(value, context),
+                              keyboardType: TextInputType.name,
+                            ),
+                            SizedBox(height: 16.h),
                             // Email Field
                             Text(
                               context.tr.email,
@@ -123,34 +144,12 @@ class _LoginPageState extends State<LoginPage> {
                             SizedBox(height: 16.h),
 
                             // Password Field
-                            Row(
-                              children: [
-                                Text(
-                                  context.tr.password,
-                                  style: TextStyle(
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                Spacer(),
-                                InkWell(
-                                  // TODO: Implement forgot password navigation
-                                  onTap: () => {
-                                    AppToast.showError(
-                                      context,
-                                      context.tr.forgot_your_password,
-                                    ),
-                                  },
-                                  child: Text(
-                                    context.tr.forgot_your_password,
-                                    style: TextStyle(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w500,
-                                      color: context.primary,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                            Text(
+                              context.tr.password,
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                             SizedBox(height: 12.h),
                             TextFormField(
@@ -184,8 +183,8 @@ class _LoginPageState extends State<LoginPage> {
                       child: state.maybeMap(
                         loading: (_) => const Center(child: AppLoader()),
                         orElse: () => ElevatedButton(
-                          onPressed: _onLoginPressed,
-                          child: Text(context.tr.login),
+                          onPressed: _onRegisterPressed,
+                          child: Text(context.tr.sign_up),
                         ),
                       ),
                     ),
@@ -194,16 +193,16 @@ class _LoginPageState extends State<LoginPage> {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: context.tr.dont_have_an_account,
+                            text: context.tr.already_have_an_account,
                             style: TextStyle(color: context.onSurfaceVariant),
                           ),
                           WidgetSpan(child: SizedBox(width: 6.w)),
                           TextSpan(
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                context.go(AppRoutes.register);
+                                context.go(AppRoutes.login);
                               },
-                            text: context.tr.sign_up,
+                            text: context.tr.login,
                             style: TextStyle(color: context.primary),
                           ),
                         ],

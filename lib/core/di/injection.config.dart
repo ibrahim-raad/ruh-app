@@ -21,6 +21,8 @@ import '../../features/auth/data/repositories/auth_repository_impl.dart'
     as _i153;
 import '../../features/auth/domain/repositories/auth_repository.dart' as _i787;
 import '../../features/auth/domain/usecases/login_user.dart' as _i778;
+import '../../features/auth/domain/usecases/logout_user.dart' as _i419;
+import '../../features/auth/domain/usecases/register_user.dart' as _i198;
 import '../../features/auth/presentation/bloc/auth_bloc.dart' as _i797;
 import '../../features/onboarding/data/datasources/onboarding_local_datasource.dart'
     as _i804;
@@ -127,11 +129,21 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i778.LoginUser>(
       () => _i778.LoginUser(gh<_i787.AuthRepository>()),
     );
-    gh.factory<_i442.SplashBloc>(
-      () => _i442.SplashBloc(gh<_i23.CheckStartupStatus>()),
+    gh.lazySingleton<_i419.LogoutUser>(
+      () => _i419.LogoutUser(gh<_i787.AuthRepository>()),
+    );
+    gh.lazySingleton<_i198.RegisterUser>(
+      () => _i198.RegisterUser(gh<_i787.AuthRepository>()),
     );
     gh.factory<_i797.AuthBloc>(
-      () => _i797.AuthBloc(gh<_i778.LoginUser>(), gh<_i787.AuthRepository>()),
+      () => _i797.AuthBloc(
+        gh<_i778.LoginUser>(),
+        gh<_i198.RegisterUser>(),
+        gh<_i419.LogoutUser>(),
+      ),
+    );
+    gh.factory<_i442.SplashBloc>(
+      () => _i442.SplashBloc(gh<_i23.CheckStartupStatus>()),
     );
     return this;
   }

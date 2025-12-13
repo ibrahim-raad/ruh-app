@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ruh/features/auth/presentation/pages/register_page.dart';
 import 'package:ruh/features/splash/presentation/pages/splash_page.dart';
 import '../di/injection.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
@@ -24,6 +25,10 @@ final appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.login,
       builder: (context, state) => const LoginPage(),
+    ),
+    GoRoute(
+      path: AppRoutes.register,
+      builder: (context, state) => const RegisterPage(),
     ),
     GoRoute(
       path: AppRoutes.onboarding,

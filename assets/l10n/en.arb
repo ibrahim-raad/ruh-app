@@ -25,5 +25,10 @@
   "get_started": "Get Started",
   "forgot_your_password": "Forgot your password?",
   "dont_have_an_account": "Don't have an account?",
-  "sign_up": "Sign up"
+  "sign_up": "Sign up",
+  "begin_your_journey": "Begin your journey to peace",
+  "register_success": "Registered Successfully!",
+  "already_have_an_account": "Already have an account?",
+  "enter_your_full_name": "Enter your full name",
+  "full_name": "Full Name"
 }

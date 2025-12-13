@@ -87,4 +87,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sign_up => 'Sign up';
+
+  @override
+  String get begin_your_journey => 'Begin your journey to peace';
+
+  @override
+  String get register_success => 'Registered Successfully!';
+
+  @override
+  String get already_have_an_account => 'Already have an account?';
+
+  @override
+  String get enter_your_full_name => 'Enter your full name';
+
+  @override
+  String get full_name => 'Full Name';
 }

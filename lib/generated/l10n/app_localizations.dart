@@ -255,6 +255,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sign up'**
   String get sign_up;
+
+  /// No description provided for @begin_your_journey.
+  ///
+  /// In en, this message translates to:
+  /// **'Begin your journey to peace'**
+  String get begin_your_journey;
+
+  /// No description provided for @register_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Registered Successfully!'**
+  String get register_success;
+
+  /// No description provided for @already_have_an_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account?'**
+  String get already_have_an_account;
+
+  /// No description provided for @enter_your_full_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your full name'**
+  String get enter_your_full_name;
+
+  /// No description provided for @full_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Name'**
+  String get full_name;
 }
 
 class _AppLocalizationsDelegate

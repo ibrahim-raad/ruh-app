@@ -55,12 +55,13 @@ extension AuthEventPatterns on AuthEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Login value)?  login,TResult Function( _CheckAuthStatus value)?  checkAuthStatus,TResult Function( _Logout value)?  logout,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Login value)?  login,TResult Function( _CheckAuthStatus value)?  checkAuthStatus,TResult Function( _Register value)?  register,TResult Function( _Logout value)?  logout,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Login() when login != null:
 return login(_that);case _CheckAuthStatus() when checkAuthStatus != null:
-return checkAuthStatus(_that);case _Logout() when logout != null:
+return checkAuthStatus(_that);case _Register() when register != null:
+return register(_that);case _Logout() when logout != null:
 return logout(_that);case _:
   return orElse();
 
@@ -79,12 +80,13 @@ return logout(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Login value)  login,required TResult Function( _CheckAuthStatus value)  checkAuthStatus,required TResult Function( _Logout value)  logout,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Login value)  login,required TResult Function( _CheckAuthStatus value)  checkAuthStatus,required TResult Function( _Register value)  register,required TResult Function( _Logout value)  logout,}){
 final _that = this;
 switch (_that) {
 case _Login():
 return login(_that);case _CheckAuthStatus():
-return checkAuthStatus(_that);case _Logout():
+return checkAuthStatus(_that);case _Register():
+return register(_that);case _Logout():
 return logout(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -102,12 +104,13 @@ return logout(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Login value)?  login,TResult? Function( _CheckAuthStatus value)?  checkAuthStatus,TResult? Function( _Logout value)?  logout,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Login value)?  login,TResult? Function( _CheckAuthStatus value)?  checkAuthStatus,TResult? Function( _Register value)?  register,TResult? Function( _Logout value)?  logout,}){
 final _that = this;
 switch (_that) {
 case _Login() when login != null:
 return login(_that);case _CheckAuthStatus() when checkAuthStatus != null:
-return checkAuthStatus(_that);case _Logout() when logout != null:
+return checkAuthStatus(_that);case _Register() when register != null:
+return register(_that);case _Logout() when logout != null:
 return logout(_that);case _:
   return null;
 
@@ -125,11 +128,12 @@ return logout(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( LoginDto loginDto)?  login,TResult Function()?  checkAuthStatus,TResult Function()?  logout,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( LoginDto loginDto)?  login,TResult Function()?  checkAuthStatus,TResult Function( RegisterDto registerDto)?  register,TResult Function()?  logout,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Login() when login != null:
 return login(_that.loginDto);case _CheckAuthStatus() when checkAuthStatus != null:
-return checkAuthStatus();case _Logout() when logout != null:
+return checkAuthStatus();case _Register() when register != null:
+return register(_that.registerDto);case _Logout() when logout != null:
 return logout();case _:
   return orElse();
 
@@ -148,11 +152,12 @@ return logout();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( LoginDto loginDto)  login,required TResult Function()  checkAuthStatus,required TResult Function()  logout,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( LoginDto loginDto)  login,required TResult Function()  checkAuthStatus,required TResult Function( RegisterDto registerDto)  register,required TResult Function()  logout,}) {final _that = this;
 switch (_that) {
 case _Login():
 return login(_that.loginDto);case _CheckAuthStatus():
-return checkAuthStatus();case _Logout():
+return checkAuthStatus();case _Register():
+return register(_that.registerDto);case _Logout():
 return logout();case _:
   throw StateError('Unexpected subclass');
 
@@ -170,11 +175,12 @@ return logout();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( LoginDto loginDto)?  login,TResult? Function()?  checkAuthStatus,TResult? Function()?  logout,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( LoginDto loginDto)?  login,TResult? Function()?  checkAuthStatus,TResult? Function( RegisterDto registerDto)?  register,TResult? Function()?  logout,}) {final _that = this;
 switch (_that) {
 case _Login() when login != null:
 return login(_that.loginDto);case _CheckAuthStatus() when checkAuthStatus != null:
-return checkAuthStatus();case _Logout() when logout != null:
+return checkAuthStatus();case _Register() when register != null:
+return register(_that.registerDto);case _Logout() when logout != null:
 return logout();case _:
   return null;
 
@@ -289,6 +295,81 @@ String toString() {
 
 
 
+
+/// @nodoc
+
+
+class _Register implements AuthEvent {
+  const _Register(this.registerDto);
+  
+
+ final  RegisterDto registerDto;
+
+/// Create a copy of AuthEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$RegisterCopyWith<_Register> get copyWith => __$RegisterCopyWithImpl<_Register>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Register&&(identical(other.registerDto, registerDto) || other.registerDto == registerDto));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,registerDto);
+
+@override
+String toString() {
+  return 'AuthEvent.register(registerDto: $registerDto)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$RegisterCopyWith<$Res> implements $AuthEventCopyWith<$Res> {
+  factory _$RegisterCopyWith(_Register value, $Res Function(_Register) _then) = __$RegisterCopyWithImpl;
+@useResult
+$Res call({
+ RegisterDto registerDto
+});
+
+
+$RegisterDtoCopyWith<$Res> get registerDto;
+
+}
+/// @nodoc
+class __$RegisterCopyWithImpl<$Res>
+    implements _$RegisterCopyWith<$Res> {
+  __$RegisterCopyWithImpl(this._self, this._then);
+
+  final _Register _self;
+  final $Res Function(_Register) _then;
+
+/// Create a copy of AuthEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? registerDto = null,}) {
+  return _then(_Register(
+null == registerDto ? _self.registerDto : registerDto // ignore: cast_nullable_to_non_nullable
+as RegisterDto,
+  ));
+}
+
+/// Create a copy of AuthEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$RegisterDtoCopyWith<$Res> get registerDto {
+  
+  return $RegisterDtoCopyWith<$Res>(_self.registerDto, (value) {
+    return _then(_self.copyWith(registerDto: value));
+  });
+}
+}
 
 /// @nodoc
 
