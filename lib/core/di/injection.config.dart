@@ -36,6 +36,22 @@ import '../../features/onboarding/domain/usecases/get_onboarding_items.dart'
     as _i260;
 import '../../features/onboarding/presentation/bloc/onboarding_bloc.dart'
     as _i792;
+import '../../features/patient_profile/data/datasources/patient_profile_remote_datasource.dart'
+    as _i704;
+import '../../features/patient_profile/data/repositories/patient_profile_repository_impl.dart'
+    as _i69;
+import '../../features/patient_profile/domain/repositories/patient_profile_repository.dart'
+    as _i867;
+import '../../features/patient_profile/domain/usecases/delete_profile_image.dart'
+    as _i922;
+import '../../features/patient_profile/domain/usecases/get_patient_profile.dart'
+    as _i972;
+import '../../features/patient_profile/domain/usecases/update_patient_profile.dart'
+    as _i872;
+import '../../features/patient_profile/domain/usecases/upload_profile_image.dart'
+    as _i612;
+import '../../features/patient_profile/presentation/bloc/patient_profile_bloc.dart'
+    as _i694;
 import '../../features/splash/data/datasources/splash_local_datasource.dart'
     as _i201;
 import '../../features/splash/data/repositories/splash_repository_impl.dart'
@@ -114,10 +130,18 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i161.AuthRemoteDataSource>(
       () => _i161.AuthRemoteDataSource(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i704.PatientProfileRemoteDataSource>(
+      () => _i704.PatientProfileRemoteDataSource(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i787.AuthRepository>(
       () => _i153.AuthRepositoryImpl(
         gh<_i161.AuthRemoteDataSource>(),
         gh<_i905.TokenStorage>(),
+      ),
+    );
+    gh.lazySingleton<_i867.PatientProfileRepository>(
+      () => _i69.PatientProfileRepositoryImpl(
+        gh<_i704.PatientProfileRemoteDataSource>(),
       ),
     );
     gh.lazySingleton<_i23.CheckStartupStatus>(
@@ -144,6 +168,26 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i442.SplashBloc>(
       () => _i442.SplashBloc(gh<_i23.CheckStartupStatus>()),
+    );
+    gh.lazySingleton<_i922.DeleteProfileImage>(
+      () => _i922.DeleteProfileImage(gh<_i867.PatientProfileRepository>()),
+    );
+    gh.lazySingleton<_i972.GetPatientProfile>(
+      () => _i972.GetPatientProfile(gh<_i867.PatientProfileRepository>()),
+    );
+    gh.lazySingleton<_i872.UpdatePatientProfile>(
+      () => _i872.UpdatePatientProfile(gh<_i867.PatientProfileRepository>()),
+    );
+    gh.lazySingleton<_i612.UploadProfileImage>(
+      () => _i612.UploadProfileImage(gh<_i867.PatientProfileRepository>()),
+    );
+    gh.factory<_i694.PatientProfileBloc>(
+      () => _i694.PatientProfileBloc(
+        gh<_i972.GetPatientProfile>(),
+        gh<_i872.UpdatePatientProfile>(),
+        gh<_i612.UploadProfileImage>(),
+        gh<_i922.DeleteProfileImage>(),
+      ),
     );
     return this;
   }

@@ -19,3 +19,7 @@ final class CacheFailure extends Failure {
 final class NetworkFailure extends Failure {
   const NetworkFailure(super.message);
 }
+
+final class BadRequestFailure extends Failure {
+  const BadRequestFailure(super.message);
+}

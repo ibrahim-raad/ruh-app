@@ -102,4 +102,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get full_name => 'Full Name';
+
+  @override
+  String get edit_profile => 'Edit Profile';
+
+  @override
+  String get date_of_birth => 'Date of Birth';
+
+  @override
+  String get gender => 'Gender';
+
+  @override
+  String get save => 'Save';
 }

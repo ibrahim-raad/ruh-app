@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ruh/features/auth/presentation/pages/register_page.dart';
+import 'package:ruh/features/patient_profile/presentation/pages/edit_profile_page.dart';
 import 'package:ruh/features/splash/presentation/pages/splash_page.dart';
 import '../di/injection.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
@@ -12,7 +13,7 @@ final navigatorKey = GlobalKey<NavigatorState>();
 
 final appRouter = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: AppRoutes.splash,
+  initialLocation: AppRoutes.editProfile,
   refreshListenable: _AuthStream(getIt<AuthBloc>()),
   redirect: (context, state) {
     return null;
@@ -33,6 +34,10 @@ final appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.onboarding,
       builder: (context, state) => const OnboardingPage(),
+    ),
+    GoRoute(
+      path: AppRoutes.editProfile,
+      builder: (context, state) => const EditProfilePage(),
     ),
   ],
 );
