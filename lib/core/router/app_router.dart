@@ -1,21 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'dart:async';
 import 'package:ruh/features/auth/presentation/pages/register_page.dart';
 import 'package:ruh/features/patient_profile/presentation/pages/edit_profile_page.dart';
 import 'package:ruh/features/splash/presentation/pages/splash_page.dart';
-import '../di/injection.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
+import '../../features/auth/presentation/bloc/auth_state.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
 import '../../features/onboarding/presentation/pages/onboarding_page.dart';
 import 'app_routes.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
-final appRouter = GoRouter(
+GoRouter createAppRouter(AuthBloc authBloc) => GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: AppRoutes.editProfile,
-  refreshListenable: _AuthStream(getIt<AuthBloc>()),
+  initialLocation: AppRoutes.splash,
+  refreshListenable: _AuthStream(authBloc),
   redirect: (context, state) {
+    final AuthState authState = authBloc.state;
+    final loc = state.matchedLocation;
+
+    final publicRoutes = [
+      AppRoutes.splash,
+      AppRoutes.onboarding,
+      AppRoutes.login,
+      AppRoutes.register,
+    ];
+    final isPublicRoute = publicRoutes.contains(loc);
+
+    final isLoadingOrInitial = authState.maybeMap(
+      initial: (_) => true,
+      loading: (_) => true,
+      orElse: () => false,
+    );
+
+    if (isLoadingOrInitial) {
+      return loc == AppRoutes.splash ? null : AppRoutes.splash;
+    }
+
+    final isAuthenticated = authState.maybeMap(
+      authenticated: (_) => true,
+      orElse: () => false,
+    );
+
+    if (!isAuthenticated) {
+      return isPublicRoute ? null : AppRoutes.login;
+    }
+
     return null;
   },
   routes: [
@@ -45,8 +76,20 @@ final appRouter = GoRouter(
 /// Converts Bloc Stream to Listenable for GoRouter
 class _AuthStream extends ChangeNotifier {
   final AuthBloc _bloc;
+  late final StreamSubscription<AuthState> _sub;
 
   _AuthStream(this._bloc) {
-    _bloc.stream.listen((_) => notifyListeners());
+    // Bloc streams don't replay the current state, so log it explicitly.
+    debugPrint('state (initial): ${_bloc.state}');
+    _sub = _bloc.stream.listen((state) {
+      debugPrint('state: $state');
+      notifyListeners();
+    });
+  }
+
+  @override
+  void dispose() {
+    _sub.cancel();
+    super.dispose();
   }
 }

@@ -3,10 +3,13 @@ import 'package:injectable/injectable.dart';
 import 'package:ruh/core/usecases/usecase.dart';
 import 'package:ruh/features/auth/domain/usecases/logout_user.dart';
 import 'package:ruh/features/auth/domain/usecases/register_user.dart';
+import 'package:ruh/features/auth/domain/repositories/auth_repository.dart';
+import '../../../../core/di/injection.dart';
 import '../../domain/usecases/login_user.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
 
+@lazySingleton
 @injectable
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final LoginUser _loginUser;
@@ -42,8 +45,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           );
         },
         checkAuthStatus: (e) async {
-          // Implement logic later
-          emit(const AuthState.unauthenticated());
+          emit(const AuthState.loading());
+          final result = await getIt<AuthRepository>().getCurrentUser();
+          result.fold(
+            (_) => emit(const AuthState.unauthenticated()),
+            (user) => emit(AuthState.authenticated(user)),
+          );
         },
       );
     });

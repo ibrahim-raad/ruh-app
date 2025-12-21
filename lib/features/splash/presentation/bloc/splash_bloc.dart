@@ -15,8 +15,6 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
         started: (_) async {
           emit(const SplashState.loading());
 
-          await Future.delayed(const Duration(seconds: 3));
-
           final result = await _checkStartupStatus();
 
           result.fold(

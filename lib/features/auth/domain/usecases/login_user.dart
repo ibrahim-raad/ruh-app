@@ -14,7 +14,6 @@ class LoginUser implements UseCase<User, LoginDto> {
 
   @override
   Future<Either<Failure, User>> call(LoginDto dto) async {
-    await Future.delayed(const Duration(seconds: 2));
     return _repository.login(dto);
   }
 }
