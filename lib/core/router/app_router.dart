@@ -28,14 +28,12 @@ GoRouter createAppRouter(AuthBloc authBloc) => GoRouter(
     ];
     final isPublicRoute = publicRoutes.contains(loc);
 
-    final isLoadingOrInitial = authState.maybeMap(
+    final isInitial = authState.maybeMap(
       initial: (_) => true,
-      loading: (_) => true,
       orElse: () => false,
     );
-
-    if (isLoadingOrInitial) {
-      return loc == AppRoutes.splash ? null : AppRoutes.splash;
+    if (isInitial) {
+      return isPublicRoute ? null : AppRoutes.splash;
     }
 
     final isAuthenticated = authState.maybeMap(
