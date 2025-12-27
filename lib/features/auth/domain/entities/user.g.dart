@@ -27,7 +27,7 @@ _User _$UserFromJson(Map<String, dynamic> json) => _User(
   dateOfBirth: json['date_of_birth'] == null
       ? null
       : DateTime.parse(json['date_of_birth'] as String),
-  profileUrl: json['profile_url'] as String? ?? null,
+  profileUrl: json['profile_url'] as String?,
   spokenLanguages:
       (json['spoken_languages'] as List<dynamic>?)
           ?.map((e) => Language.fromJson(e as Map<String, dynamic>))

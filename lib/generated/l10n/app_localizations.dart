@@ -309,6 +309,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save'**
   String get save;
+
+  /// No description provided for @search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get search;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @no_results.
+  ///
+  /// In en, this message translates to:
+  /// **'No results'**
+  String get no_results;
+
+  /// No description provided for @country.
+  ///
+  /// In en, this message translates to:
+  /// **'Country'**
+  String get country;
+
+  /// No description provided for @select_country.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a country'**
+  String get select_country;
+
+  /// No description provided for @languages.
+  ///
+  /// In en, this message translates to:
+  /// **'Languages'**
+  String get languages;
+
+  /// No description provided for @select_languages.
+  ///
+  /// In en, this message translates to:
+  /// **'Select languages'**
+  String get select_languages;
+
+  /// No description provided for @primary.
+  ///
+  /// In en, this message translates to:
+  /// **'Primary'**
+  String get primary;
+
+  /// No description provided for @make_primary.
+  ///
+  /// In en, this message translates to:
+  /// **'Make primary'**
+  String get make_primary;
+
+  /// No description provided for @primary_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Star means primary'**
+  String get primary_hint;
 }
 
 class _AppLocalizationsDelegate

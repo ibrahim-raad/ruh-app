@@ -28,7 +28,7 @@ abstract class NetworkModule {
       LogInterceptor(
         requestBody: true,
         responseBody: true,
-        logPrint: (obj) => Logger().d(obj),
+        logPrint: (obj) => Logger().d(obj, stackTrace: StackTrace.empty),
       ),
     );
     return dio;
@@ -54,7 +54,7 @@ abstract class NetworkModule {
       LogInterceptor(
         requestBody: true,
         responseBody: true,
-        logPrint: (obj) => Logger().d(obj),
+        logPrint: (obj) => Logger().d(obj, stackTrace: StackTrace.empty),
       ),
     );
     return dio;

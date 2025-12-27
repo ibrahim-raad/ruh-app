@@ -1,4 +1,14 @@
 {
   "@@locale": "ar",
-  "app_name": "تطبيق تيمبليت"
+  "app_name": "تطبيق تيمبليت",
+  "search": "بحث",
+  "cancel": "إلغاء",
+  "no_results": "لا توجد نتائج",
+  "country": "الدولة",
+  "select_country": "اختر دولة",
+  "languages": "اللغات",
+  "select_languages": "اختر اللغات",
+  "primary": "أساسي",
+  "make_primary": "تعيين كأساسي",
+  "primary_hint": "النجمة تعني أساسي"
 }

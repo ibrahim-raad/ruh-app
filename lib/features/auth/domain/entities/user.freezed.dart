@@ -236,7 +236,7 @@ return $default(_that.id,_that.email,_that.fullName,_that.role,_that.status,_tha
 @JsonSerializable()
 
 class _User implements User {
-  const _User({required this.id, required this.email, @JsonKey(name: 'full_name') required this.fullName, required this.role, this.status = UserStatus.pending, this.gender = UserGender.unknown, this.emailStatus = UserEmailStatus.unverified, this.country = null, @JsonKey(name: 'country_id') required this.countryId, @JsonKey(name: 'date_of_birth') this.dateOfBirth = null, @JsonKey(name: 'profile_url') this.profileUrl = null, @JsonKey(name: 'spoken_languages') final  List<Language>? spokenLanguages = const [], @JsonKey(name: 'version') this.version = 0, @JsonKey(name: 'created_at') required this.createdAt, @JsonKey(name: 'updated_at') required this.updatedAt, @JsonKey(name: 'deleted_at') this.deletedAt = null}): _spokenLanguages = spokenLanguages;
+  const _User({required this.id, required this.email, @JsonKey(name: 'full_name') required this.fullName, required this.role, this.status = UserStatus.pending, this.gender = UserGender.unknown, this.emailStatus = UserEmailStatus.unverified, this.country, @JsonKey(name: 'country_id') required this.countryId, @JsonKey(name: 'date_of_birth') this.dateOfBirth, @JsonKey(name: 'profile_url') this.profileUrl, @JsonKey(name: 'spoken_languages') final  List<Language>? spokenLanguages = const [], @JsonKey(name: 'version') this.version = 0, @JsonKey(name: 'created_at') required this.createdAt, @JsonKey(name: 'updated_at') required this.updatedAt, @JsonKey(name: 'deleted_at') this.deletedAt}): _spokenLanguages = spokenLanguages;
   factory _User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
 @override final  String id;
@@ -246,7 +246,7 @@ class _User implements User {
 @override@JsonKey() final  UserStatus status;
 @override@JsonKey() final  UserGender gender;
 @override@JsonKey() final  UserEmailStatus emailStatus;
-@override@JsonKey() final  Country? country;
+@override final  Country? country;
 @override@JsonKey(name: 'country_id') final  String countryId;
 @override@JsonKey(name: 'date_of_birth') final  DateTime? dateOfBirth;
 @override@JsonKey(name: 'profile_url') final  String? profileUrl;

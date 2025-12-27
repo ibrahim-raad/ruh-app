@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:ruh/core/domain/entities/languages/language.dart';
+import 'package:ruh/core/di/injection.dart';
+import 'package:ruh/features/lookups/domain/entities/country.dart';
+import 'package:ruh/features/lookups/domain/entities/language.dart';
+import 'package:ruh/features/lookups/domain/repositories/lookups_repository.dart';
 import 'package:ruh/core/utils/l10n_extensions.dart';
 import 'package:ruh/core/utils/string_extensions.dart';
 import 'package:ruh/core/utils/validators.dart';
 import 'package:ruh/features/auth/domain/entities/user.dart';
+import 'package:ruh/features/lookups/presentation/widgets/country_picker_field.dart';
+import 'package:ruh/features/lookups/presentation/widgets/languages_picker_field.dart';
+import 'package:ruh/features/lookups/presentation/widgets/languages_picker_bottom_sheet.dart';
+import 'package:ruh/features/patient_profile/domain/dtos/spoken_language_input_dto.dart';
 
 class ProfileFormWidget extends StatefulWidget {
   final Function(
@@ -13,7 +20,7 @@ class ProfileFormWidget extends StatefulWidget {
     DateTime dateOfBirth,
     UserGender gender,
     String countryId,
-    List<Language> spokenLanguages,
+    List<SpokenLanguageInputDto> spokenLanguages,
   )
   onSave;
   final String? initialFullName;
@@ -42,9 +49,9 @@ class _ProfileFormWidgetState extends State<ProfileFormWidget> {
   late TextEditingController _dobController;
   late UserGender _selectedGender;
   DateTime? _selectedDate;
-  // TODO: Add Country and Language selection logic when Lookups feature is ready
-  String _selectedCountryId = '';
-  List<Language> _selectedLanguages = [];
+
+  Country? _selectedCountry;
+  List<LanguageSelection> _selectedLanguageSelections = [];
 
   @override
   void initState() {
@@ -59,8 +66,29 @@ class _ProfileFormWidgetState extends State<ProfileFormWidget> {
     );
     _selectedDate = widget.initialDateOfBirth;
     _selectedGender = widget.initialGender ?? UserGender.male;
-    _selectedCountryId = widget.initialCountryId ?? '';
-    _selectedLanguages = widget.initialLanguages ?? [];
+
+    final initialCountryId = widget.initialCountryId?.trim();
+    if (initialCountryId != null && initialCountryId.isNotEmpty) {
+      _selectedCountry = Country(id: initialCountryId, name: '');
+      _loadInitialCountryName(initialCountryId);
+    } else {
+      _selectedCountry = null;
+    }
+
+    final initialLanguages = widget.initialLanguages ?? const <Language>[];
+    _selectedLanguageSelections = initialLanguages.asMap().entries.map((e) {
+      return LanguageSelection(language: e.value, isPrimary: e.key == 0);
+    }).toList();
+  }
+
+  Future<void> _loadInitialCountryName(String countryId) async {
+    final repo = getIt<LookupsRepository>();
+    final result = await repo.getCountry(countryId);
+    if (!mounted) return;
+    result.fold(
+      (_) {},
+      (country) => setState(() => _selectedCountry = country),
+    );
   }
 
   @override
@@ -136,18 +164,68 @@ class _ProfileFormWidgetState extends State<ProfileFormWidget> {
           ),
           SizedBox(height: 24.h),
 
+          FormField<Country>(
+            initialValue: _selectedCountry,
+            validator: (value) =>
+                value == null ? context.tr.required_field : null,
+            builder: (field) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CountryPickerField(
+                    value: field.value,
+                    onChanged: (country) {
+                      setState(() => _selectedCountry = country);
+                      field.didChange(country);
+                    },
+                  ),
+                  if (field.hasError)
+                    Padding(
+                      padding: EdgeInsets.only(left: 12.w, top: 6.h),
+                      child: Text(
+                        field.errorText ?? '',
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.error,
+                          fontSize: 12.sp,
+                        ),
+                      ),
+                    ),
+                ],
+              );
+            },
+          ),
+          SizedBox(height: 16.h),
+
+          LanguagesPickerField(
+            value: _selectedLanguageSelections,
+            onChanged: (value) {
+              setState(() => _selectedLanguageSelections = value);
+            },
+          ),
+          SizedBox(height: 24.h),
+
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {
                 if (_formKey.currentState!.validate() &&
                     _selectedDate != null) {
+                  final countryId = _selectedCountry!.id;
+                  final spokenLanguages = _selectedLanguageSelections
+                      .map(
+                        (s) => SpokenLanguageInputDto(
+                          languageId: s.language.id,
+                          isPrimary: s.isPrimary,
+                        ),
+                      )
+                      .toList();
+
                   widget.onSave(
                     _fullNameController.text,
                     _selectedDate!,
                     _selectedGender,
-                    _selectedCountryId,
-                    _selectedLanguages,
+                    countryId,
+                    spokenLanguages,
                   );
                 }
               },

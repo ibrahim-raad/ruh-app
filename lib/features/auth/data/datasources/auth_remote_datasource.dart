@@ -38,4 +38,13 @@ class AuthRemoteDataSource extends BaseApi<User> {
       throw handleDioError(e);
     }
   }
+
+  Future<User> getCurrentUser() async {
+    try {
+      final response = await dio.get('$endpoint/me');
+      return User.fromJson(response.data);
+    } on DioException catch (e) {
+      throw handleDioError(e);
+    }
+  }
 }

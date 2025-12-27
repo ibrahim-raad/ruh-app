@@ -34,5 +34,15 @@
   "edit_profile": "Edit Profile",
   "date_of_birth": "Date of Birth",
   "gender": "Gender",
-  "save": "Save"
+  "save": "Save",
+  "search": "Search",
+  "cancel": "Cancel",
+  "no_results": "No results",
+  "country": "Country",
+  "select_country": "Select a country",
+  "languages": "Languages",
+  "select_languages": "Select languages",
+  "primary": "Primary",
+  "make_primary": "Make primary",
+  "primary_hint": "Star means primary"
 }

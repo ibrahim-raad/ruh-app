@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ruh/core/domain/entities/languages/language.dart';
 import 'package:ruh/features/auth/domain/entities/user.dart';
+import 'package:ruh/features/patient_profile/domain/dtos/spoken_language_input_dto.dart';
 part 'update_patient_profile_dto.freezed.dart';
 part 'update_patient_profile_dto.g.dart';
 
@@ -13,7 +13,7 @@ abstract class UpdatePatientProfileDto with _$UpdatePatientProfileDto {
     @JsonKey(name: 'country_id') required String countryId,
     @JsonKey(name: 'spoken_languages')
     @Default([])
-    List<Language> spokenLanguages,
+    List<SpokenLanguageInputDto> spokenLanguages,
     required int version,
     @JsonKey(name: 'patient_version') required int patientVersion,
   }) = _UpdatePatientProfileDto;

@@ -56,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
           state.mapOrNull(
             authenticated: (_) {
               // Navigate to Home
-              // context.go('/home');
+              context.go(AppRoutes.editProfile);
               AppToast.showSuccess(context, context.tr.login_success);
             },
             failure: (state) {

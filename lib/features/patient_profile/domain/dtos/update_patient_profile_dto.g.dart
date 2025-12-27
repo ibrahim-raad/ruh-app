@@ -15,7 +15,9 @@ _UpdatePatientProfileDto _$UpdatePatientProfileDtoFromJson(
   countryId: json['country_id'] as String,
   spokenLanguages:
       (json['spoken_languages'] as List<dynamic>?)
-          ?.map((e) => Language.fromJson(e as Map<String, dynamic>))
+          ?.map(
+            (e) => SpokenLanguageInputDto.fromJson(e as Map<String, dynamic>),
+          )
           .toList() ??
       const [],
   version: (json['version'] as num).toInt(),

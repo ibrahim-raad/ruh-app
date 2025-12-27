@@ -114,4 +114,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get save => 'Save';
+
+  @override
+  String get search => 'Search';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get no_results => 'No results';
+
+  @override
+  String get country => 'Country';
+
+  @override
+  String get select_country => 'Select a country';
+
+  @override
+  String get languages => 'Languages';
+
+  @override
+  String get select_languages => 'Select languages';
+
+  @override
+  String get primary => 'Primary';
+
+  @override
+  String get make_primary => 'Make primary';
+
+  @override
+  String get primary_hint => 'Star means primary';
 }

@@ -1,4 +1,14 @@
 {
   "@@locale": "fr",
-  "app_name": "Template Flutter Application"
+  "app_name": "Template Flutter Application",
+  "search": "Rechercher",
+  "cancel": "Annuler",
+  "no_results": "Aucun résultat",
+  "country": "Pays",
+  "select_country": "Sélectionner un pays",
+  "languages": "Langues",
+  "select_languages": "Sélectionner des langues",
+  "primary": "Principale",
+  "make_primary": "Définir comme principale",
+  "primary_hint": "L’étoile signifie principale"
 }

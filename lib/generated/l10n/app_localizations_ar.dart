@@ -114,4 +114,34 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get save => 'Save';
+
+  @override
+  String get search => 'بحث';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get no_results => 'لا توجد نتائج';
+
+  @override
+  String get country => 'الدولة';
+
+  @override
+  String get select_country => 'اختر دولة';
+
+  @override
+  String get languages => 'اللغات';
+
+  @override
+  String get select_languages => 'اختر اللغات';
+
+  @override
+  String get primary => 'أساسي';
+
+  @override
+  String get make_primary => 'تعيين كأساسي';
+
+  @override
+  String get primary_hint => 'النجمة تعني أساسي';
 }

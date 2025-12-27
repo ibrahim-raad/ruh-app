@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:ruh/core/domain/entities/countries/country.dart';
-import 'package:ruh/core/domain/entities/languages/language.dart';
+import 'package:ruh/features/lookups/domain/entities/country.dart';
+import 'package:ruh/features/lookups/domain/entities/language.dart';
 
 part 'user.freezed.dart';
 part 'user.g.dart';
@@ -15,17 +15,17 @@ abstract class User with _$User {
     @Default(UserStatus.pending) UserStatus status,
     @Default(UserGender.unknown) UserGender gender,
     @Default(UserEmailStatus.unverified) UserEmailStatus emailStatus,
-    @Default(null) Country? country,
+    Country? country,
     @JsonKey(name: 'country_id') required String countryId,
-    @JsonKey(name: 'date_of_birth') @Default(null) DateTime? dateOfBirth,
-    @JsonKey(name: 'profile_url') @Default(null) String? profileUrl,
+    @JsonKey(name: 'date_of_birth') DateTime? dateOfBirth,
+    @JsonKey(name: 'profile_url') String? profileUrl,
     @JsonKey(name: 'spoken_languages')
     @Default([])
     List<Language>? spokenLanguages,
     @JsonKey(name: 'version') @Default(0) int version,
     @JsonKey(name: 'created_at') required DateTime createdAt,
     @JsonKey(name: 'updated_at') required DateTime updatedAt,
-    @JsonKey(name: 'deleted_at') @Default(null) DateTime? deletedAt,
+    @JsonKey(name: 'deleted_at') DateTime? deletedAt,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

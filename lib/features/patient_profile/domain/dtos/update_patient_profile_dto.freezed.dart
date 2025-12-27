@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UpdatePatientProfileDto {
 
-@JsonKey(name: 'full_name') String get fullName;@JsonKey(name: 'date_of_birth') DateTime get dateOfBirth;@JsonKey(name: 'gender') UserGender get gender;@JsonKey(name: 'country_id') String get countryId;@JsonKey(name: 'spoken_languages') List<Language> get spokenLanguages; int get version;@JsonKey(name: 'patient_version') int get patientVersion;
+@JsonKey(name: 'full_name') String get fullName;@JsonKey(name: 'date_of_birth') DateTime get dateOfBirth;@JsonKey(name: 'gender') UserGender get gender;@JsonKey(name: 'country_id') String get countryId;@JsonKey(name: 'spoken_languages') List<SpokenLanguageInputDto> get spokenLanguages; int get version;@JsonKey(name: 'patient_version') int get patientVersion;
 /// Create a copy of UpdatePatientProfileDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $UpdatePatientProfileDtoCopyWith<$Res>  {
   factory $UpdatePatientProfileDtoCopyWith(UpdatePatientProfileDto value, $Res Function(UpdatePatientProfileDto) _then) = _$UpdatePatientProfileDtoCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'full_name') String fullName,@JsonKey(name: 'date_of_birth') DateTime dateOfBirth,@JsonKey(name: 'gender') UserGender gender,@JsonKey(name: 'country_id') String countryId,@JsonKey(name: 'spoken_languages') List<Language> spokenLanguages, int version,@JsonKey(name: 'patient_version') int patientVersion
+@JsonKey(name: 'full_name') String fullName,@JsonKey(name: 'date_of_birth') DateTime dateOfBirth,@JsonKey(name: 'gender') UserGender gender,@JsonKey(name: 'country_id') String countryId,@JsonKey(name: 'spoken_languages') List<SpokenLanguageInputDto> spokenLanguages, int version,@JsonKey(name: 'patient_version') int patientVersion
 });
 
 
@@ -72,7 +72,7 @@ as String,dateOfBirth: null == dateOfBirth ? _self.dateOfBirth : dateOfBirth // 
 as DateTime,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
 as UserGender,countryId: null == countryId ? _self.countryId : countryId // ignore: cast_nullable_to_non_nullable
 as String,spokenLanguages: null == spokenLanguages ? _self.spokenLanguages : spokenLanguages // ignore: cast_nullable_to_non_nullable
-as List<Language>,version: null == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
+as List<SpokenLanguageInputDto>,version: null == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
 as int,patientVersion: null == patientVersion ? _self.patientVersion : patientVersion // ignore: cast_nullable_to_non_nullable
 as int,
   ));
@@ -159,7 +159,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'full_name')  String fullName, @JsonKey(name: 'date_of_birth')  DateTime dateOfBirth, @JsonKey(name: 'gender')  UserGender gender, @JsonKey(name: 'country_id')  String countryId, @JsonKey(name: 'spoken_languages')  List<Language> spokenLanguages,  int version, @JsonKey(name: 'patient_version')  int patientVersion)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'full_name')  String fullName, @JsonKey(name: 'date_of_birth')  DateTime dateOfBirth, @JsonKey(name: 'gender')  UserGender gender, @JsonKey(name: 'country_id')  String countryId, @JsonKey(name: 'spoken_languages')  List<SpokenLanguageInputDto> spokenLanguages,  int version, @JsonKey(name: 'patient_version')  int patientVersion)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UpdatePatientProfileDto() when $default != null:
 return $default(_that.fullName,_that.dateOfBirth,_that.gender,_that.countryId,_that.spokenLanguages,_that.version,_that.patientVersion);case _:
@@ -180,7 +180,7 @@ return $default(_that.fullName,_that.dateOfBirth,_that.gender,_that.countryId,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'full_name')  String fullName, @JsonKey(name: 'date_of_birth')  DateTime dateOfBirth, @JsonKey(name: 'gender')  UserGender gender, @JsonKey(name: 'country_id')  String countryId, @JsonKey(name: 'spoken_languages')  List<Language> spokenLanguages,  int version, @JsonKey(name: 'patient_version')  int patientVersion)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'full_name')  String fullName, @JsonKey(name: 'date_of_birth')  DateTime dateOfBirth, @JsonKey(name: 'gender')  UserGender gender, @JsonKey(name: 'country_id')  String countryId, @JsonKey(name: 'spoken_languages')  List<SpokenLanguageInputDto> spokenLanguages,  int version, @JsonKey(name: 'patient_version')  int patientVersion)  $default,) {final _that = this;
 switch (_that) {
 case _UpdatePatientProfileDto():
 return $default(_that.fullName,_that.dateOfBirth,_that.gender,_that.countryId,_that.spokenLanguages,_that.version,_that.patientVersion);case _:
@@ -200,7 +200,7 @@ return $default(_that.fullName,_that.dateOfBirth,_that.gender,_that.countryId,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'full_name')  String fullName, @JsonKey(name: 'date_of_birth')  DateTime dateOfBirth, @JsonKey(name: 'gender')  UserGender gender, @JsonKey(name: 'country_id')  String countryId, @JsonKey(name: 'spoken_languages')  List<Language> spokenLanguages,  int version, @JsonKey(name: 'patient_version')  int patientVersion)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'full_name')  String fullName, @JsonKey(name: 'date_of_birth')  DateTime dateOfBirth, @JsonKey(name: 'gender')  UserGender gender, @JsonKey(name: 'country_id')  String countryId, @JsonKey(name: 'spoken_languages')  List<SpokenLanguageInputDto> spokenLanguages,  int version, @JsonKey(name: 'patient_version')  int patientVersion)?  $default,) {final _that = this;
 switch (_that) {
 case _UpdatePatientProfileDto() when $default != null:
 return $default(_that.fullName,_that.dateOfBirth,_that.gender,_that.countryId,_that.spokenLanguages,_that.version,_that.patientVersion);case _:
@@ -215,15 +215,15 @@ return $default(_that.fullName,_that.dateOfBirth,_that.gender,_that.countryId,_t
 @JsonSerializable()
 
 class _UpdatePatientProfileDto implements UpdatePatientProfileDto {
-  const _UpdatePatientProfileDto({@JsonKey(name: 'full_name') required this.fullName, @JsonKey(name: 'date_of_birth') required this.dateOfBirth, @JsonKey(name: 'gender') required this.gender, @JsonKey(name: 'country_id') required this.countryId, @JsonKey(name: 'spoken_languages') final  List<Language> spokenLanguages = const [], required this.version, @JsonKey(name: 'patient_version') required this.patientVersion}): _spokenLanguages = spokenLanguages;
+  const _UpdatePatientProfileDto({@JsonKey(name: 'full_name') required this.fullName, @JsonKey(name: 'date_of_birth') required this.dateOfBirth, @JsonKey(name: 'gender') required this.gender, @JsonKey(name: 'country_id') required this.countryId, @JsonKey(name: 'spoken_languages') final  List<SpokenLanguageInputDto> spokenLanguages = const [], required this.version, @JsonKey(name: 'patient_version') required this.patientVersion}): _spokenLanguages = spokenLanguages;
   factory _UpdatePatientProfileDto.fromJson(Map<String, dynamic> json) => _$UpdatePatientProfileDtoFromJson(json);
 
 @override@JsonKey(name: 'full_name') final  String fullName;
 @override@JsonKey(name: 'date_of_birth') final  DateTime dateOfBirth;
 @override@JsonKey(name: 'gender') final  UserGender gender;
 @override@JsonKey(name: 'country_id') final  String countryId;
- final  List<Language> _spokenLanguages;
-@override@JsonKey(name: 'spoken_languages') List<Language> get spokenLanguages {
+ final  List<SpokenLanguageInputDto> _spokenLanguages;
+@override@JsonKey(name: 'spoken_languages') List<SpokenLanguageInputDto> get spokenLanguages {
   if (_spokenLanguages is EqualUnmodifiableListView) return _spokenLanguages;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_spokenLanguages);
@@ -265,7 +265,7 @@ abstract mixin class _$UpdatePatientProfileDtoCopyWith<$Res> implements $UpdateP
   factory _$UpdatePatientProfileDtoCopyWith(_UpdatePatientProfileDto value, $Res Function(_UpdatePatientProfileDto) _then) = __$UpdatePatientProfileDtoCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'full_name') String fullName,@JsonKey(name: 'date_of_birth') DateTime dateOfBirth,@JsonKey(name: 'gender') UserGender gender,@JsonKey(name: 'country_id') String countryId,@JsonKey(name: 'spoken_languages') List<Language> spokenLanguages, int version,@JsonKey(name: 'patient_version') int patientVersion
+@JsonKey(name: 'full_name') String fullName,@JsonKey(name: 'date_of_birth') DateTime dateOfBirth,@JsonKey(name: 'gender') UserGender gender,@JsonKey(name: 'country_id') String countryId,@JsonKey(name: 'spoken_languages') List<SpokenLanguageInputDto> spokenLanguages, int version,@JsonKey(name: 'patient_version') int patientVersion
 });
 
 
@@ -289,7 +289,7 @@ as String,dateOfBirth: null == dateOfBirth ? _self.dateOfBirth : dateOfBirth // 
 as DateTime,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
 as UserGender,countryId: null == countryId ? _self.countryId : countryId // ignore: cast_nullable_to_non_nullable
 as String,spokenLanguages: null == spokenLanguages ? _self._spokenLanguages : spokenLanguages // ignore: cast_nullable_to_non_nullable
-as List<Language>,version: null == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
+as List<SpokenLanguageInputDto>,version: null == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
 as int,patientVersion: null == patientVersion ? _self.patientVersion : patientVersion // ignore: cast_nullable_to_non_nullable
 as int,
   ));

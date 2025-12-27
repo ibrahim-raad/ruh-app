@@ -114,4 +114,34 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get save => 'Save';
+
+  @override
+  String get search => 'Rechercher';
+
+  @override
+  String get cancel => 'Annuler';
+
+  @override
+  String get no_results => 'Aucun résultat';
+
+  @override
+  String get country => 'Pays';
+
+  @override
+  String get select_country => 'Sélectionner un pays';
+
+  @override
+  String get languages => 'Langues';
+
+  @override
+  String get select_languages => 'Sélectionner des langues';
+
+  @override
+  String get primary => 'Principale';
+
+  @override
+  String get make_primary => 'Définir comme principale';
+
+  @override
+  String get primary_hint => 'L’étoile signifie principale';
 }

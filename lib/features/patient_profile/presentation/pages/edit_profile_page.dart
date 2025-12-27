@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ruh/core/utils/app_toast.dart';
 import 'package:ruh/core/utils/failure_extensions.dart';
 import 'package:ruh/core/utils/l10n_extensions.dart';
+import 'package:ruh/features/auth/domain/entities/user.dart';
+import 'package:ruh/features/patient_profile/domain/dtos/spoken_language_input_dto.dart';
 import 'package:ruh/features/patient_profile/domain/dtos/update_patient_profile_dto.dart';
 import 'package:ruh/shared/widgets/app_loader.dart';
 import '../../../../core/di/injection.dart';
@@ -87,20 +89,29 @@ class EditProfileView extends StatelessWidget {
                         initialFullName: patient.user.fullName,
                         initialDateOfBirth: patient.user.dateOfBirth,
                         initialGender: patient.user.gender,
-                        onSave: (fullName, dob, gender, countryId, languages) {
-                          final dto = UpdatePatientProfileDto(
-                            fullName: fullName,
-                            dateOfBirth: dob,
-                            gender: gender,
-                            countryId: countryId,
-                            spokenLanguages: languages,
-                            version: patient.user.version,
-                            patientVersion: patient.version,
-                          );
-                          context.read<PatientProfileBloc>().add(
-                            PatientProfileEvent.updateProfile(dto),
-                          );
-                        },
+                        initialCountryId: patient.user.countryId,
+                        initialLanguages: patient.user.spokenLanguages,
+                        onSave:
+                            (
+                              String fullName,
+                              DateTime dob,
+                              UserGender gender,
+                              String countryId,
+                              List<SpokenLanguageInputDto> languages,
+                            ) {
+                              final dto = UpdatePatientProfileDto(
+                                fullName: fullName,
+                                dateOfBirth: dob,
+                                gender: gender,
+                                countryId: countryId,
+                                spokenLanguages: languages,
+                                version: patient.user.version,
+                                patientVersion: patient.version,
+                              );
+                              context.read<PatientProfileBloc>().add(
+                                PatientProfileEvent.updateProfile(dto),
+                              );
+                            },
                       ),
                     ],
                   ),

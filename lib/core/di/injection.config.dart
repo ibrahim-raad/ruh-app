@@ -24,6 +24,20 @@ import '../../features/auth/domain/usecases/login_user.dart' as _i778;
 import '../../features/auth/domain/usecases/logout_user.dart' as _i419;
 import '../../features/auth/domain/usecases/register_user.dart' as _i198;
 import '../../features/auth/presentation/bloc/auth_bloc.dart' as _i797;
+import '../../features/lookups/data/datasources/country_remote_datasource.dart'
+    as _i452;
+import '../../features/lookups/data/datasources/language_remote_datasource.dart'
+    as _i576;
+import '../../features/lookups/data/repositories/lookups_repository_impl.dart'
+    as _i226;
+import '../../features/lookups/domain/repositories/lookups_repository.dart'
+    as _i680;
+import '../../features/lookups/domain/usecases/get_countries.dart' as _i368;
+import '../../features/lookups/domain/usecases/get_languages.dart' as _i907;
+import '../../features/lookups/presentation/cubit/countries_cubit.dart'
+    as _i610;
+import '../../features/lookups/presentation/cubit/languages_cubit.dart'
+    as _i643;
 import '../../features/onboarding/data/datasources/onboarding_local_datasource.dart'
     as _i804;
 import '../../features/onboarding/data/repositories/onboarding_repository_impl.dart'
@@ -63,6 +77,7 @@ import '../../features/splash/domain/usecases/check_startup_status.dart'
 import '../../features/splash/presentation/bloc/splash_bloc.dart' as _i442;
 import '../network/api_client.dart' as _i557;
 import '../network/interceptors/auth_interceptor.dart' as _i745;
+import '../network/models/pagination_query_params_dto.dart' as _i1005;
 import '../utils/token_storage.dart' as _i905;
 import 'register_module.dart' as _i291;
 
@@ -130,6 +145,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i161.AuthRemoteDataSource>(
       () => _i161.AuthRemoteDataSource(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i452.CountryRemoteDataSource>(
+      () => _i452.CountryRemoteDataSource(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i576.LanguageRemoteDataSource>(
+      () => _i576.LanguageRemoteDataSource(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i704.PatientProfileRemoteDataSource>(
       () => _i704.PatientProfileRemoteDataSource(gh<_i361.Dio>()),
     );
@@ -142,6 +163,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i867.PatientProfileRepository>(
       () => _i69.PatientProfileRepositoryImpl(
         gh<_i704.PatientProfileRemoteDataSource>(),
+      ),
+    );
+    gh.lazySingleton<_i680.LookupsRepository>(
+      () => _i226.LookupsRepositoryImpl(
+        gh<_i452.CountryRemoteDataSource>(),
+        gh<_i576.LanguageRemoteDataSource>(),
       ),
     );
     gh.lazySingleton<_i23.CheckStartupStatus>(
@@ -159,7 +186,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i198.RegisterUser>(
       () => _i198.RegisterUser(gh<_i787.AuthRepository>()),
     );
-    gh.factory<_i797.AuthBloc>(
+    gh.lazySingleton<_i797.AuthBloc>(
       () => _i797.AuthBloc(
         gh<_i778.LoginUser>(),
         gh<_i198.RegisterUser>(),
@@ -181,6 +208,22 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i612.UploadProfileImage>(
       () => _i612.UploadProfileImage(gh<_i867.PatientProfileRepository>()),
     );
+    gh.lazySingleton<_i368.GetCountries>(
+      () => _i368.GetCountries(gh<_i680.LookupsRepository>()),
+    );
+    gh.lazySingleton<_i907.GetLanguages>(
+      () => _i907.GetLanguages(gh<_i680.LookupsRepository>()),
+    );
+    gh.factoryParam<
+      _i610.CountriesCubit,
+      _i1005.PaginationQueryParamsDto,
+      dynamic
+    >((dto, _) => _i610.CountriesCubit(gh<_i368.GetCountries>(), dto));
+    gh.factoryParam<
+      _i643.LanguagesCubit,
+      _i1005.PaginationQueryParamsDto,
+      dynamic
+    >((dto, _) => _i643.LanguagesCubit(gh<_i907.GetLanguages>(), dto));
     gh.factory<_i694.PatientProfileBloc>(
       () => _i694.PatientProfileBloc(
         gh<_i972.GetPatientProfile>(),
