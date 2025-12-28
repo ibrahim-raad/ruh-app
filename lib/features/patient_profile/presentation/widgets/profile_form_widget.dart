@@ -45,6 +45,7 @@ class ProfileFormWidget extends StatefulWidget {
 
 class _ProfileFormWidgetState extends State<ProfileFormWidget> {
   final _formKey = GlobalKey<FormState>();
+  final _countryFieldKey = GlobalKey<FormFieldState<Country>>();
   late TextEditingController _fullNameController;
   late TextEditingController _dobController;
   late UserGender _selectedGender;
@@ -85,10 +86,13 @@ class _ProfileFormWidgetState extends State<ProfileFormWidget> {
     final repo = getIt<LookupsRepository>();
     final result = await repo.getCountry(countryId);
     if (!mounted) return;
-    result.fold(
-      (_) {},
-      (country) => setState(() => _selectedCountry = country),
-    );
+    result.fold((_) {}, (country) {
+      setState(() => _selectedCountry = country);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        _countryFieldKey.currentState?.didChange(country);
+      });
+    });
   }
 
   @override
@@ -165,6 +169,7 @@ class _ProfileFormWidgetState extends State<ProfileFormWidget> {
           SizedBox(height: 24.h),
 
           FormField<Country>(
+            key: _countryFieldKey,
             initialValue: _selectedCountry,
             validator: (value) =>
                 value == null ? context.tr.required_field : null,
