@@ -144,4 +144,28 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get primary_hint => 'النجمة تعني أساسي';
+
+  @override
+  String get back => 'رجوع';
+
+  @override
+  String questionnaire_progress(Object current, Object total) {
+    return '$current من $total';
+  }
+
+  @override
+  String get questionnaire_select_one => 'اختر خيارًا واحدًا';
+
+  @override
+  String get questionnaire_select_one_or_more => 'اختر خيارًا أو أكثر';
+
+  @override
+  String get questionnaire_text_hint => 'اكتب إجابتك...';
+
+  @override
+  String get questionnaire_finish_title => 'تم الانتهاء';
+
+  @override
+  String get questionnaire_finish_subtitle =>
+      'شكرًا لإجاباتك. يمكنك المتابعة الآن.';
 }

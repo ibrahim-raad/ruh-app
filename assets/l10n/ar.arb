@@ -10,5 +10,18 @@
   "select_languages": "اختر اللغات",
   "primary": "أساسي",
   "make_primary": "تعيين كأساسي",
-  "primary_hint": "النجمة تعني أساسي"
+  "primary_hint": "النجمة تعني أساسي",
+  "back": "رجوع",
+  "questionnaire_progress": "{current} من {total}",
+  "@questionnaire_progress": {
+    "placeholders": {
+      "current": {},
+      "total": {}
+    }
+  },
+  "questionnaire_select_one": "اختر خيارًا واحدًا",
+  "questionnaire_select_one_or_more": "اختر خيارًا أو أكثر",
+  "questionnaire_text_hint": "اكتب إجابتك...",
+  "questionnaire_finish_title": "تم الانتهاء",
+  "questionnaire_finish_subtitle": "شكرًا لإجاباتك. يمكنك المتابعة الآن."
 }

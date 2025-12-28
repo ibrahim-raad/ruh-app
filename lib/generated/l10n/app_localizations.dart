@@ -369,6 +369,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Star means primary'**
   String get primary_hint;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @questionnaire_progress.
+  ///
+  /// In en, this message translates to:
+  /// **'{current} of {total}'**
+  String questionnaire_progress(Object current, Object total);
+
+  /// No description provided for @questionnaire_select_one.
+  ///
+  /// In en, this message translates to:
+  /// **'select one'**
+  String get questionnaire_select_one;
+
+  /// No description provided for @questionnaire_select_one_or_more.
+  ///
+  /// In en, this message translates to:
+  /// **'select one or more'**
+  String get questionnaire_select_one_or_more;
+
+  /// No description provided for @questionnaire_text_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Type your answer...'**
+  String get questionnaire_text_hint;
+
+  /// No description provided for @questionnaire_finish_title.
+  ///
+  /// In en, this message translates to:
+  /// **'All done'**
+  String get questionnaire_finish_title;
+
+  /// No description provided for @questionnaire_finish_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks for answering. You\'re ready to continue.'**
+  String get questionnaire_finish_subtitle;
 }
 
 class _AppLocalizationsDelegate

@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'dart:async';
 import 'package:ruh/features/auth/presentation/pages/register_page.dart';
 import 'package:ruh/features/patient_profile/presentation/pages/edit_profile_page.dart';
+import 'package:ruh/features/questionnaire/domain/entities/questionnaire.dart';
+import 'package:ruh/features/questionnaire/presentation/pages/questionnaire_page.dart';
 import 'package:ruh/features/splash/presentation/pages/splash_page.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
 import '../../features/auth/presentation/bloc/auth_state.dart';
@@ -67,6 +69,12 @@ GoRouter createAppRouter(AuthBloc authBloc) => GoRouter(
     GoRoute(
       path: AppRoutes.editProfile,
       builder: (context, state) => const EditProfilePage(),
+    ),
+    GoRoute(
+      path: AppRoutes.questionnaire(':type'),
+      builder: (context, state) => QuestionnairePage(
+        type: QuestionnaireType.values.byName(state.pathParameters['type']!),
+      ),
     ),
   ],
 );

@@ -66,6 +66,23 @@ import '../../features/patient_profile/domain/usecases/upload_profile_image.dart
     as _i612;
 import '../../features/patient_profile/presentation/bloc/patient_profile_bloc.dart'
     as _i694;
+import '../../features/questionnaire/data/datasources/answer_remote_datasource.dart'
+    as _i736;
+import '../../features/questionnaire/data/datasources/questionnaire_remote_datasource.dart'
+    as _i17;
+import '../../features/questionnaire/data/repositories/questionnaire_repository_impl.dart'
+    as _i555;
+import '../../features/questionnaire/domain/repositories/questionnaire_repository.dart'
+    as _i366;
+import '../../features/questionnaire/domain/usecases/delete_answer.dart'
+    as _i474;
+import '../../features/questionnaire/domain/usecases/get_questionnaire.dart'
+    as _i232;
+import '../../features/questionnaire/domain/usecases/post_answer.dart' as _i794;
+import '../../features/questionnaire/domain/usecases/update_answer.dart'
+    as _i761;
+import '../../features/questionnaire/presentation/bloc/questionnaire_bloc.dart'
+    as _i1049;
 import '../../features/splash/data/datasources/splash_local_datasource.dart'
     as _i201;
 import '../../features/splash/data/repositories/splash_repository_impl.dart'
@@ -154,6 +171,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i704.PatientProfileRemoteDataSource>(
       () => _i704.PatientProfileRemoteDataSource(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i736.AnswerRemoteDataSource>(
+      () => _i736.AnswerRemoteDataSource(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i17.QuestionnaireRemoteDataSource>(
+      () => _i17.QuestionnaireRemoteDataSource(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i787.AuthRepository>(
       () => _i153.AuthRepositoryImpl(
         gh<_i161.AuthRemoteDataSource>(),
@@ -186,6 +209,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i198.RegisterUser>(
       () => _i198.RegisterUser(gh<_i787.AuthRepository>()),
     );
+    gh.lazySingleton<_i366.QuestionnaireRepository>(
+      () => _i555.QuestionnaireRepositoryImpl(
+        gh<_i17.QuestionnaireRemoteDataSource>(),
+        gh<_i736.AnswerRemoteDataSource>(),
+      ),
+    );
     gh.lazySingleton<_i797.AuthBloc>(
       () => _i797.AuthBloc(
         gh<_i778.LoginUser>(),
@@ -214,11 +243,31 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i907.GetLanguages>(
       () => _i907.GetLanguages(gh<_i680.LookupsRepository>()),
     );
+    gh.lazySingleton<_i474.DeleteAnswerUseCase>(
+      () => _i474.DeleteAnswerUseCase(gh<_i366.QuestionnaireRepository>()),
+    );
+    gh.lazySingleton<_i232.GetQuestionnaireUseCase>(
+      () => _i232.GetQuestionnaireUseCase(gh<_i366.QuestionnaireRepository>()),
+    );
+    gh.lazySingleton<_i794.PostAnswerUseCase>(
+      () => _i794.PostAnswerUseCase(gh<_i366.QuestionnaireRepository>()),
+    );
+    gh.lazySingleton<_i761.UpdateAnswerUseCase>(
+      () => _i761.UpdateAnswerUseCase(gh<_i366.QuestionnaireRepository>()),
+    );
     gh.factoryParam<
       _i610.CountriesCubit,
       _i1005.PaginationQueryParamsDto,
       dynamic
     >((dto, _) => _i610.CountriesCubit(gh<_i368.GetCountries>(), dto));
+    gh.factory<_i1049.QuestionnaireBloc>(
+      () => _i1049.QuestionnaireBloc(
+        gh<_i232.GetQuestionnaireUseCase>(),
+        gh<_i794.PostAnswerUseCase>(),
+        gh<_i761.UpdateAnswerUseCase>(),
+        gh<_i474.DeleteAnswerUseCase>(),
+      ),
+    );
     gh.factoryParam<
       _i643.LanguagesCubit,
       _i1005.PaginationQueryParamsDto,

@@ -144,4 +144,29 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get primary_hint => 'L’étoile signifie principale';
+
+  @override
+  String get back => 'Retour';
+
+  @override
+  String questionnaire_progress(Object current, Object total) {
+    return '$current sur $total';
+  }
+
+  @override
+  String get questionnaire_select_one => 'sélectionnez une option';
+
+  @override
+  String get questionnaire_select_one_or_more =>
+      'sélectionnez une ou plusieurs options';
+
+  @override
+  String get questionnaire_text_hint => 'Saisissez votre réponse...';
+
+  @override
+  String get questionnaire_finish_title => 'Terminé';
+
+  @override
+  String get questionnaire_finish_subtitle =>
+      'Merci pour vos réponses. Vous pouvez continuer.';
 }

@@ -44,5 +44,18 @@
   "select_languages": "Select languages",
   "primary": "Primary",
   "make_primary": "Make primary",
-  "primary_hint": "Star means primary"
+  "primary_hint": "Star means primary",
+  "back": "Back",
+  "questionnaire_progress": "{current} of {total}",
+  "@questionnaire_progress": {
+    "placeholders": {
+      "current": {},
+      "total": {}
+    }
+  },
+  "questionnaire_select_one": "select one",
+  "questionnaire_select_one_or_more": "select one or more",
+  "questionnaire_text_hint": "Type your answer...",
+  "questionnaire_finish_title": "All done",
+  "questionnaire_finish_subtitle": "Thanks for answering. You're ready to continue."
 }

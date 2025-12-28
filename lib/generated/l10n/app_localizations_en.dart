@@ -144,4 +144,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get primary_hint => 'Star means primary';
+
+  @override
+  String get back => 'Back';
+
+  @override
+  String questionnaire_progress(Object current, Object total) {
+    return '$current of $total';
+  }
+
+  @override
+  String get questionnaire_select_one => 'select one';
+
+  @override
+  String get questionnaire_select_one_or_more => 'select one or more';
+
+  @override
+  String get questionnaire_text_hint => 'Type your answer...';
+
+  @override
+  String get questionnaire_finish_title => 'All done';
+
+  @override
+  String get questionnaire_finish_subtitle =>
+      'Thanks for answering. You\'re ready to continue.';
 }

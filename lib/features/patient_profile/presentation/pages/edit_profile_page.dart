@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:ruh/core/router/app_routes.dart';
 import 'package:ruh/core/utils/app_toast.dart';
 import 'package:ruh/core/utils/failure_extensions.dart';
 import 'package:ruh/core/utils/l10n_extensions.dart';
 import 'package:ruh/features/auth/domain/entities/user.dart';
 import 'package:ruh/features/patient_profile/domain/dtos/spoken_language_input_dto.dart';
 import 'package:ruh/features/patient_profile/domain/dtos/update_patient_profile_dto.dart';
+import 'package:ruh/features/questionnaire/domain/entities/questionnaire.dart';
 import 'package:ruh/shared/widgets/app_loader.dart';
 import '../../../../core/di/injection.dart';
 import '../bloc/patient_profile_bloc.dart';
@@ -110,6 +113,11 @@ class EditProfileView extends StatelessWidget {
                               );
                               context.read<PatientProfileBloc>().add(
                                 PatientProfileEvent.updateProfile(dto),
+                              );
+                              context.go(
+                                AppRoutes.questionnaire(
+                                  QuestionnaireType.onboarding.name,
+                                ),
                               );
                             },
                       ),

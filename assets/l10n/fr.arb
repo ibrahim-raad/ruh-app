@@ -10,5 +10,18 @@
   "select_languages": "Sélectionner des langues",
   "primary": "Principale",
   "make_primary": "Définir comme principale",
-  "primary_hint": "L’étoile signifie principale"
+  "primary_hint": "L’étoile signifie principale",
+  "back": "Retour",
+  "questionnaire_progress": "{current} sur {total}",
+  "@questionnaire_progress": {
+    "placeholders": {
+      "current": {},
+      "total": {}
+    }
+  },
+  "questionnaire_select_one": "sélectionnez une option",
+  "questionnaire_select_one_or_more": "sélectionnez une ou plusieurs options",
+  "questionnaire_text_hint": "Saisissez votre réponse...",
+  "questionnaire_finish_title": "Terminé",
+  "questionnaire_finish_subtitle": "Merci pour vos réponses. Vous pouvez continuer."
 }
