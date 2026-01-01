@@ -22,8 +22,7 @@ class SplashPage extends StatelessWidget {
       child: BlocListener<SplashBloc, SplashState>(
         listener: (context, state) {
           state.mapOrNull(
-            navigateToHome: (_) =>
-                context.go(AppRoutes.editProfile), // TODO: Change to home
+            navigateToHome: (_) => context.go(AppRoutes.home),
             navigateToLogin: (_) => context.go(AppRoutes.login),
             navigateToOnboarding: (_) => context.go(AppRoutes.onboarding),
           );

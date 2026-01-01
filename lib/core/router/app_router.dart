@@ -2,10 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'dart:async';
 import 'package:ruh/features/auth/presentation/pages/register_page.dart';
+import 'package:ruh/features/home/presentation/pages/home_page.dart';
+import 'package:ruh/features/journal/presentation/pages/journal_page.dart';
 import 'package:ruh/features/patient_profile/presentation/pages/edit_profile_page.dart';
+import 'package:ruh/features/profile/presentation/pages/profile_page.dart';
 import 'package:ruh/features/questionnaire/domain/entities/questionnaire.dart';
 import 'package:ruh/features/questionnaire/presentation/pages/questionnaire_page.dart';
+import 'package:ruh/features/sessions/presentation/pages/sessions_page.dart';
 import 'package:ruh/features/splash/presentation/pages/splash_page.dart';
+import 'package:ruh/shared/widgets/app_shell.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
 import '../../features/auth/presentation/bloc/auth_state.dart';
 import '../../features/auth/presentation/pages/login_page.dart';
@@ -65,6 +70,44 @@ GoRouter createAppRouter(AuthBloc authBloc) => GoRouter(
     GoRoute(
       path: AppRoutes.onboarding,
       builder: (context, state) => const OnboardingPage(),
+    ),
+    StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) =>
+          AppShell(navigationShell: navigationShell),
+      branches: [
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: AppRoutes.home,
+              builder: (context, state) => const HomePage(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: AppRoutes.journal,
+              builder: (context, state) => const JournalPage(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: AppRoutes.sessions,
+              builder: (context, state) => const SessionsPage(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: AppRoutes.profile,
+              builder: (context, state) => const ProfilePage(),
+            ),
+          ],
+        ),
+      ],
     ),
     GoRoute(
       path: AppRoutes.editProfile,
