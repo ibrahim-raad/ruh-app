@@ -5,7 +5,6 @@ import 'package:ruh/features/auth/presentation/pages/register_page.dart';
 import 'package:ruh/features/home/presentation/pages/home_page.dart';
 import 'package:ruh/features/journal/presentation/pages/journal_page.dart';
 import 'package:ruh/features/patient_profile/presentation/pages/edit_profile_page.dart';
-import 'package:ruh/features/profile/presentation/pages/profile_page.dart';
 import 'package:ruh/features/questionnaire/domain/entities/questionnaire.dart';
 import 'package:ruh/features/questionnaire/presentation/pages/questionnaire_page.dart';
 import 'package:ruh/features/sessions/presentation/pages/sessions_page.dart';
@@ -103,7 +102,7 @@ GoRouter createAppRouter(AuthBloc authBloc) => GoRouter(
           routes: [
             GoRoute(
               path: AppRoutes.profile,
-              builder: (context, state) => const ProfilePage(),
+              builder: (context, state) => const EditProfilePage(),
             ),
           ],
         ),

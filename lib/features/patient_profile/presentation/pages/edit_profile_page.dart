@@ -6,6 +6,10 @@ import 'package:ruh/core/router/app_routes.dart';
 import 'package:ruh/core/utils/app_toast.dart';
 import 'package:ruh/core/utils/failure_extensions.dart';
 import 'package:ruh/core/utils/l10n_extensions.dart';
+import 'package:ruh/core/utils/theme_extensions.dart';
+import 'package:ruh/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:ruh/features/auth/presentation/bloc/auth_event.dart';
+import 'package:ruh/features/auth/presentation/bloc/auth_state.dart';
 import 'package:ruh/features/auth/domain/entities/user.dart';
 import 'package:ruh/features/patient_profile/domain/dtos/spoken_language_input_dto.dart';
 import 'package:ruh/features/patient_profile/domain/dtos/update_patient_profile_dto.dart';
@@ -38,7 +42,32 @@ class EditProfileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(context.tr.edit_profile)),
+      appBar: AppBar(
+        title: Text(context.tr.edit_profile),
+        actions: [
+          BlocListener<AuthBloc, AuthState>(
+            listenWhen: (prev, curr) =>
+                curr.maybeMap(failure: (_) => true, orElse: () => false) &&
+                prev != curr,
+            listener: (context, state) {
+              state.mapOrNull(
+                failure: (s) {
+                  final msg = s.failure.getErrorMessage(context);
+                  AppToast.showError(context, msg);
+                },
+              );
+            },
+            child: IconButton(
+              tooltip: 'Logout',
+              icon: Icon(Icons.logout, color: context.onPrimary),
+              onPressed: () {
+                context.read<AuthBloc>().add(const AuthEvent.logout());
+              },
+            ),
+          ),
+          SizedBox(width: 8.w),
+        ],
+      ),
       body: BlocConsumer<PatientProfileBloc, PatientProfileState>(
         listenWhen: (previous, current) =>
             current.failure != null && current.failure != previous.failure,
