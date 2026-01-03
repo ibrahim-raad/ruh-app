@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ruh/core/di/injection.dart';
 import 'package:ruh/core/network/models/pagination_query_params_dto.dart';
-import 'package:ruh/core/utils/app_toast.dart';
+import 'package:ruh/core/router/app_routes.dart';
 import 'package:ruh/core/utils/theme_extensions.dart';
 import 'package:ruh/shared/widgets/app_loader.dart';
 import 'package:dio/dio.dart';
@@ -196,8 +196,10 @@ class _FindTherapistPageState extends State<FindTherapistPage> {
                             final t = state.therapists[index];
                             return TherapistCard(
                               therapist: t,
-                              onViewProfile: () =>
-                                  AppToast.showSuccess(context, 'Coming soon'),
+                              onViewProfile: () => context.push(
+                                AppRoutes.therapistProfile,
+                                extra: t,
+                              ),
                             );
                           },
                         ),

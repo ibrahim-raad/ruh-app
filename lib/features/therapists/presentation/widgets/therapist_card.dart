@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ruh/core/utils/theme_extensions.dart';
+import 'package:ruh/shared/widgets/app_avatar.dart';
 import '../../domain/entities/therapist.dart';
 
 class TherapistCard extends StatelessWidget {
@@ -35,6 +36,8 @@ class TherapistCard extends StatelessWidget {
         ? '—'
         : languages.map((l) => l.name).join(', ');
 
+    final avatarUrl = therapist.user?.profileUrl;
+
     final currencySymbol = therapist.currency?.symbol ?? '\$';
     final rate = therapist.ratePerHour ?? 0;
 
@@ -49,20 +52,7 @@ class TherapistCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: 64.w,
-            height: 64.w,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16.r),
-              color: context.surfaceContainerHighest,
-              border: Border.all(color: context.outline),
-            ),
-            child: Icon(
-              Icons.person,
-              color: context.onSurfaceVariant,
-              size: 28.sp,
-            ),
-          ),
+          AppAvatar(imageUrl: avatarUrl, size: 64.w),
           SizedBox(width: 14.w),
           Expanded(
             child: Column(

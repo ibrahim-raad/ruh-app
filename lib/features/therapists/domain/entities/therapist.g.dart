@@ -31,6 +31,11 @@ _TherapistOutput _$TherapistOutputFromJson(Map<String, dynamic> json) =>
               ?.map((e) => Specialization.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      certificates:
+          (json['certificates'] as List<dynamic>?)
+              ?.map((e) => Certificate.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$TherapistOutputToJson(_TherapistOutput instance) =>
@@ -48,4 +53,5 @@ Map<String, dynamic> _$TherapistOutputToJson(_TherapistOutput instance) =>
       'currency': instance.currency,
       'currency_id': instance.currencyId,
       'specializations': instance.specializations,
+      'certificates': instance.certificates,
     };

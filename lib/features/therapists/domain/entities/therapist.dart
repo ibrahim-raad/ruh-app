@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ruh/core/network/models/auditable_output.dart';
 import 'package:ruh/features/auth/domain/entities/user.dart';
+import 'package:ruh/features/therapists/domain/entities/certificate.dart';
 import 'currency.dart';
 import 'specialization.dart';
 
@@ -26,6 +27,7 @@ abstract class TherapistOutput
     Currency? currency,
     @JsonKey(name: 'currency_id') String? currencyId,
     @Default([]) List<Specialization> specializations,
+    @Default([]) List<Certificate> certificates,
   }) = _TherapistOutput;
 
   factory TherapistOutput.fromJson(Map<String, dynamic> json) =>

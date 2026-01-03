@@ -11,6 +11,8 @@ import 'package:ruh/features/sessions/presentation/pages/sessions_page.dart';
 import 'package:ruh/features/sessions/presentation/pages/schedule_session_page.dart';
 import 'package:ruh/features/splash/presentation/pages/splash_page.dart';
 import 'package:ruh/features/therapists/presentation/pages/find_therapist_page.dart';
+import 'package:ruh/features/therapists/presentation/pages/therapist_profile_page.dart';
+import 'package:ruh/features/therapists/domain/entities/therapist.dart';
 import 'package:ruh/shared/widgets/app_shell.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
 import '../../features/auth/presentation/bloc/auth_state.dart';
@@ -129,6 +131,13 @@ GoRouter createAppRouter(AuthBloc authBloc) => GoRouter(
       builder: (context, state) {
         final args = state.extra as ScheduleSessionPageArgs;
         return ScheduleSessionPage(args: args);
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.therapistProfile,
+      builder: (context, state) {
+        final therapist = state.extra as TherapistOutput;
+        return TherapistProfilePage(therapist: therapist);
       },
     ),
   ],

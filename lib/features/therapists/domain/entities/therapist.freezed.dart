@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$TherapistOutput {
 
- String get id;@JsonKey(name: 'version') int get version;@JsonKey(name: 'created_at') DateTime get createdAt;@JsonKey(name: 'updated_at') DateTime get updatedAt;@JsonKey(name: 'deleted_at') DateTime? get deletedAt;@JsonKey(name: 'user_id') String? get userId; User? get user; String? get bio;@JsonKey(name: 'years_of_experience') int? get yearsOfExperience;@JsonKey(name: 'rate_per_hour') int? get ratePerHour; Currency? get currency;@JsonKey(name: 'currency_id') String? get currencyId; List<Specialization> get specializations;
+ String get id;@JsonKey(name: 'version') int get version;@JsonKey(name: 'created_at') DateTime get createdAt;@JsonKey(name: 'updated_at') DateTime get updatedAt;@JsonKey(name: 'deleted_at') DateTime? get deletedAt;@JsonKey(name: 'user_id') String? get userId; User? get user; String? get bio;@JsonKey(name: 'years_of_experience') int? get yearsOfExperience;@JsonKey(name: 'rate_per_hour') int? get ratePerHour; Currency? get currency;@JsonKey(name: 'currency_id') String? get currencyId; List<Specialization> get specializations; List<Certificate> get certificates;
 /// Create a copy of TherapistOutput
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $TherapistOutputCopyWith<TherapistOutput> get copyWith => _$TherapistOutputCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is TherapistOutput&&(identical(other.id, id) || other.id == id)&&(identical(other.version, version) || other.version == version)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.deletedAt, deletedAt) || other.deletedAt == deletedAt)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.user, user) || other.user == user)&&(identical(other.bio, bio) || other.bio == bio)&&(identical(other.yearsOfExperience, yearsOfExperience) || other.yearsOfExperience == yearsOfExperience)&&(identical(other.ratePerHour, ratePerHour) || other.ratePerHour == ratePerHour)&&(identical(other.currency, currency) || other.currency == currency)&&(identical(other.currencyId, currencyId) || other.currencyId == currencyId)&&const DeepCollectionEquality().equals(other.specializations, specializations));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TherapistOutput&&(identical(other.id, id) || other.id == id)&&(identical(other.version, version) || other.version == version)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.deletedAt, deletedAt) || other.deletedAt == deletedAt)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.user, user) || other.user == user)&&(identical(other.bio, bio) || other.bio == bio)&&(identical(other.yearsOfExperience, yearsOfExperience) || other.yearsOfExperience == yearsOfExperience)&&(identical(other.ratePerHour, ratePerHour) || other.ratePerHour == ratePerHour)&&(identical(other.currency, currency) || other.currency == currency)&&(identical(other.currencyId, currencyId) || other.currencyId == currencyId)&&const DeepCollectionEquality().equals(other.specializations, specializations)&&const DeepCollectionEquality().equals(other.certificates, certificates));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,version,createdAt,updatedAt,deletedAt,userId,user,bio,yearsOfExperience,ratePerHour,currency,currencyId,const DeepCollectionEquality().hash(specializations));
+int get hashCode => Object.hash(runtimeType,id,version,createdAt,updatedAt,deletedAt,userId,user,bio,yearsOfExperience,ratePerHour,currency,currencyId,const DeepCollectionEquality().hash(specializations),const DeepCollectionEquality().hash(certificates));
 
 @override
 String toString() {
-  return 'TherapistOutput(id: $id, version: $version, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, userId: $userId, user: $user, bio: $bio, yearsOfExperience: $yearsOfExperience, ratePerHour: $ratePerHour, currency: $currency, currencyId: $currencyId, specializations: $specializations)';
+  return 'TherapistOutput(id: $id, version: $version, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, userId: $userId, user: $user, bio: $bio, yearsOfExperience: $yearsOfExperience, ratePerHour: $ratePerHour, currency: $currency, currencyId: $currencyId, specializations: $specializations, certificates: $certificates)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $TherapistOutputCopyWith<$Res>  {
   factory $TherapistOutputCopyWith(TherapistOutput value, $Res Function(TherapistOutput) _then) = _$TherapistOutputCopyWithImpl;
 @useResult
 $Res call({
- String id,@JsonKey(name: 'version') int version,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime updatedAt,@JsonKey(name: 'deleted_at') DateTime? deletedAt,@JsonKey(name: 'user_id') String? userId, User? user, String? bio,@JsonKey(name: 'years_of_experience') int? yearsOfExperience,@JsonKey(name: 'rate_per_hour') int? ratePerHour, Currency? currency,@JsonKey(name: 'currency_id') String? currencyId, List<Specialization> specializations
+ String id,@JsonKey(name: 'version') int version,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime updatedAt,@JsonKey(name: 'deleted_at') DateTime? deletedAt,@JsonKey(name: 'user_id') String? userId, User? user, String? bio,@JsonKey(name: 'years_of_experience') int? yearsOfExperience,@JsonKey(name: 'rate_per_hour') int? ratePerHour, Currency? currency,@JsonKey(name: 'currency_id') String? currencyId, List<Specialization> specializations, List<Certificate> certificates
 });
 
 
@@ -65,7 +65,7 @@ class _$TherapistOutputCopyWithImpl<$Res>
 
 /// Create a copy of TherapistOutput
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? version = null,Object? createdAt = null,Object? updatedAt = null,Object? deletedAt = freezed,Object? userId = freezed,Object? user = freezed,Object? bio = freezed,Object? yearsOfExperience = freezed,Object? ratePerHour = freezed,Object? currency = freezed,Object? currencyId = freezed,Object? specializations = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? version = null,Object? createdAt = null,Object? updatedAt = null,Object? deletedAt = freezed,Object? userId = freezed,Object? user = freezed,Object? bio = freezed,Object? yearsOfExperience = freezed,Object? ratePerHour = freezed,Object? currency = freezed,Object? currencyId = freezed,Object? specializations = null,Object? certificates = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,version: null == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
@@ -80,7 +80,8 @@ as int?,ratePerHour: freezed == ratePerHour ? _self.ratePerHour : ratePerHour //
 as int?,currency: freezed == currency ? _self.currency : currency // ignore: cast_nullable_to_non_nullable
 as Currency?,currencyId: freezed == currencyId ? _self.currencyId : currencyId // ignore: cast_nullable_to_non_nullable
 as String?,specializations: null == specializations ? _self.specializations : specializations // ignore: cast_nullable_to_non_nullable
-as List<Specialization>,
+as List<Specialization>,certificates: null == certificates ? _self.certificates : certificates // ignore: cast_nullable_to_non_nullable
+as List<Certificate>,
   ));
 }
 /// Create a copy of TherapistOutput
@@ -189,10 +190,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id, @JsonKey(name: 'version')  int version, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt, @JsonKey(name: 'deleted_at')  DateTime? deletedAt, @JsonKey(name: 'user_id')  String? userId,  User? user,  String? bio, @JsonKey(name: 'years_of_experience')  int? yearsOfExperience, @JsonKey(name: 'rate_per_hour')  int? ratePerHour,  Currency? currency, @JsonKey(name: 'currency_id')  String? currencyId,  List<Specialization> specializations)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id, @JsonKey(name: 'version')  int version, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt, @JsonKey(name: 'deleted_at')  DateTime? deletedAt, @JsonKey(name: 'user_id')  String? userId,  User? user,  String? bio, @JsonKey(name: 'years_of_experience')  int? yearsOfExperience, @JsonKey(name: 'rate_per_hour')  int? ratePerHour,  Currency? currency, @JsonKey(name: 'currency_id')  String? currencyId,  List<Specialization> specializations,  List<Certificate> certificates)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _TherapistOutput() when $default != null:
-return $default(_that.id,_that.version,_that.createdAt,_that.updatedAt,_that.deletedAt,_that.userId,_that.user,_that.bio,_that.yearsOfExperience,_that.ratePerHour,_that.currency,_that.currencyId,_that.specializations);case _:
+return $default(_that.id,_that.version,_that.createdAt,_that.updatedAt,_that.deletedAt,_that.userId,_that.user,_that.bio,_that.yearsOfExperience,_that.ratePerHour,_that.currency,_that.currencyId,_that.specializations,_that.certificates);case _:
   return orElse();
 
 }
@@ -210,10 +211,10 @@ return $default(_that.id,_that.version,_that.createdAt,_that.updatedAt,_that.del
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id, @JsonKey(name: 'version')  int version, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt, @JsonKey(name: 'deleted_at')  DateTime? deletedAt, @JsonKey(name: 'user_id')  String? userId,  User? user,  String? bio, @JsonKey(name: 'years_of_experience')  int? yearsOfExperience, @JsonKey(name: 'rate_per_hour')  int? ratePerHour,  Currency? currency, @JsonKey(name: 'currency_id')  String? currencyId,  List<Specialization> specializations)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id, @JsonKey(name: 'version')  int version, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt, @JsonKey(name: 'deleted_at')  DateTime? deletedAt, @JsonKey(name: 'user_id')  String? userId,  User? user,  String? bio, @JsonKey(name: 'years_of_experience')  int? yearsOfExperience, @JsonKey(name: 'rate_per_hour')  int? ratePerHour,  Currency? currency, @JsonKey(name: 'currency_id')  String? currencyId,  List<Specialization> specializations,  List<Certificate> certificates)  $default,) {final _that = this;
 switch (_that) {
 case _TherapistOutput():
-return $default(_that.id,_that.version,_that.createdAt,_that.updatedAt,_that.deletedAt,_that.userId,_that.user,_that.bio,_that.yearsOfExperience,_that.ratePerHour,_that.currency,_that.currencyId,_that.specializations);case _:
+return $default(_that.id,_that.version,_that.createdAt,_that.updatedAt,_that.deletedAt,_that.userId,_that.user,_that.bio,_that.yearsOfExperience,_that.ratePerHour,_that.currency,_that.currencyId,_that.specializations,_that.certificates);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -230,10 +231,10 @@ return $default(_that.id,_that.version,_that.createdAt,_that.updatedAt,_that.del
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id, @JsonKey(name: 'version')  int version, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt, @JsonKey(name: 'deleted_at')  DateTime? deletedAt, @JsonKey(name: 'user_id')  String? userId,  User? user,  String? bio, @JsonKey(name: 'years_of_experience')  int? yearsOfExperience, @JsonKey(name: 'rate_per_hour')  int? ratePerHour,  Currency? currency, @JsonKey(name: 'currency_id')  String? currencyId,  List<Specialization> specializations)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id, @JsonKey(name: 'version')  int version, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt, @JsonKey(name: 'deleted_at')  DateTime? deletedAt, @JsonKey(name: 'user_id')  String? userId,  User? user,  String? bio, @JsonKey(name: 'years_of_experience')  int? yearsOfExperience, @JsonKey(name: 'rate_per_hour')  int? ratePerHour,  Currency? currency, @JsonKey(name: 'currency_id')  String? currencyId,  List<Specialization> specializations,  List<Certificate> certificates)?  $default,) {final _that = this;
 switch (_that) {
 case _TherapistOutput() when $default != null:
-return $default(_that.id,_that.version,_that.createdAt,_that.updatedAt,_that.deletedAt,_that.userId,_that.user,_that.bio,_that.yearsOfExperience,_that.ratePerHour,_that.currency,_that.currencyId,_that.specializations);case _:
+return $default(_that.id,_that.version,_that.createdAt,_that.updatedAt,_that.deletedAt,_that.userId,_that.user,_that.bio,_that.yearsOfExperience,_that.ratePerHour,_that.currency,_that.currencyId,_that.specializations,_that.certificates);case _:
   return null;
 
 }
@@ -245,7 +246,7 @@ return $default(_that.id,_that.version,_that.createdAt,_that.updatedAt,_that.del
 @JsonSerializable()
 
 class _TherapistOutput implements TherapistOutput {
-  const _TherapistOutput({required this.id, @JsonKey(name: 'version') required this.version, @JsonKey(name: 'created_at') required this.createdAt, @JsonKey(name: 'updated_at') required this.updatedAt, @JsonKey(name: 'deleted_at') this.deletedAt, @JsonKey(name: 'user_id') this.userId, this.user, this.bio, @JsonKey(name: 'years_of_experience') this.yearsOfExperience, @JsonKey(name: 'rate_per_hour') this.ratePerHour, this.currency, @JsonKey(name: 'currency_id') this.currencyId, final  List<Specialization> specializations = const []}): _specializations = specializations;
+  const _TherapistOutput({required this.id, @JsonKey(name: 'version') required this.version, @JsonKey(name: 'created_at') required this.createdAt, @JsonKey(name: 'updated_at') required this.updatedAt, @JsonKey(name: 'deleted_at') this.deletedAt, @JsonKey(name: 'user_id') this.userId, this.user, this.bio, @JsonKey(name: 'years_of_experience') this.yearsOfExperience, @JsonKey(name: 'rate_per_hour') this.ratePerHour, this.currency, @JsonKey(name: 'currency_id') this.currencyId, final  List<Specialization> specializations = const [], final  List<Certificate> certificates = const []}): _specializations = specializations,_certificates = certificates;
   factory _TherapistOutput.fromJson(Map<String, dynamic> json) => _$TherapistOutputFromJson(json);
 
 @override final  String id;
@@ -267,6 +268,13 @@ class _TherapistOutput implements TherapistOutput {
   return EqualUnmodifiableListView(_specializations);
 }
 
+ final  List<Certificate> _certificates;
+@override@JsonKey() List<Certificate> get certificates {
+  if (_certificates is EqualUnmodifiableListView) return _certificates;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_certificates);
+}
+
 
 /// Create a copy of TherapistOutput
 /// with the given fields replaced by the non-null parameter values.
@@ -281,16 +289,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TherapistOutput&&(identical(other.id, id) || other.id == id)&&(identical(other.version, version) || other.version == version)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.deletedAt, deletedAt) || other.deletedAt == deletedAt)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.user, user) || other.user == user)&&(identical(other.bio, bio) || other.bio == bio)&&(identical(other.yearsOfExperience, yearsOfExperience) || other.yearsOfExperience == yearsOfExperience)&&(identical(other.ratePerHour, ratePerHour) || other.ratePerHour == ratePerHour)&&(identical(other.currency, currency) || other.currency == currency)&&(identical(other.currencyId, currencyId) || other.currencyId == currencyId)&&const DeepCollectionEquality().equals(other._specializations, _specializations));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TherapistOutput&&(identical(other.id, id) || other.id == id)&&(identical(other.version, version) || other.version == version)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.deletedAt, deletedAt) || other.deletedAt == deletedAt)&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.user, user) || other.user == user)&&(identical(other.bio, bio) || other.bio == bio)&&(identical(other.yearsOfExperience, yearsOfExperience) || other.yearsOfExperience == yearsOfExperience)&&(identical(other.ratePerHour, ratePerHour) || other.ratePerHour == ratePerHour)&&(identical(other.currency, currency) || other.currency == currency)&&(identical(other.currencyId, currencyId) || other.currencyId == currencyId)&&const DeepCollectionEquality().equals(other._specializations, _specializations)&&const DeepCollectionEquality().equals(other._certificates, _certificates));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,version,createdAt,updatedAt,deletedAt,userId,user,bio,yearsOfExperience,ratePerHour,currency,currencyId,const DeepCollectionEquality().hash(_specializations));
+int get hashCode => Object.hash(runtimeType,id,version,createdAt,updatedAt,deletedAt,userId,user,bio,yearsOfExperience,ratePerHour,currency,currencyId,const DeepCollectionEquality().hash(_specializations),const DeepCollectionEquality().hash(_certificates));
 
 @override
 String toString() {
-  return 'TherapistOutput(id: $id, version: $version, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, userId: $userId, user: $user, bio: $bio, yearsOfExperience: $yearsOfExperience, ratePerHour: $ratePerHour, currency: $currency, currencyId: $currencyId, specializations: $specializations)';
+  return 'TherapistOutput(id: $id, version: $version, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, userId: $userId, user: $user, bio: $bio, yearsOfExperience: $yearsOfExperience, ratePerHour: $ratePerHour, currency: $currency, currencyId: $currencyId, specializations: $specializations, certificates: $certificates)';
 }
 
 
@@ -301,7 +309,7 @@ abstract mixin class _$TherapistOutputCopyWith<$Res> implements $TherapistOutput
   factory _$TherapistOutputCopyWith(_TherapistOutput value, $Res Function(_TherapistOutput) _then) = __$TherapistOutputCopyWithImpl;
 @override @useResult
 $Res call({
- String id,@JsonKey(name: 'version') int version,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime updatedAt,@JsonKey(name: 'deleted_at') DateTime? deletedAt,@JsonKey(name: 'user_id') String? userId, User? user, String? bio,@JsonKey(name: 'years_of_experience') int? yearsOfExperience,@JsonKey(name: 'rate_per_hour') int? ratePerHour, Currency? currency,@JsonKey(name: 'currency_id') String? currencyId, List<Specialization> specializations
+ String id,@JsonKey(name: 'version') int version,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime updatedAt,@JsonKey(name: 'deleted_at') DateTime? deletedAt,@JsonKey(name: 'user_id') String? userId, User? user, String? bio,@JsonKey(name: 'years_of_experience') int? yearsOfExperience,@JsonKey(name: 'rate_per_hour') int? ratePerHour, Currency? currency,@JsonKey(name: 'currency_id') String? currencyId, List<Specialization> specializations, List<Certificate> certificates
 });
 
 
@@ -318,7 +326,7 @@ class __$TherapistOutputCopyWithImpl<$Res>
 
 /// Create a copy of TherapistOutput
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? version = null,Object? createdAt = null,Object? updatedAt = null,Object? deletedAt = freezed,Object? userId = freezed,Object? user = freezed,Object? bio = freezed,Object? yearsOfExperience = freezed,Object? ratePerHour = freezed,Object? currency = freezed,Object? currencyId = freezed,Object? specializations = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? version = null,Object? createdAt = null,Object? updatedAt = null,Object? deletedAt = freezed,Object? userId = freezed,Object? user = freezed,Object? bio = freezed,Object? yearsOfExperience = freezed,Object? ratePerHour = freezed,Object? currency = freezed,Object? currencyId = freezed,Object? specializations = null,Object? certificates = null,}) {
   return _then(_TherapistOutput(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,version: null == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
@@ -333,7 +341,8 @@ as int?,ratePerHour: freezed == ratePerHour ? _self.ratePerHour : ratePerHour //
 as int?,currency: freezed == currency ? _self.currency : currency // ignore: cast_nullable_to_non_nullable
 as Currency?,currencyId: freezed == currencyId ? _self.currencyId : currencyId // ignore: cast_nullable_to_non_nullable
 as String?,specializations: null == specializations ? _self._specializations : specializations // ignore: cast_nullable_to_non_nullable
-as List<Specialization>,
+as List<Specialization>,certificates: null == certificates ? _self._certificates : certificates // ignore: cast_nullable_to_non_nullable
+as List<Certificate>,
   ));
 }
 
