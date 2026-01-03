@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:ruh/core/errors/handle_dio_error.dart';
 import 'package:ruh/core/network/models/pagination_query_params_dto.dart';
@@ -57,13 +59,10 @@ abstract class BaseApi<T> {
     PaginationQueryParamsDto paginationQueryParamsDto =
         const PaginationQueryParamsDto(),
   }) async {
+    final queryParams = paginationQueryParamsDto.queryParams;
     final json = paginationQueryParamsDto.toJson();
-    final queryParameters = {
-      ...json,
-      ...(paginationQueryParamsDto.queryParams ?? {}).map(
-        (key, value) => MapEntry(key, value),
-      ),
-    };
+    final queryParameters = {...json, ...(queryParams ?? {})};
+    log(queryParameters.toString(), name: 'queryParameters');
     try {
       final response = await dio.get(
         endpoint,

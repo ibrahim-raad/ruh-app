@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ruh/core/utils/app_toast.dart';
+import 'package:go_router/go_router.dart';
+import 'package:ruh/core/router/app_routes.dart';
 import 'package:ruh/core/utils/theme_extensions.dart';
 import 'package:ruh/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:ruh/features/auth/presentation/bloc/auth_state.dart';
@@ -79,9 +80,7 @@ class HomePage extends StatelessWidget {
               ),
               SizedBox(height: 18.h),
               ExploreTherapistsCard(
-                onDiscover: () {
-                  AppToast.showSuccess(context, 'Coming soon');
-                },
+                onDiscover: () => context.push(AppRoutes.therapists),
               ),
             ],
           ),

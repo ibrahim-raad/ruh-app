@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:ruh/core/utils/app_toast.dart';
+import 'package:ruh/core/router/app_routes.dart';
+import 'package:ruh/features/sessions/presentation/pages/schedule_session_page.dart';
 import 'package:ruh/features/sessions/presentation/widgets/session_card.dart';
 import 'package:ruh/features/sessions/presentation/widgets/sessions_header.dart';
 import 'package:ruh/features/sessions/presentation/widgets/sessions_segmented_control.dart';
@@ -17,6 +20,28 @@ class _SessionsPageState extends State<SessionsPage> {
 
   void _comingSoon() {
     AppToast.showSuccess(context, 'Coming soon');
+  }
+
+  void _openReschedule(_SessionVm s) {
+    // TODO: Replace with real session data + availability.
+    final tomorrow = DateTime.now().add(const Duration(days: 1));
+    final currentDateTime = DateTime(
+      tomorrow.year,
+      tomorrow.month,
+      tomorrow.day,
+      15,
+      0,
+    );
+
+    context.push(
+      AppRoutes.scheduleSession,
+      extra: ScheduleSessionPageArgs(
+        mode: ScheduleSessionMode.reschedule,
+        therapistName: s.therapistName,
+        currentSessionDateTime: currentDateTime,
+        currentSessionDuration: const Duration(minutes: 50),
+      ),
+    );
   }
 
   @override
@@ -84,7 +109,9 @@ class _SessionsPageState extends State<SessionsPage> {
                   durationLabel: s.durationLabel,
                   isUpcoming: isUpcoming,
                   onPrimaryAction: _comingSoon,
-                  onSecondaryAction: _comingSoon,
+                  onSecondaryAction: isUpcoming
+                      ? () => _openReschedule(s)
+                      : _comingSoon,
                 ),
                 SizedBox(height: 14.h),
               ],

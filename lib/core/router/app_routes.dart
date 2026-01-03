@@ -10,4 +10,6 @@ final class AppRoutes {
   static const String journal = '/journal';
   static const String sessions = '/sessions';
   static const String profile = '/profile';
+  static const String therapists = '/therapists';
+  static const String scheduleSession = '/schedule-session';
 }

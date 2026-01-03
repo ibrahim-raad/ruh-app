@@ -92,6 +92,12 @@ import '../../features/splash/domain/repositories/splash_repository.dart'
 import '../../features/splash/domain/usecases/check_startup_status.dart'
     as _i23;
 import '../../features/splash/presentation/bloc/splash_bloc.dart' as _i442;
+import '../../features/therapists/data/datasources/therapists_remote_datasource.dart'
+    as _i232;
+import '../../features/therapists/data/repositories/therapists_repository_impl.dart'
+    as _i995;
+import '../../features/therapists/domain/repositories/therapists_repository.dart'
+    as _i1056;
 import '../network/api_client.dart' as _i557;
 import '../network/interceptors/auth_interceptor.dart' as _i745;
 import '../network/models/pagination_query_params_dto.dart' as _i1005;
@@ -177,6 +183,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i17.QuestionnaireRemoteDataSource>(
       () => _i17.QuestionnaireRemoteDataSource(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i232.TherapistsRemoteDataSource>(
+      () => _i232.TherapistsRemoteDataSource(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i787.AuthRepository>(
       () => _i153.AuthRepositoryImpl(
         gh<_i161.AuthRemoteDataSource>(),
@@ -198,6 +207,11 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i23.CheckStartupStatus(
         gh<_i210.SplashRepository>(),
         gh<_i787.AuthRepository>(),
+      ),
+    );
+    gh.lazySingleton<_i1056.TherapistsRepository>(
+      () => _i995.TherapistsRepositoryImpl(
+        gh<_i232.TherapistsRemoteDataSource>(),
       ),
     );
     gh.lazySingleton<_i778.LoginUser>(

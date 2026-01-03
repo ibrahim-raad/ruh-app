@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$User {
 
- String get id; String get email;@JsonKey(name: 'full_name') String get fullName; UserRole get role; UserStatus get status; UserGender get gender; UserEmailStatus get emailStatus; Country? get country;@JsonKey(name: 'country_id') String get countryId;@JsonKey(name: 'date_of_birth') DateTime? get dateOfBirth;@JsonKey(name: 'profile_url') String? get profileUrl;@JsonKey(name: 'spoken_languages') List<Language>? get spokenLanguages;@JsonKey(name: 'version') int get version;@JsonKey(name: 'created_at') DateTime get createdAt;@JsonKey(name: 'updated_at') DateTime get updatedAt;@JsonKey(name: 'deleted_at') DateTime? get deletedAt;
+ String get id; String get email;@JsonKey(name: 'full_name') String get fullName; UserRole get role; UserStatus get status; UserGender get gender; UserEmailStatus get emailStatus; Country? get country;@JsonKey(name: 'country_id') String? get countryId;@JsonKey(name: 'date_of_birth') DateTime? get dateOfBirth;@JsonKey(name: 'profile_url') String? get profileUrl;@JsonKey(name: 'spoken_languages') List<Language>? get spokenLanguages;@JsonKey(name: 'version') int get version;@JsonKey(name: 'created_at') DateTime get createdAt;@JsonKey(name: 'updated_at') DateTime get updatedAt;@JsonKey(name: 'deleted_at') DateTime? get deletedAt;
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $UserCopyWith<$Res>  {
   factory $UserCopyWith(User value, $Res Function(User) _then) = _$UserCopyWithImpl;
 @useResult
 $Res call({
- String id, String email,@JsonKey(name: 'full_name') String fullName, UserRole role, UserStatus status, UserGender gender, UserEmailStatus emailStatus, Country? country,@JsonKey(name: 'country_id') String countryId,@JsonKey(name: 'date_of_birth') DateTime? dateOfBirth,@JsonKey(name: 'profile_url') String? profileUrl,@JsonKey(name: 'spoken_languages') List<Language>? spokenLanguages,@JsonKey(name: 'version') int version,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime updatedAt,@JsonKey(name: 'deleted_at') DateTime? deletedAt
+ String id, String email,@JsonKey(name: 'full_name') String fullName, UserRole role, UserStatus status, UserGender gender, UserEmailStatus emailStatus, Country? country,@JsonKey(name: 'country_id') String? countryId,@JsonKey(name: 'date_of_birth') DateTime? dateOfBirth,@JsonKey(name: 'profile_url') String? profileUrl,@JsonKey(name: 'spoken_languages') List<Language>? spokenLanguages,@JsonKey(name: 'version') int version,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime updatedAt,@JsonKey(name: 'deleted_at') DateTime? deletedAt
 });
 
 
@@ -65,7 +65,7 @@ class _$UserCopyWithImpl<$Res>
 
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? email = null,Object? fullName = null,Object? role = null,Object? status = null,Object? gender = null,Object? emailStatus = null,Object? country = freezed,Object? countryId = null,Object? dateOfBirth = freezed,Object? profileUrl = freezed,Object? spokenLanguages = freezed,Object? version = null,Object? createdAt = null,Object? updatedAt = null,Object? deletedAt = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? email = null,Object? fullName = null,Object? role = null,Object? status = null,Object? gender = null,Object? emailStatus = null,Object? country = freezed,Object? countryId = freezed,Object? dateOfBirth = freezed,Object? profileUrl = freezed,Object? spokenLanguages = freezed,Object? version = null,Object? createdAt = null,Object? updatedAt = null,Object? deletedAt = freezed,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
@@ -75,8 +75,8 @@ as UserRole,status: null == status ? _self.status : status // ignore: cast_nulla
 as UserStatus,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
 as UserGender,emailStatus: null == emailStatus ? _self.emailStatus : emailStatus // ignore: cast_nullable_to_non_nullable
 as UserEmailStatus,country: freezed == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
-as Country?,countryId: null == countryId ? _self.countryId : countryId // ignore: cast_nullable_to_non_nullable
-as String,dateOfBirth: freezed == dateOfBirth ? _self.dateOfBirth : dateOfBirth // ignore: cast_nullable_to_non_nullable
+as Country?,countryId: freezed == countryId ? _self.countryId : countryId // ignore: cast_nullable_to_non_nullable
+as String?,dateOfBirth: freezed == dateOfBirth ? _self.dateOfBirth : dateOfBirth // ignore: cast_nullable_to_non_nullable
 as DateTime?,profileUrl: freezed == profileUrl ? _self.profileUrl : profileUrl // ignore: cast_nullable_to_non_nullable
 as String?,spokenLanguages: freezed == spokenLanguages ? _self.spokenLanguages : spokenLanguages // ignore: cast_nullable_to_non_nullable
 as List<Language>?,version: null == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
@@ -180,7 +180,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String email, @JsonKey(name: 'full_name')  String fullName,  UserRole role,  UserStatus status,  UserGender gender,  UserEmailStatus emailStatus,  Country? country, @JsonKey(name: 'country_id')  String countryId, @JsonKey(name: 'date_of_birth')  DateTime? dateOfBirth, @JsonKey(name: 'profile_url')  String? profileUrl, @JsonKey(name: 'spoken_languages')  List<Language>? spokenLanguages, @JsonKey(name: 'version')  int version, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt, @JsonKey(name: 'deleted_at')  DateTime? deletedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String email, @JsonKey(name: 'full_name')  String fullName,  UserRole role,  UserStatus status,  UserGender gender,  UserEmailStatus emailStatus,  Country? country, @JsonKey(name: 'country_id')  String? countryId, @JsonKey(name: 'date_of_birth')  DateTime? dateOfBirth, @JsonKey(name: 'profile_url')  String? profileUrl, @JsonKey(name: 'spoken_languages')  List<Language>? spokenLanguages, @JsonKey(name: 'version')  int version, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt, @JsonKey(name: 'deleted_at')  DateTime? deletedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _User() when $default != null:
 return $default(_that.id,_that.email,_that.fullName,_that.role,_that.status,_that.gender,_that.emailStatus,_that.country,_that.countryId,_that.dateOfBirth,_that.profileUrl,_that.spokenLanguages,_that.version,_that.createdAt,_that.updatedAt,_that.deletedAt);case _:
@@ -201,7 +201,7 @@ return $default(_that.id,_that.email,_that.fullName,_that.role,_that.status,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String email, @JsonKey(name: 'full_name')  String fullName,  UserRole role,  UserStatus status,  UserGender gender,  UserEmailStatus emailStatus,  Country? country, @JsonKey(name: 'country_id')  String countryId, @JsonKey(name: 'date_of_birth')  DateTime? dateOfBirth, @JsonKey(name: 'profile_url')  String? profileUrl, @JsonKey(name: 'spoken_languages')  List<Language>? spokenLanguages, @JsonKey(name: 'version')  int version, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt, @JsonKey(name: 'deleted_at')  DateTime? deletedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String email, @JsonKey(name: 'full_name')  String fullName,  UserRole role,  UserStatus status,  UserGender gender,  UserEmailStatus emailStatus,  Country? country, @JsonKey(name: 'country_id')  String? countryId, @JsonKey(name: 'date_of_birth')  DateTime? dateOfBirth, @JsonKey(name: 'profile_url')  String? profileUrl, @JsonKey(name: 'spoken_languages')  List<Language>? spokenLanguages, @JsonKey(name: 'version')  int version, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt, @JsonKey(name: 'deleted_at')  DateTime? deletedAt)  $default,) {final _that = this;
 switch (_that) {
 case _User():
 return $default(_that.id,_that.email,_that.fullName,_that.role,_that.status,_that.gender,_that.emailStatus,_that.country,_that.countryId,_that.dateOfBirth,_that.profileUrl,_that.spokenLanguages,_that.version,_that.createdAt,_that.updatedAt,_that.deletedAt);case _:
@@ -221,7 +221,7 @@ return $default(_that.id,_that.email,_that.fullName,_that.role,_that.status,_tha
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String email, @JsonKey(name: 'full_name')  String fullName,  UserRole role,  UserStatus status,  UserGender gender,  UserEmailStatus emailStatus,  Country? country, @JsonKey(name: 'country_id')  String countryId, @JsonKey(name: 'date_of_birth')  DateTime? dateOfBirth, @JsonKey(name: 'profile_url')  String? profileUrl, @JsonKey(name: 'spoken_languages')  List<Language>? spokenLanguages, @JsonKey(name: 'version')  int version, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt, @JsonKey(name: 'deleted_at')  DateTime? deletedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String email, @JsonKey(name: 'full_name')  String fullName,  UserRole role,  UserStatus status,  UserGender gender,  UserEmailStatus emailStatus,  Country? country, @JsonKey(name: 'country_id')  String? countryId, @JsonKey(name: 'date_of_birth')  DateTime? dateOfBirth, @JsonKey(name: 'profile_url')  String? profileUrl, @JsonKey(name: 'spoken_languages')  List<Language>? spokenLanguages, @JsonKey(name: 'version')  int version, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt, @JsonKey(name: 'deleted_at')  DateTime? deletedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _User() when $default != null:
 return $default(_that.id,_that.email,_that.fullName,_that.role,_that.status,_that.gender,_that.emailStatus,_that.country,_that.countryId,_that.dateOfBirth,_that.profileUrl,_that.spokenLanguages,_that.version,_that.createdAt,_that.updatedAt,_that.deletedAt);case _:
@@ -236,7 +236,7 @@ return $default(_that.id,_that.email,_that.fullName,_that.role,_that.status,_tha
 @JsonSerializable()
 
 class _User implements User {
-  const _User({required this.id, required this.email, @JsonKey(name: 'full_name') required this.fullName, required this.role, this.status = UserStatus.pending, this.gender = UserGender.unknown, this.emailStatus = UserEmailStatus.unverified, this.country, @JsonKey(name: 'country_id') required this.countryId, @JsonKey(name: 'date_of_birth') this.dateOfBirth, @JsonKey(name: 'profile_url') this.profileUrl, @JsonKey(name: 'spoken_languages') final  List<Language>? spokenLanguages = const [], @JsonKey(name: 'version') this.version = 0, @JsonKey(name: 'created_at') required this.createdAt, @JsonKey(name: 'updated_at') required this.updatedAt, @JsonKey(name: 'deleted_at') this.deletedAt}): _spokenLanguages = spokenLanguages;
+  const _User({required this.id, required this.email, @JsonKey(name: 'full_name') required this.fullName, required this.role, this.status = UserStatus.pending, this.gender = UserGender.unknown, this.emailStatus = UserEmailStatus.unverified, this.country, @JsonKey(name: 'country_id') this.countryId, @JsonKey(name: 'date_of_birth') this.dateOfBirth, @JsonKey(name: 'profile_url') this.profileUrl, @JsonKey(name: 'spoken_languages') final  List<Language>? spokenLanguages = const [], @JsonKey(name: 'version') this.version = 0, @JsonKey(name: 'created_at') required this.createdAt, @JsonKey(name: 'updated_at') required this.updatedAt, @JsonKey(name: 'deleted_at') this.deletedAt}): _spokenLanguages = spokenLanguages;
   factory _User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
 @override final  String id;
@@ -247,7 +247,7 @@ class _User implements User {
 @override@JsonKey() final  UserGender gender;
 @override@JsonKey() final  UserEmailStatus emailStatus;
 @override final  Country? country;
-@override@JsonKey(name: 'country_id') final  String countryId;
+@override@JsonKey(name: 'country_id') final  String? countryId;
 @override@JsonKey(name: 'date_of_birth') final  DateTime? dateOfBirth;
 @override@JsonKey(name: 'profile_url') final  String? profileUrl;
  final  List<Language>? _spokenLanguages;
@@ -297,7 +297,7 @@ abstract mixin class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   factory _$UserCopyWith(_User value, $Res Function(_User) _then) = __$UserCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String email,@JsonKey(name: 'full_name') String fullName, UserRole role, UserStatus status, UserGender gender, UserEmailStatus emailStatus, Country? country,@JsonKey(name: 'country_id') String countryId,@JsonKey(name: 'date_of_birth') DateTime? dateOfBirth,@JsonKey(name: 'profile_url') String? profileUrl,@JsonKey(name: 'spoken_languages') List<Language>? spokenLanguages,@JsonKey(name: 'version') int version,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime updatedAt,@JsonKey(name: 'deleted_at') DateTime? deletedAt
+ String id, String email,@JsonKey(name: 'full_name') String fullName, UserRole role, UserStatus status, UserGender gender, UserEmailStatus emailStatus, Country? country,@JsonKey(name: 'country_id') String? countryId,@JsonKey(name: 'date_of_birth') DateTime? dateOfBirth,@JsonKey(name: 'profile_url') String? profileUrl,@JsonKey(name: 'spoken_languages') List<Language>? spokenLanguages,@JsonKey(name: 'version') int version,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime updatedAt,@JsonKey(name: 'deleted_at') DateTime? deletedAt
 });
 
 
@@ -314,7 +314,7 @@ class __$UserCopyWithImpl<$Res>
 
 /// Create a copy of User
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? email = null,Object? fullName = null,Object? role = null,Object? status = null,Object? gender = null,Object? emailStatus = null,Object? country = freezed,Object? countryId = null,Object? dateOfBirth = freezed,Object? profileUrl = freezed,Object? spokenLanguages = freezed,Object? version = null,Object? createdAt = null,Object? updatedAt = null,Object? deletedAt = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? email = null,Object? fullName = null,Object? role = null,Object? status = null,Object? gender = null,Object? emailStatus = null,Object? country = freezed,Object? countryId = freezed,Object? dateOfBirth = freezed,Object? profileUrl = freezed,Object? spokenLanguages = freezed,Object? version = null,Object? createdAt = null,Object? updatedAt = null,Object? deletedAt = freezed,}) {
   return _then(_User(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
@@ -324,8 +324,8 @@ as UserRole,status: null == status ? _self.status : status // ignore: cast_nulla
 as UserStatus,gender: null == gender ? _self.gender : gender // ignore: cast_nullable_to_non_nullable
 as UserGender,emailStatus: null == emailStatus ? _self.emailStatus : emailStatus // ignore: cast_nullable_to_non_nullable
 as UserEmailStatus,country: freezed == country ? _self.country : country // ignore: cast_nullable_to_non_nullable
-as Country?,countryId: null == countryId ? _self.countryId : countryId // ignore: cast_nullable_to_non_nullable
-as String,dateOfBirth: freezed == dateOfBirth ? _self.dateOfBirth : dateOfBirth // ignore: cast_nullable_to_non_nullable
+as Country?,countryId: freezed == countryId ? _self.countryId : countryId // ignore: cast_nullable_to_non_nullable
+as String?,dateOfBirth: freezed == dateOfBirth ? _self.dateOfBirth : dateOfBirth // ignore: cast_nullable_to_non_nullable
 as DateTime?,profileUrl: freezed == profileUrl ? _self.profileUrl : profileUrl // ignore: cast_nullable_to_non_nullable
 as String?,spokenLanguages: freezed == spokenLanguages ? _self._spokenLanguages : spokenLanguages // ignore: cast_nullable_to_non_nullable
 as List<Language>?,version: null == version ? _self.version : version // ignore: cast_nullable_to_non_nullable

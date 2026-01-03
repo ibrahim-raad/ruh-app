@@ -16,7 +16,7 @@ abstract class User with _$User {
     @Default(UserGender.unknown) UserGender gender,
     @Default(UserEmailStatus.unverified) UserEmailStatus emailStatus,
     Country? country,
-    @JsonKey(name: 'country_id') required String countryId,
+    @JsonKey(name: 'country_id') String? countryId,
     @JsonKey(name: 'date_of_birth') DateTime? dateOfBirth,
     @JsonKey(name: 'profile_url') String? profileUrl,
     @JsonKey(name: 'spoken_languages')
@@ -32,7 +32,7 @@ abstract class User with _$User {
 }
 
 @JsonEnum(fieldRename: FieldRename.screamingSnake)
-enum UserRole { patient, doctor, admin }
+enum UserRole { patient, therapist, admin }
 
 @JsonEnum(fieldRename: FieldRename.screamingSnake)
 enum UserStatus { pending, active, blocked }

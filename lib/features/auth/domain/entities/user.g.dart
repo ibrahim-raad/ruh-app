@@ -23,7 +23,7 @@ _User _$UserFromJson(Map<String, dynamic> json) => _User(
   country: json['country'] == null
       ? null
       : Country.fromJson(json['country'] as Map<String, dynamic>),
-  countryId: json['country_id'] as String,
+  countryId: json['country_id'] as String?,
   dateOfBirth: json['date_of_birth'] == null
       ? null
       : DateTime.parse(json['date_of_birth'] as String),
@@ -62,7 +62,7 @@ Map<String, dynamic> _$UserToJson(_User instance) => <String, dynamic>{
 
 const _$UserRoleEnumMap = {
   UserRole.patient: 'PATIENT',
-  UserRole.doctor: 'DOCTOR',
+  UserRole.therapist: 'THERAPIST',
   UserRole.admin: 'ADMIN',
 };
 

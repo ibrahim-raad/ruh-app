@@ -8,7 +8,9 @@ import 'package:ruh/features/patient_profile/presentation/pages/edit_profile_pag
 import 'package:ruh/features/questionnaire/domain/entities/questionnaire.dart';
 import 'package:ruh/features/questionnaire/presentation/pages/questionnaire_page.dart';
 import 'package:ruh/features/sessions/presentation/pages/sessions_page.dart';
+import 'package:ruh/features/sessions/presentation/pages/schedule_session_page.dart';
 import 'package:ruh/features/splash/presentation/pages/splash_page.dart';
+import 'package:ruh/features/therapists/presentation/pages/find_therapist_page.dart';
 import 'package:ruh/shared/widgets/app_shell.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
 import '../../features/auth/presentation/bloc/auth_state.dart';
@@ -117,6 +119,17 @@ GoRouter createAppRouter(AuthBloc authBloc) => GoRouter(
       builder: (context, state) => QuestionnairePage(
         type: QuestionnaireType.values.byName(state.pathParameters['type']!),
       ),
+    ),
+    GoRoute(
+      path: AppRoutes.therapists,
+      builder: (context, state) => const FindTherapistPage(),
+    ),
+    GoRoute(
+      path: AppRoutes.scheduleSession,
+      builder: (context, state) {
+        final args = state.extra as ScheduleSessionPageArgs;
+        return ScheduleSessionPage(args: args);
+      },
     ),
   ],
 );

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ruh/core/utils/l10n_extensions.dart';
 import 'package:ruh/features/lookups/domain/entities/country.dart';
-import 'package:ruh/features/lookups/presentation/widgets/country_picker_bottom_sheet.dart';
+import 'package:ruh/features/lookups/presentation/widgets/single_select_lookup_picker.dart';
 
 class CountryPickerField extends StatelessWidget {
   final Country? value;
@@ -23,7 +23,7 @@ class CountryPickerField extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(12.r),
       onTap: () async {
-        final selected = await CountryPickerBottomSheet.show(
+        final selected = await showCountryPicker(
           context,
           initialCountry: value,
         );
