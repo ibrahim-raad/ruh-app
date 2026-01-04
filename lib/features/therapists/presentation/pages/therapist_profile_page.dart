@@ -6,6 +6,7 @@ import 'package:ruh/core/utils/theme_extensions.dart';
 import 'package:ruh/features/sessions/presentation/pages/schedule_session_page.dart';
 import 'package:ruh/features/therapists/domain/entities/certificate.dart';
 import 'package:ruh/features/therapists/domain/entities/therapist.dart';
+import 'package:ruh/features/therapists/presentation/pages/find_therapist_page.dart';
 import 'package:ruh/shared/widgets/app_avatar.dart';
 import 'package:ruh/shared/widgets/app_cached_image.dart';
 
@@ -164,6 +165,24 @@ class TherapistProfilePage extends StatelessWidget {
                             ),
                           ),
                         ],
+                      ),
+                    ),
+                    SizedBox(height: 12.h),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 46.h,
+                      child: OutlinedButton.icon(
+                        onPressed: () {
+                          context.push(
+                            AppRoutes.therapists,
+                            extra: FindTherapistPageArgs(
+                              isTransferFlow: true,
+                              currentTherapistName: name,
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.sync_alt_outlined, size: 18),
+                        label: const Text('transfer therapist request'),
                       ),
                     ),
                     SizedBox(height: 18.h),

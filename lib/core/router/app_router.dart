@@ -12,6 +12,7 @@ import 'package:ruh/features/sessions/presentation/pages/schedule_session_page.d
 import 'package:ruh/features/splash/presentation/pages/splash_page.dart';
 import 'package:ruh/features/therapists/presentation/pages/find_therapist_page.dart';
 import 'package:ruh/features/therapists/presentation/pages/therapist_profile_page.dart';
+import 'package:ruh/features/therapists/presentation/pages/transfer_therapist_request_page.dart';
 import 'package:ruh/features/therapists/domain/entities/therapist.dart';
 import 'package:ruh/shared/widgets/app_shell.dart';
 import '../../features/auth/presentation/bloc/auth_bloc.dart';
@@ -124,7 +125,11 @@ GoRouter createAppRouter(AuthBloc authBloc) => GoRouter(
     ),
     GoRoute(
       path: AppRoutes.therapists,
-      builder: (context, state) => const FindTherapistPage(),
+      builder: (context, state) => FindTherapistPage(
+        args: (state.extra is FindTherapistPageArgs)
+            ? state.extra as FindTherapistPageArgs
+            : const FindTherapistPageArgs(),
+      ),
     ),
     GoRoute(
       path: AppRoutes.scheduleSession,
@@ -140,8 +145,33 @@ GoRouter createAppRouter(AuthBloc authBloc) => GoRouter(
         return TherapistProfilePage(therapist: therapist);
       },
     ),
+    GoRoute(
+      path: AppRoutes.transferTherapistRequest,
+      builder: (context, state) {
+        final args = state.extra;
+        if (args is! TransferTherapistRequestPageArgs) {
+          return const _TransferRequestMissingArgsPage();
+        }
+        return TransferTherapistRequestPage(args: args);
+      },
+    ),
   ],
 );
+
+class _TransferRequestMissingArgsPage extends StatelessWidget {
+  const _TransferRequestMissingArgsPage();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: Text('Missing transfer request details. Please try again.'),
+        ),
+      ),
+    );
+  }
+}
 
 /// Converts Bloc Stream to Listenable for GoRouter
 class _AuthStream extends ChangeNotifier {

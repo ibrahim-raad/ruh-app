@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ruh/core/utils/theme_extensions.dart';
-
-enum SessionStatus { confirmed, completed }
+import 'package:ruh/features/sessions/domain/entities/session.dart';
 
 class SessionCard extends StatelessWidget {
   final String therapistName;
@@ -30,12 +29,7 @@ class SessionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final statusBg = status == SessionStatus.confirmed
-        ? context.tertiary.withValues(alpha: 0.8)
-        : context.secondary.withValues(alpha: 0.25);
-    final statusFg = status == SessionStatus.confirmed
-        ? context.onTertiary
-        : context.onSurfaceVariant;
+    final (:label, :bg, :fg, :icon) = _statusSpec(context, status);
 
     return Container(
       width: double.infinity,
@@ -89,16 +83,7 @@ class SessionCard extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 10.h),
-                    _StatusPill(
-                      label: status == SessionStatus.confirmed
-                          ? 'confirmed'
-                          : 'completed',
-                      bg: statusBg,
-                      fg: statusFg,
-                      icon: status == SessionStatus.confirmed
-                          ? Icons.check_circle_outline
-                          : Icons.task_alt,
-                    ),
+                    _StatusPill(label: label, bg: bg, fg: fg, icon: icon),
                   ],
                 ),
               ),
@@ -176,6 +161,56 @@ class SessionCard extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+({String label, Color bg, Color fg, IconData icon}) _statusSpec(
+  BuildContext context,
+  SessionStatus status,
+) {
+  switch (status) {
+    case SessionStatus.confirmed:
+      return (
+        label: 'confirmed',
+        bg: context.tertiary.withValues(alpha: 0.8),
+        fg: context.onTertiary,
+        icon: Icons.check_circle_outline,
+      );
+    case SessionStatus.pending:
+      return (
+        label: 'pending',
+        bg: context.secondary.withValues(alpha: 0.22),
+        fg: context.onSurfaceVariant,
+        icon: Icons.schedule_outlined,
+      );
+    case SessionStatus.rescheduled:
+      return (
+        label: 'rescheduled',
+        bg: context.secondary.withValues(alpha: 0.22),
+        fg: context.onSurfaceVariant,
+        icon: Icons.refresh,
+      );
+    case SessionStatus.completed:
+      return (
+        label: 'completed',
+        bg: context.secondary.withValues(alpha: 0.25),
+        fg: context.onSurfaceVariant,
+        icon: Icons.task_alt,
+      );
+    case SessionStatus.cancelled:
+      return (
+        label: 'cancelled',
+        bg: context.error.withValues(alpha: 0.12),
+        fg: context.error,
+        icon: Icons.cancel_outlined,
+      );
+    case SessionStatus.missed:
+      return (
+        label: 'missed',
+        bg: context.error.withValues(alpha: 0.12),
+        fg: context.error,
+        icon: Icons.event_busy_outlined,
+      );
   }
 }
 

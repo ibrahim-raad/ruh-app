@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ruh/core/utils/theme_extensions.dart';
+import 'package:ruh/features/journal/domain/dtos/create_reflection_dto.dart';
 import 'journal_card.dart';
-
-enum JournalMood { amazing, good, calm, okay, struggling, anxious }
 
 class MoodPicker extends StatelessWidget {
   final JournalMood? selected;

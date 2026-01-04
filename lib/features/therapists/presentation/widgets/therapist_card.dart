@@ -7,11 +7,13 @@ import '../../domain/entities/therapist.dart';
 class TherapistCard extends StatelessWidget {
   final TherapistOutput therapist;
   final VoidCallback onViewProfile;
+  final VoidCallback? onTransferSelect;
 
   const TherapistCard({
     super.key,
     required this.therapist,
     required this.onViewProfile,
+    this.onTransferSelect,
   });
 
   @override
@@ -40,6 +42,8 @@ class TherapistCard extends StatelessWidget {
 
     final currencySymbol = therapist.currency?.symbol ?? '\$';
     final rate = therapist.ratePerHour ?? 0;
+
+    final showTransfer = onTransferSelect != null;
 
     return Container(
       width: double.infinity,
@@ -151,6 +155,17 @@ class TherapistCard extends StatelessWidget {
                     ),
                   ],
                 ),
+                if (showTransfer) ...[
+                  SizedBox(height: 8.h),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton.icon(
+                      onPressed: onTransferSelect,
+                      icon: const Icon(Icons.sync_alt_outlined, size: 18),
+                      label: const Text('choose for transfer'),
+                    ),
+                  ),
+                ],
               ],
             ),
           ),

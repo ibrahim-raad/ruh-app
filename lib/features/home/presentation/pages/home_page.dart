@@ -6,10 +6,13 @@ import 'package:ruh/core/router/app_routes.dart';
 import 'package:ruh/core/utils/theme_extensions.dart';
 import 'package:ruh/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:ruh/features/auth/presentation/bloc/auth_state.dart';
+import 'package:ruh/features/sessions/presentation/pages/schedule_session_page.dart';
+import 'package:ruh/features/therapists/presentation/pages/find_therapist_page.dart';
 import 'package:ruh/shared/widgets/app_shell.dart';
 import '../widgets/explore_therapists_card.dart';
+import '../widgets/current_therapist_card.dart';
 import '../widgets/home_greeting_header.dart';
-import '../widgets/next_session_card.dart';
+import '../widgets/no_upcoming_session_card.dart';
 import '../widgets/quick_action_tile.dart';
 import '../widgets/todays_prompt_card.dart';
 
@@ -19,6 +22,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tab = ShellTabScope.of(context);
+    // TODO: Replace with real “current therapist assigned?” logic.
+    // Not `true` directly to avoid analyzer constant-propagation (dead_code) while
+    // this is still a placeholder.
+    final hasCurrentTherapist = DateTime.now().millisecondsSinceEpoch >= 0;
 
     return Scaffold(
       body: SafeArea(
@@ -41,11 +48,36 @@ class HomePage extends StatelessWidget {
                 },
               ),
               SizedBox(height: 18.h),
-              NextSessionCard(
-                therapistName: 'dr. emily chen',
-                therapyType: 'cognitive behavioral therapy',
-                timeLabel: 'tomorrow, 3:00 pm',
-                onJoin: () => tab.goToSessions(),
+              if (hasCurrentTherapist)
+                // TODO: Replace with the user's actual assigned therapist.
+                CurrentTherapistCard(
+                  therapistName: 'dr. emily chen',
+                  subtitle: 'your assigned therapist',
+                  avatarUrl: null,
+                  onBookSession: () => context.push(
+                    AppRoutes.scheduleSession,
+                    extra: const ScheduleSessionPageArgs(
+                      mode: ScheduleSessionMode.book,
+                      therapistName: 'dr. emily chen',
+                    ),
+                  ),
+                  onTransferRequest: () => context.push(
+                    AppRoutes.therapists,
+                    extra: const FindTherapistPageArgs(
+                      isTransferFlow: true,
+                      currentTherapistName: 'dr. emily chen',
+                    ),
+                  ),
+                )
+              else
+                ExploreTherapistsCard(
+                  onDiscover: () => context.push(AppRoutes.therapists),
+                ),
+              SizedBox(height: 18.h),
+              // TODO: Replace with real upcoming session from backend.
+              NoUpcomingSessionCard(
+                onBrowseTherapists: () => context.push(AppRoutes.therapists),
+                onViewSessions: () => tab.goToSessions(),
               ),
               SizedBox(height: 18.h),
               Row(
@@ -79,9 +111,10 @@ class HomePage extends StatelessWidget {
                 onWrite: () => tab.goToJournal(),
               ),
               SizedBox(height: 18.h),
-              ExploreTherapistsCard(
-                onDiscover: () => context.push(AppRoutes.therapists),
-              ),
+              if (hasCurrentTherapist)
+                ExploreTherapistsCard(
+                  onDiscover: () => context.push(AppRoutes.therapists),
+                ),
             ],
           ),
         ),

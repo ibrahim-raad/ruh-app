@@ -16,12 +16,28 @@ import 'package:ruh/features/lookups/presentation/widgets/single_select_lookup_p
 
 import 'package:ruh/features/therapists/data/datasources/therapists_remote_datasource.dart';
 import 'package:ruh/features/therapists/data/repositories/therapists_repository_impl.dart';
+import 'package:ruh/features/therapists/presentation/pages/transfer_therapist_request_page.dart';
 import '../cubit/therapists_cubit.dart';
 import '../cubit/therapists_state.dart';
 import '../widgets/therapist_card.dart';
 
+class FindTherapistPageArgs {
+  final bool isTransferFlow;
+  final String? currentTherapistName;
+
+  const FindTherapistPageArgs({
+    this.isTransferFlow = false,
+    this.currentTherapistName,
+  });
+}
+
 class FindTherapistPage extends StatefulWidget {
-  const FindTherapistPage({super.key});
+  final FindTherapistPageArgs args;
+
+  const FindTherapistPage({
+    super.key,
+    this.args = const FindTherapistPageArgs(),
+  });
 
   @override
   State<FindTherapistPage> createState() => _FindTherapistPageState();
@@ -116,6 +132,7 @@ class _FindTherapistPageState extends State<FindTherapistPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isTransferFlow = widget.args.isTransferFlow;
     return BlocProvider.value(
       value: _cubit,
       child: Scaffold(
@@ -194,12 +211,28 @@ class _FindTherapistPageState extends State<FindTherapistPage> {
                             }
 
                             final t = state.therapists[index];
+                            final selectedTherapistName =
+                                t.user?.fullName.trim().isNotEmpty == true
+                                ? t.user!.fullName.trim()
+                                : 'therapist';
                             return TherapistCard(
                               therapist: t,
                               onViewProfile: () => context.push(
                                 AppRoutes.therapistProfile,
                                 extra: t,
                               ),
+                              onTransferSelect: isTransferFlow
+                                  ? () => context.push(
+                                      AppRoutes.transferTherapistRequest,
+                                      extra: TransferTherapistRequestPageArgs(
+                                        currentTherapistName:
+                                            widget.args.currentTherapistName,
+                                        selectedTherapistId: t.id,
+                                        selectedTherapistName:
+                                            selectedTherapistName,
+                                      ),
+                                    )
+                                  : null,
                             );
                           },
                         ),

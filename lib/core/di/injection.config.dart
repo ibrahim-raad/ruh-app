@@ -24,6 +24,11 @@ import '../../features/auth/domain/usecases/login_user.dart' as _i778;
 import '../../features/auth/domain/usecases/logout_user.dart' as _i419;
 import '../../features/auth/domain/usecases/register_user.dart' as _i198;
 import '../../features/auth/presentation/bloc/auth_bloc.dart' as _i797;
+import '../../features/journal/data/datasource/reflection_remote_datasource.dart'
+    as _i24;
+import '../../features/journal/data/repo/journal_repo_impl.dart' as _i877;
+import '../../features/journal/domain/repo/journal_repo.dart' as _i614;
+import '../../features/journal/domain/usecase/create_reflection.dart' as _i706;
 import '../../features/lookups/data/datasources/country_remote_datasource.dart'
     as _i452;
 import '../../features/lookups/data/datasources/language_remote_datasource.dart'
@@ -83,6 +88,12 @@ import '../../features/questionnaire/domain/usecases/update_answer.dart'
     as _i761;
 import '../../features/questionnaire/presentation/bloc/questionnaire_bloc.dart'
     as _i1049;
+import '../../features/sessions/data/datasources/sessions_remote_datasource.dart'
+    as _i954;
+import '../../features/sessions/data/repositories/sessions_repository_impl.dart'
+    as _i808;
+import '../../features/sessions/domain/repositories/sessions_repository.dart'
+    as _i374;
 import '../../features/splash/data/datasources/splash_local_datasource.dart'
     as _i201;
 import '../../features/splash/data/repositories/splash_repository_impl.dart'
@@ -168,6 +179,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i161.AuthRemoteDataSource>(
       () => _i161.AuthRemoteDataSource(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i24.ReflectionRemoteDataSource>(
+      () => _i24.ReflectionRemoteDataSource(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i452.CountryRemoteDataSource>(
       () => _i452.CountryRemoteDataSource(gh<_i361.Dio>()),
     );
@@ -183,14 +197,26 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i17.QuestionnaireRemoteDataSource>(
       () => _i17.QuestionnaireRemoteDataSource(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i954.SessionsRemoteDataSource>(
+      () => _i954.SessionsRemoteDataSource(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i232.TherapistsRemoteDataSource>(
       () => _i232.TherapistsRemoteDataSource(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i374.SessionsRepository>(
+      () => _i808.SessionsRepositoryImpl(gh<_i954.SessionsRemoteDataSource>()),
     );
     gh.lazySingleton<_i787.AuthRepository>(
       () => _i153.AuthRepositoryImpl(
         gh<_i161.AuthRemoteDataSource>(),
         gh<_i905.TokenStorage>(),
       ),
+    );
+    gh.lazySingleton<_i614.JournalRepository>(
+      () => _i877.JournalRepositoryImpl(gh<_i24.ReflectionRemoteDataSource>()),
+    );
+    gh.lazySingleton<_i706.CreateReflection>(
+      () => _i706.CreateReflection(gh<_i614.JournalRepository>()),
     );
     gh.lazySingleton<_i867.PatientProfileRepository>(
       () => _i69.PatientProfileRepositoryImpl(

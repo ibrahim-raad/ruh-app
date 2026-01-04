@@ -13,4 +13,5 @@ final class AppRoutes {
   static const String therapists = '/therapists';
   static const String scheduleSession = '/schedule-session';
   static const String therapistProfile = '/therapist-profile';
+  static const String transferTherapistRequest = '/transfer-therapist-request';
 }
