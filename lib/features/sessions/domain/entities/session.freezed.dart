@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Session {
 
- String get id; int get version;@JsonKey(name: 'created_at') DateTime get createdAt;@JsonKey(name: 'updated_at') DateTime get updatedAt;@JsonKey(name: 'deleted_at') DateTime? get deletedAt;@JsonKey(name: 'therapy_case_id') String? get therapyCaseId;@JsonKey(name: 'start_time') DateTime get startTime;@JsonKey(name: 'end_time') DateTime get endTime;@JsonKey(name: 'actual_start_time') DateTime? get actualStartTime;@JsonKey(name: 'actual_end_time') DateTime? get actualEndTime; String? get link;@JsonKey(name: 'audio_link') String? get audioLink;@JsonKey(name: 'patient_feedback') String? get patientFeedback; SessionType get type; SessionStatus get status;
+ String get id; int get version;@JsonKey(name: 'created_at') DateTime get createdAt;@JsonKey(name: 'updated_at') DateTime get updatedAt;@JsonKey(name: 'deleted_at') DateTime? get deletedAt;@JsonKey(name: 'therapy_case_id') String? get therapyCaseId;@JsonKey(name: 'therapy_case') TherapyCase? get therapyCase;@JsonKey(name: 'start_time') DateTime get startTime;@JsonKey(name: 'end_time') DateTime get endTime;@JsonKey(name: 'actual_start_time') DateTime? get actualStartTime;@JsonKey(name: 'actual_end_time') DateTime? get actualEndTime; String? get link;@JsonKey(name: 'audio_link') String? get audioLink;@JsonKey(name: 'patient_feedback') String? get patientFeedback; SessionType get type; SessionStatus get status;
 /// Create a copy of Session
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $SessionCopyWith<Session> get copyWith => _$SessionCopyWithImpl<Session>(this as
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Session&&(identical(other.id, id) || other.id == id)&&(identical(other.version, version) || other.version == version)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.deletedAt, deletedAt) || other.deletedAt == deletedAt)&&(identical(other.therapyCaseId, therapyCaseId) || other.therapyCaseId == therapyCaseId)&&(identical(other.startTime, startTime) || other.startTime == startTime)&&(identical(other.endTime, endTime) || other.endTime == endTime)&&(identical(other.actualStartTime, actualStartTime) || other.actualStartTime == actualStartTime)&&(identical(other.actualEndTime, actualEndTime) || other.actualEndTime == actualEndTime)&&(identical(other.link, link) || other.link == link)&&(identical(other.audioLink, audioLink) || other.audioLink == audioLink)&&(identical(other.patientFeedback, patientFeedback) || other.patientFeedback == patientFeedback)&&(identical(other.type, type) || other.type == type)&&(identical(other.status, status) || other.status == status));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Session&&(identical(other.id, id) || other.id == id)&&(identical(other.version, version) || other.version == version)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.deletedAt, deletedAt) || other.deletedAt == deletedAt)&&(identical(other.therapyCaseId, therapyCaseId) || other.therapyCaseId == therapyCaseId)&&(identical(other.therapyCase, therapyCase) || other.therapyCase == therapyCase)&&(identical(other.startTime, startTime) || other.startTime == startTime)&&(identical(other.endTime, endTime) || other.endTime == endTime)&&(identical(other.actualStartTime, actualStartTime) || other.actualStartTime == actualStartTime)&&(identical(other.actualEndTime, actualEndTime) || other.actualEndTime == actualEndTime)&&(identical(other.link, link) || other.link == link)&&(identical(other.audioLink, audioLink) || other.audioLink == audioLink)&&(identical(other.patientFeedback, patientFeedback) || other.patientFeedback == patientFeedback)&&(identical(other.type, type) || other.type == type)&&(identical(other.status, status) || other.status == status));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,version,createdAt,updatedAt,deletedAt,therapyCaseId,startTime,endTime,actualStartTime,actualEndTime,link,audioLink,patientFeedback,type,status);
+int get hashCode => Object.hash(runtimeType,id,version,createdAt,updatedAt,deletedAt,therapyCaseId,therapyCase,startTime,endTime,actualStartTime,actualEndTime,link,audioLink,patientFeedback,type,status);
 
 @override
 String toString() {
-  return 'Session(id: $id, version: $version, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, therapyCaseId: $therapyCaseId, startTime: $startTime, endTime: $endTime, actualStartTime: $actualStartTime, actualEndTime: $actualEndTime, link: $link, audioLink: $audioLink, patientFeedback: $patientFeedback, type: $type, status: $status)';
+  return 'Session(id: $id, version: $version, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, therapyCaseId: $therapyCaseId, therapyCase: $therapyCase, startTime: $startTime, endTime: $endTime, actualStartTime: $actualStartTime, actualEndTime: $actualEndTime, link: $link, audioLink: $audioLink, patientFeedback: $patientFeedback, type: $type, status: $status)';
 }
 
 
@@ -48,11 +48,11 @@ abstract mixin class $SessionCopyWith<$Res>  {
   factory $SessionCopyWith(Session value, $Res Function(Session) _then) = _$SessionCopyWithImpl;
 @useResult
 $Res call({
- String id, int version,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime updatedAt,@JsonKey(name: 'deleted_at') DateTime? deletedAt,@JsonKey(name: 'therapy_case_id') String? therapyCaseId,@JsonKey(name: 'start_time') DateTime startTime,@JsonKey(name: 'end_time') DateTime endTime,@JsonKey(name: 'actual_start_time') DateTime? actualStartTime,@JsonKey(name: 'actual_end_time') DateTime? actualEndTime, String? link,@JsonKey(name: 'audio_link') String? audioLink,@JsonKey(name: 'patient_feedback') String? patientFeedback, SessionType type, SessionStatus status
+ String id, int version,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime updatedAt,@JsonKey(name: 'deleted_at') DateTime? deletedAt,@JsonKey(name: 'therapy_case_id') String? therapyCaseId,@JsonKey(name: 'therapy_case') TherapyCase? therapyCase,@JsonKey(name: 'start_time') DateTime startTime,@JsonKey(name: 'end_time') DateTime endTime,@JsonKey(name: 'actual_start_time') DateTime? actualStartTime,@JsonKey(name: 'actual_end_time') DateTime? actualEndTime, String? link,@JsonKey(name: 'audio_link') String? audioLink,@JsonKey(name: 'patient_feedback') String? patientFeedback, SessionType type, SessionStatus status
 });
 
 
-
+$TherapyCaseCopyWith<$Res>? get therapyCase;
 
 }
 /// @nodoc
@@ -65,7 +65,7 @@ class _$SessionCopyWithImpl<$Res>
 
 /// Create a copy of Session
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? version = null,Object? createdAt = null,Object? updatedAt = null,Object? deletedAt = freezed,Object? therapyCaseId = freezed,Object? startTime = null,Object? endTime = null,Object? actualStartTime = freezed,Object? actualEndTime = freezed,Object? link = freezed,Object? audioLink = freezed,Object? patientFeedback = freezed,Object? type = null,Object? status = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? version = null,Object? createdAt = null,Object? updatedAt = null,Object? deletedAt = freezed,Object? therapyCaseId = freezed,Object? therapyCase = freezed,Object? startTime = null,Object? endTime = null,Object? actualStartTime = freezed,Object? actualEndTime = freezed,Object? link = freezed,Object? audioLink = freezed,Object? patientFeedback = freezed,Object? type = null,Object? status = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,version: null == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
@@ -73,7 +73,8 @@ as int,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cas
 as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime,deletedAt: freezed == deletedAt ? _self.deletedAt : deletedAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,therapyCaseId: freezed == therapyCaseId ? _self.therapyCaseId : therapyCaseId // ignore: cast_nullable_to_non_nullable
-as String?,startTime: null == startTime ? _self.startTime : startTime // ignore: cast_nullable_to_non_nullable
+as String?,therapyCase: freezed == therapyCase ? _self.therapyCase : therapyCase // ignore: cast_nullable_to_non_nullable
+as TherapyCase?,startTime: null == startTime ? _self.startTime : startTime // ignore: cast_nullable_to_non_nullable
 as DateTime,endTime: null == endTime ? _self.endTime : endTime // ignore: cast_nullable_to_non_nullable
 as DateTime,actualStartTime: freezed == actualStartTime ? _self.actualStartTime : actualStartTime // ignore: cast_nullable_to_non_nullable
 as DateTime?,actualEndTime: freezed == actualEndTime ? _self.actualEndTime : actualEndTime // ignore: cast_nullable_to_non_nullable
@@ -85,7 +86,19 @@ as SessionType,status: null == status ? _self.status : status // ignore: cast_nu
 as SessionStatus,
   ));
 }
+/// Create a copy of Session
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TherapyCaseCopyWith<$Res>? get therapyCase {
+    if (_self.therapyCase == null) {
+    return null;
+  }
 
+  return $TherapyCaseCopyWith<$Res>(_self.therapyCase!, (value) {
+    return _then(_self.copyWith(therapyCase: value));
+  });
+}
 }
 
 
@@ -167,10 +180,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  int version, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt, @JsonKey(name: 'deleted_at')  DateTime? deletedAt, @JsonKey(name: 'therapy_case_id')  String? therapyCaseId, @JsonKey(name: 'start_time')  DateTime startTime, @JsonKey(name: 'end_time')  DateTime endTime, @JsonKey(name: 'actual_start_time')  DateTime? actualStartTime, @JsonKey(name: 'actual_end_time')  DateTime? actualEndTime,  String? link, @JsonKey(name: 'audio_link')  String? audioLink, @JsonKey(name: 'patient_feedback')  String? patientFeedback,  SessionType type,  SessionStatus status)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  int version, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt, @JsonKey(name: 'deleted_at')  DateTime? deletedAt, @JsonKey(name: 'therapy_case_id')  String? therapyCaseId, @JsonKey(name: 'therapy_case')  TherapyCase? therapyCase, @JsonKey(name: 'start_time')  DateTime startTime, @JsonKey(name: 'end_time')  DateTime endTime, @JsonKey(name: 'actual_start_time')  DateTime? actualStartTime, @JsonKey(name: 'actual_end_time')  DateTime? actualEndTime,  String? link, @JsonKey(name: 'audio_link')  String? audioLink, @JsonKey(name: 'patient_feedback')  String? patientFeedback,  SessionType type,  SessionStatus status)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Session() when $default != null:
-return $default(_that.id,_that.version,_that.createdAt,_that.updatedAt,_that.deletedAt,_that.therapyCaseId,_that.startTime,_that.endTime,_that.actualStartTime,_that.actualEndTime,_that.link,_that.audioLink,_that.patientFeedback,_that.type,_that.status);case _:
+return $default(_that.id,_that.version,_that.createdAt,_that.updatedAt,_that.deletedAt,_that.therapyCaseId,_that.therapyCase,_that.startTime,_that.endTime,_that.actualStartTime,_that.actualEndTime,_that.link,_that.audioLink,_that.patientFeedback,_that.type,_that.status);case _:
   return orElse();
 
 }
@@ -188,10 +201,10 @@ return $default(_that.id,_that.version,_that.createdAt,_that.updatedAt,_that.del
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  int version, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt, @JsonKey(name: 'deleted_at')  DateTime? deletedAt, @JsonKey(name: 'therapy_case_id')  String? therapyCaseId, @JsonKey(name: 'start_time')  DateTime startTime, @JsonKey(name: 'end_time')  DateTime endTime, @JsonKey(name: 'actual_start_time')  DateTime? actualStartTime, @JsonKey(name: 'actual_end_time')  DateTime? actualEndTime,  String? link, @JsonKey(name: 'audio_link')  String? audioLink, @JsonKey(name: 'patient_feedback')  String? patientFeedback,  SessionType type,  SessionStatus status)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  int version, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt, @JsonKey(name: 'deleted_at')  DateTime? deletedAt, @JsonKey(name: 'therapy_case_id')  String? therapyCaseId, @JsonKey(name: 'therapy_case')  TherapyCase? therapyCase, @JsonKey(name: 'start_time')  DateTime startTime, @JsonKey(name: 'end_time')  DateTime endTime, @JsonKey(name: 'actual_start_time')  DateTime? actualStartTime, @JsonKey(name: 'actual_end_time')  DateTime? actualEndTime,  String? link, @JsonKey(name: 'audio_link')  String? audioLink, @JsonKey(name: 'patient_feedback')  String? patientFeedback,  SessionType type,  SessionStatus status)  $default,) {final _that = this;
 switch (_that) {
 case _Session():
-return $default(_that.id,_that.version,_that.createdAt,_that.updatedAt,_that.deletedAt,_that.therapyCaseId,_that.startTime,_that.endTime,_that.actualStartTime,_that.actualEndTime,_that.link,_that.audioLink,_that.patientFeedback,_that.type,_that.status);case _:
+return $default(_that.id,_that.version,_that.createdAt,_that.updatedAt,_that.deletedAt,_that.therapyCaseId,_that.therapyCase,_that.startTime,_that.endTime,_that.actualStartTime,_that.actualEndTime,_that.link,_that.audioLink,_that.patientFeedback,_that.type,_that.status);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -208,10 +221,10 @@ return $default(_that.id,_that.version,_that.createdAt,_that.updatedAt,_that.del
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  int version, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt, @JsonKey(name: 'deleted_at')  DateTime? deletedAt, @JsonKey(name: 'therapy_case_id')  String? therapyCaseId, @JsonKey(name: 'start_time')  DateTime startTime, @JsonKey(name: 'end_time')  DateTime endTime, @JsonKey(name: 'actual_start_time')  DateTime? actualStartTime, @JsonKey(name: 'actual_end_time')  DateTime? actualEndTime,  String? link, @JsonKey(name: 'audio_link')  String? audioLink, @JsonKey(name: 'patient_feedback')  String? patientFeedback,  SessionType type,  SessionStatus status)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  int version, @JsonKey(name: 'created_at')  DateTime createdAt, @JsonKey(name: 'updated_at')  DateTime updatedAt, @JsonKey(name: 'deleted_at')  DateTime? deletedAt, @JsonKey(name: 'therapy_case_id')  String? therapyCaseId, @JsonKey(name: 'therapy_case')  TherapyCase? therapyCase, @JsonKey(name: 'start_time')  DateTime startTime, @JsonKey(name: 'end_time')  DateTime endTime, @JsonKey(name: 'actual_start_time')  DateTime? actualStartTime, @JsonKey(name: 'actual_end_time')  DateTime? actualEndTime,  String? link, @JsonKey(name: 'audio_link')  String? audioLink, @JsonKey(name: 'patient_feedback')  String? patientFeedback,  SessionType type,  SessionStatus status)?  $default,) {final _that = this;
 switch (_that) {
 case _Session() when $default != null:
-return $default(_that.id,_that.version,_that.createdAt,_that.updatedAt,_that.deletedAt,_that.therapyCaseId,_that.startTime,_that.endTime,_that.actualStartTime,_that.actualEndTime,_that.link,_that.audioLink,_that.patientFeedback,_that.type,_that.status);case _:
+return $default(_that.id,_that.version,_that.createdAt,_that.updatedAt,_that.deletedAt,_that.therapyCaseId,_that.therapyCase,_that.startTime,_that.endTime,_that.actualStartTime,_that.actualEndTime,_that.link,_that.audioLink,_that.patientFeedback,_that.type,_that.status);case _:
   return null;
 
 }
@@ -223,7 +236,7 @@ return $default(_that.id,_that.version,_that.createdAt,_that.updatedAt,_that.del
 @JsonSerializable()
 
 class _Session implements Session {
-  const _Session({required this.id, required this.version, @JsonKey(name: 'created_at') required this.createdAt, @JsonKey(name: 'updated_at') required this.updatedAt, @JsonKey(name: 'deleted_at') this.deletedAt, @JsonKey(name: 'therapy_case_id') this.therapyCaseId, @JsonKey(name: 'start_time') required this.startTime, @JsonKey(name: 'end_time') required this.endTime, @JsonKey(name: 'actual_start_time') this.actualStartTime, @JsonKey(name: 'actual_end_time') this.actualEndTime, this.link, @JsonKey(name: 'audio_link') this.audioLink, @JsonKey(name: 'patient_feedback') this.patientFeedback, required this.type, required this.status});
+  const _Session({required this.id, required this.version, @JsonKey(name: 'created_at') required this.createdAt, @JsonKey(name: 'updated_at') required this.updatedAt, @JsonKey(name: 'deleted_at') this.deletedAt, @JsonKey(name: 'therapy_case_id') this.therapyCaseId, @JsonKey(name: 'therapy_case') this.therapyCase, @JsonKey(name: 'start_time') required this.startTime, @JsonKey(name: 'end_time') required this.endTime, @JsonKey(name: 'actual_start_time') this.actualStartTime, @JsonKey(name: 'actual_end_time') this.actualEndTime, this.link, @JsonKey(name: 'audio_link') this.audioLink, @JsonKey(name: 'patient_feedback') this.patientFeedback, required this.type, required this.status});
   factory _Session.fromJson(Map<String, dynamic> json) => _$SessionFromJson(json);
 
 @override final  String id;
@@ -232,6 +245,7 @@ class _Session implements Session {
 @override@JsonKey(name: 'updated_at') final  DateTime updatedAt;
 @override@JsonKey(name: 'deleted_at') final  DateTime? deletedAt;
 @override@JsonKey(name: 'therapy_case_id') final  String? therapyCaseId;
+@override@JsonKey(name: 'therapy_case') final  TherapyCase? therapyCase;
 @override@JsonKey(name: 'start_time') final  DateTime startTime;
 @override@JsonKey(name: 'end_time') final  DateTime endTime;
 @override@JsonKey(name: 'actual_start_time') final  DateTime? actualStartTime;
@@ -255,16 +269,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Session&&(identical(other.id, id) || other.id == id)&&(identical(other.version, version) || other.version == version)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.deletedAt, deletedAt) || other.deletedAt == deletedAt)&&(identical(other.therapyCaseId, therapyCaseId) || other.therapyCaseId == therapyCaseId)&&(identical(other.startTime, startTime) || other.startTime == startTime)&&(identical(other.endTime, endTime) || other.endTime == endTime)&&(identical(other.actualStartTime, actualStartTime) || other.actualStartTime == actualStartTime)&&(identical(other.actualEndTime, actualEndTime) || other.actualEndTime == actualEndTime)&&(identical(other.link, link) || other.link == link)&&(identical(other.audioLink, audioLink) || other.audioLink == audioLink)&&(identical(other.patientFeedback, patientFeedback) || other.patientFeedback == patientFeedback)&&(identical(other.type, type) || other.type == type)&&(identical(other.status, status) || other.status == status));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Session&&(identical(other.id, id) || other.id == id)&&(identical(other.version, version) || other.version == version)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.deletedAt, deletedAt) || other.deletedAt == deletedAt)&&(identical(other.therapyCaseId, therapyCaseId) || other.therapyCaseId == therapyCaseId)&&(identical(other.therapyCase, therapyCase) || other.therapyCase == therapyCase)&&(identical(other.startTime, startTime) || other.startTime == startTime)&&(identical(other.endTime, endTime) || other.endTime == endTime)&&(identical(other.actualStartTime, actualStartTime) || other.actualStartTime == actualStartTime)&&(identical(other.actualEndTime, actualEndTime) || other.actualEndTime == actualEndTime)&&(identical(other.link, link) || other.link == link)&&(identical(other.audioLink, audioLink) || other.audioLink == audioLink)&&(identical(other.patientFeedback, patientFeedback) || other.patientFeedback == patientFeedback)&&(identical(other.type, type) || other.type == type)&&(identical(other.status, status) || other.status == status));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,version,createdAt,updatedAt,deletedAt,therapyCaseId,startTime,endTime,actualStartTime,actualEndTime,link,audioLink,patientFeedback,type,status);
+int get hashCode => Object.hash(runtimeType,id,version,createdAt,updatedAt,deletedAt,therapyCaseId,therapyCase,startTime,endTime,actualStartTime,actualEndTime,link,audioLink,patientFeedback,type,status);
 
 @override
 String toString() {
-  return 'Session(id: $id, version: $version, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, therapyCaseId: $therapyCaseId, startTime: $startTime, endTime: $endTime, actualStartTime: $actualStartTime, actualEndTime: $actualEndTime, link: $link, audioLink: $audioLink, patientFeedback: $patientFeedback, type: $type, status: $status)';
+  return 'Session(id: $id, version: $version, createdAt: $createdAt, updatedAt: $updatedAt, deletedAt: $deletedAt, therapyCaseId: $therapyCaseId, therapyCase: $therapyCase, startTime: $startTime, endTime: $endTime, actualStartTime: $actualStartTime, actualEndTime: $actualEndTime, link: $link, audioLink: $audioLink, patientFeedback: $patientFeedback, type: $type, status: $status)';
 }
 
 
@@ -275,11 +289,11 @@ abstract mixin class _$SessionCopyWith<$Res> implements $SessionCopyWith<$Res> {
   factory _$SessionCopyWith(_Session value, $Res Function(_Session) _then) = __$SessionCopyWithImpl;
 @override @useResult
 $Res call({
- String id, int version,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime updatedAt,@JsonKey(name: 'deleted_at') DateTime? deletedAt,@JsonKey(name: 'therapy_case_id') String? therapyCaseId,@JsonKey(name: 'start_time') DateTime startTime,@JsonKey(name: 'end_time') DateTime endTime,@JsonKey(name: 'actual_start_time') DateTime? actualStartTime,@JsonKey(name: 'actual_end_time') DateTime? actualEndTime, String? link,@JsonKey(name: 'audio_link') String? audioLink,@JsonKey(name: 'patient_feedback') String? patientFeedback, SessionType type, SessionStatus status
+ String id, int version,@JsonKey(name: 'created_at') DateTime createdAt,@JsonKey(name: 'updated_at') DateTime updatedAt,@JsonKey(name: 'deleted_at') DateTime? deletedAt,@JsonKey(name: 'therapy_case_id') String? therapyCaseId,@JsonKey(name: 'therapy_case') TherapyCase? therapyCase,@JsonKey(name: 'start_time') DateTime startTime,@JsonKey(name: 'end_time') DateTime endTime,@JsonKey(name: 'actual_start_time') DateTime? actualStartTime,@JsonKey(name: 'actual_end_time') DateTime? actualEndTime, String? link,@JsonKey(name: 'audio_link') String? audioLink,@JsonKey(name: 'patient_feedback') String? patientFeedback, SessionType type, SessionStatus status
 });
 
 
-
+@override $TherapyCaseCopyWith<$Res>? get therapyCase;
 
 }
 /// @nodoc
@@ -292,7 +306,7 @@ class __$SessionCopyWithImpl<$Res>
 
 /// Create a copy of Session
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? version = null,Object? createdAt = null,Object? updatedAt = null,Object? deletedAt = freezed,Object? therapyCaseId = freezed,Object? startTime = null,Object? endTime = null,Object? actualStartTime = freezed,Object? actualEndTime = freezed,Object? link = freezed,Object? audioLink = freezed,Object? patientFeedback = freezed,Object? type = null,Object? status = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? version = null,Object? createdAt = null,Object? updatedAt = null,Object? deletedAt = freezed,Object? therapyCaseId = freezed,Object? therapyCase = freezed,Object? startTime = null,Object? endTime = null,Object? actualStartTime = freezed,Object? actualEndTime = freezed,Object? link = freezed,Object? audioLink = freezed,Object? patientFeedback = freezed,Object? type = null,Object? status = null,}) {
   return _then(_Session(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,version: null == version ? _self.version : version // ignore: cast_nullable_to_non_nullable
@@ -300,7 +314,8 @@ as int,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cas
 as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime,deletedAt: freezed == deletedAt ? _self.deletedAt : deletedAt // ignore: cast_nullable_to_non_nullable
 as DateTime?,therapyCaseId: freezed == therapyCaseId ? _self.therapyCaseId : therapyCaseId // ignore: cast_nullable_to_non_nullable
-as String?,startTime: null == startTime ? _self.startTime : startTime // ignore: cast_nullable_to_non_nullable
+as String?,therapyCase: freezed == therapyCase ? _self.therapyCase : therapyCase // ignore: cast_nullable_to_non_nullable
+as TherapyCase?,startTime: null == startTime ? _self.startTime : startTime // ignore: cast_nullable_to_non_nullable
 as DateTime,endTime: null == endTime ? _self.endTime : endTime // ignore: cast_nullable_to_non_nullable
 as DateTime,actualStartTime: freezed == actualStartTime ? _self.actualStartTime : actualStartTime // ignore: cast_nullable_to_non_nullable
 as DateTime?,actualEndTime: freezed == actualEndTime ? _self.actualEndTime : actualEndTime // ignore: cast_nullable_to_non_nullable
@@ -313,7 +328,19 @@ as SessionStatus,
   ));
 }
 
+/// Create a copy of Session
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TherapyCaseCopyWith<$Res>? get therapyCase {
+    if (_self.therapyCase == null) {
+    return null;
+  }
 
+  return $TherapyCaseCopyWith<$Res>(_self.therapyCase!, (value) {
+    return _then(_self.copyWith(therapyCase: value));
+  });
+}
 }
 
 // dart format on

@@ -9,12 +9,15 @@ import 'package:ruh/core/utils/theme_extensions.dart';
 import 'package:ruh/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:ruh/features/auth/presentation/bloc/auth_state.dart';
 import 'package:ruh/features/sessions/presentation/pages/schedule_session_page.dart';
+import 'package:ruh/features/sessions/domain/entities/session.dart';
+import 'package:ruh/features/sessions/domain/repositories/sessions_repository.dart';
 import 'package:ruh/features/therapy_case/domain/entities/therapy_case.dart';
 import 'package:ruh/features/therapy_case/domain/repositories/therapy_case_repository.dart';
 import 'package:ruh/features/therapists/presentation/pages/find_therapist_page.dart';
 import 'package:ruh/shared/widgets/app_empty_state.dart';
 import 'package:ruh/shared/widgets/app_loader.dart';
 import 'package:ruh/shared/widgets/app_shell.dart';
+import 'package:intl/intl.dart';
 import '../cubit/home_cubit.dart';
 import '../cubit/home_state.dart';
 import '../widgets/explore_therapists_card.dart';
@@ -22,6 +25,7 @@ import '../widgets/current_therapist_card.dart';
 import '../widgets/home_greeting_header.dart';
 import '../widgets/no_upcoming_session_card.dart';
 import '../widgets/quick_action_tile.dart';
+import '../widgets/next_session_card.dart';
 import '../widgets/todays_prompt_card.dart';
 
 class HomePage extends StatelessWidget {
@@ -36,19 +40,46 @@ class HomePage extends StatelessWidget {
     }
   }
 
+  String _dateLabel(DateTime start) {
+    final now = DateTime.now();
+    final d0 = DateTime(now.year, now.month, now.day);
+    final d1 = DateTime(start.year, start.month, start.day);
+    final diff = d1.difference(d0).inDays;
+    if (diff == 0) return 'today';
+    if (diff == 1) return 'tomorrow';
+    return DateFormat('EEE, MMM d').format(start).toLowerCase();
+  }
+
+  String _timeLabel(DateTime start) =>
+      DateFormat('h:mm a').format(start).toLowerCase();
+
+  String _nextSessionTypeLabel(Session s) {
+    final tc = s.therapyCase;
+    if (tc == null) {
+      return s.type == SessionType.first
+          ? 'first session'
+          : 'follow-up session';
+    }
+    return tc.type == TherapyCaseType.therapist
+        ? 'therapy session'
+        : 'psychiatry session';
+  }
+
   @override
   Widget build(BuildContext context) {
     final tab = ShellTabScope.of(context);
 
     return BlocProvider(
       create: (_) =>
-          HomeCubit(getIt<TherapyCaseRepository>())..loadActiveCases(),
+          HomeCubit(getIt<TherapyCaseRepository>(), getIt<SessionsRepository>())
+            ..loadActiveCases(),
       child: Scaffold(
         body: SafeArea(
           child: BlocBuilder<HomeCubit, HomeState>(
             builder: (context, state) {
               final cases = state.activeCases;
               final hasCases = cases.isNotEmpty;
+              final nextSession = state.nextSession;
 
               return SingleChildScrollView(
                 padding: EdgeInsets.fromLTRB(20.w, 18.h, 20.w, 24.h),
@@ -124,10 +155,32 @@ class HomePage extends StatelessWidget {
                       ],
                     ],
 
-                    // TODO: Replace with real upcoming session from backend.
-                    NoUpcomingSessionCard(
-                      onViewSessions: () => tab.goToSessions(),
-                    ),
+                    if (nextSession != null) ...[
+                      Builder(
+                        builder: (context) {
+                          final therapistUser =
+                              nextSession.therapyCase?.therapist.user;
+                          final rawName = therapistUser?.fullName.trim();
+                          final therapistName =
+                              (rawName == null || rawName.isEmpty)
+                              ? 'therapist'
+                              : rawName;
+                          final timeLabel =
+                              '${_dateLabel(nextSession.startTime)}, ${_timeLabel(nextSession.startTime)}';
+                          return NextSessionCard(
+                            therapistName: therapistName.toLowerCase(),
+                            therapyType: _nextSessionTypeLabel(nextSession),
+                            timeLabel: timeLabel,
+                            // Link is not returned yet; route to Sessions for now.
+                            onJoin: () => tab.goToSessions(),
+                          );
+                        },
+                      ),
+                    ] else ...[
+                      NoUpcomingSessionCard(
+                        onViewSessions: () => tab.goToSessions(),
+                      ),
+                    ],
                     SizedBox(height: 18.h),
                     Row(
                       children: [

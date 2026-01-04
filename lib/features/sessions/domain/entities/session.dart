@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ruh/core/network/models/auditable_output.dart';
+import 'package:ruh/features/therapy_case/domain/entities/therapy_case.dart';
 
 part 'session.freezed.dart';
 part 'session.g.dart';
@@ -27,6 +28,7 @@ abstract class Session with _$Session implements AuditableOutput {
     @JsonKey(name: 'deleted_at') DateTime? deletedAt,
 
     @JsonKey(name: 'therapy_case_id') String? therapyCaseId,
+    @JsonKey(name: 'therapy_case') TherapyCase? therapyCase,
 
     @JsonKey(name: 'start_time') required DateTime startTime,
     @JsonKey(name: 'end_time') required DateTime endTime,

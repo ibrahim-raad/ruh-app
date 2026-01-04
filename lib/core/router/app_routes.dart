@@ -8,6 +8,8 @@ final class AppRoutes {
 
   static const String home = '/home';
   static const String journal = '/journal';
+  static String journalWithDay(String day) =>
+      '$journal?day=${Uri.encodeQueryComponent(day)}';
   static const String sessions = '/sessions';
   static const String profile = '/profile';
   static const String therapists = '/therapists';

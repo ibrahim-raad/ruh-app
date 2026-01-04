@@ -11,7 +11,7 @@ class SessionCard extends StatelessWidget {
   final String timeLabel;
   final String durationLabel;
   final bool isUpcoming;
-  final VoidCallback onPrimaryAction;
+  final VoidCallback? onPrimaryAction;
   final VoidCallback onSecondaryAction;
 
   const SessionCard({

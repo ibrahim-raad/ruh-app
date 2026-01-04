@@ -15,6 +15,9 @@ _Session _$SessionFromJson(Map<String, dynamic> json) => _Session(
       ? null
       : DateTime.parse(json['deleted_at'] as String),
   therapyCaseId: json['therapy_case_id'] as String?,
+  therapyCase: json['therapy_case'] == null
+      ? null
+      : TherapyCase.fromJson(json['therapy_case'] as Map<String, dynamic>),
   startTime: DateTime.parse(json['start_time'] as String),
   endTime: DateTime.parse(json['end_time'] as String),
   actualStartTime: json['actual_start_time'] == null
@@ -37,6 +40,7 @@ Map<String, dynamic> _$SessionToJson(_Session instance) => <String, dynamic>{
   'updated_at': instance.updatedAt.toIso8601String(),
   'deleted_at': instance.deletedAt?.toIso8601String(),
   'therapy_case_id': instance.therapyCaseId,
+  'therapy_case': instance.therapyCase,
   'start_time': instance.startTime.toIso8601String(),
   'end_time': instance.endTime.toIso8601String(),
   'actual_start_time': instance.actualStartTime?.toIso8601String(),

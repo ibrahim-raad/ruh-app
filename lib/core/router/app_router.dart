@@ -91,7 +91,22 @@ GoRouter createAppRouter(AuthBloc authBloc) => GoRouter(
           routes: [
             GoRoute(
               path: AppRoutes.journal,
-              builder: (context, state) => const JournalPage(),
+              builder: (context, state) {
+                final dayStr = state.uri.queryParameters['day'];
+                DateTime? initialDay;
+                if (dayStr != null && dayStr.trim().isNotEmpty) {
+                  final parts = dayStr.split('-');
+                  if (parts.length == 3) {
+                    final y = int.tryParse(parts[0]);
+                    final m = int.tryParse(parts[1]);
+                    final d = int.tryParse(parts[2]);
+                    if (y != null && m != null && d != null) {
+                      initialDay = DateTime(y, m, d);
+                    }
+                  }
+                }
+                return JournalPage(initialDay: initialDay);
+              },
             ),
           ],
         ),

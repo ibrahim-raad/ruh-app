@@ -16,6 +16,7 @@ import 'package:ruh/features/sessions/presentation/pages/schedule_session_page.d
 import 'package:ruh/features/sessions/presentation/widgets/session_card.dart';
 import 'package:ruh/features/sessions/presentation/widgets/sessions_header.dart';
 import 'package:ruh/features/sessions/presentation/widgets/sessions_segmented_control.dart';
+import 'package:ruh/features/therapy_case/domain/entities/therapy_case.dart';
 import 'package:ruh/shared/widgets/app_empty_state.dart';
 import 'package:ruh/shared/widgets/app_loader.dart';
 
@@ -50,11 +51,17 @@ class _SessionsPageState extends State<SessionsPage> {
   }
 
   String _therapyTypeLabel(Session s) {
-    switch (s.type) {
-      case SessionType.first:
-        return 'first session';
-      case SessionType.followUp:
-        return 'follow-up session';
+    final tc = s.therapyCase;
+    if (tc == null) {
+      return s.type == SessionType.first
+          ? 'first session'
+          : 'follow-up session';
+    }
+    switch (tc.type) {
+      case TherapyCaseType.therapist:
+        return 'therapy session';
+      case TherapyCaseType.psychiatrist:
+        return 'psychiatry session';
     }
   }
 
@@ -183,18 +190,38 @@ class _SessionsPageState extends State<SessionsPage> {
                                   final duration = s.endTime.difference(
                                     s.startTime,
                                   );
+                                  final therapistUser =
+                                      s.therapyCase?.therapist.user;
+                                  final rawName = therapistUser?.fullName
+                                      .trim();
+                                  final therapistName =
+                                      (rawName == null || rawName.isEmpty)
+                                      ? 'therapist'
+                                      : rawName;
+                                  final canJoin =
+                                      s.link != null &&
+                                      s.link!.trim().isNotEmpty;
+
                                   return SessionCard(
-                                    therapistName: 'your therapist',
+                                    therapistName: therapistName.toLowerCase(),
                                     therapyType: _therapyTypeLabel(s),
                                     status: s.status,
                                     dateLabel: _dateLabel(s.startTime),
                                     timeLabel: _formatTime(s.startTime),
                                     durationLabel: _durationLabel(duration),
                                     isUpcoming: isUpcoming,
-                                    onPrimaryAction: _comingSoon,
+                                    onPrimaryAction: isUpcoming
+                                        ? (canJoin ? _comingSoon : null)
+                                        : _comingSoon,
                                     onSecondaryAction: isUpcoming
                                         ? () => _openReschedule(s)
-                                        : _comingSoon,
+                                        : () => context.go(
+                                            AppRoutes.journalWithDay(
+                                              DateFormat(
+                                                'yyyy-MM-dd',
+                                              ).format(s.startTime),
+                                            ),
+                                          ),
                                   );
                                 }
 

@@ -25,7 +25,9 @@ import '../widgets/reflection_input_card.dart';
 import '../widgets/reflection_list_item.dart';
 
 class JournalPage extends StatefulWidget {
-  const JournalPage({super.key});
+  final DateTime? initialDay;
+
+  const JournalPage({super.key, this.initialDay});
 
   @override
   State<JournalPage> createState() => _JournalPageState();
@@ -50,7 +52,16 @@ class _JournalPageState extends State<JournalPage> {
     super.initState();
 
     final repo = getIt<JournalRepository>();
-    _cubit = JournalCubit(repo, today: DateTime.now())..loadInitial();
+    _cubit = JournalCubit(repo, today: DateTime.now());
+    final initial = widget.initialDay;
+    if (initial != null) {
+      final today = DateTime.now();
+      final last = DateTime(today.year, today.month, today.day);
+      final d = DateTime(initial.year, initial.month, initial.day);
+      _cubit.selectDay(d.isAfter(last) ? last : d);
+    } else {
+      _cubit.loadInitial();
+    }
 
     _scrollController.addListener(() {
       if (!_scrollController.hasClients) return;
