@@ -158,6 +158,7 @@ class TherapistProfilePage extends StatelessWidget {
                                   extra: ScheduleSessionPageArgs(
                                     mode: ScheduleSessionMode.book,
                                     therapistName: name,
+                                    therapistId: therapist.id,
                                   ),
                                 );
                               },

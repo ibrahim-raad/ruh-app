@@ -90,6 +90,8 @@ import '../../features/questionnaire/presentation/bloc/questionnaire_bloc.dart'
     as _i1049;
 import '../../features/sessions/data/datasources/sessions_remote_datasource.dart'
     as _i954;
+import '../../features/sessions/data/datasources/therapist_availability_remote_datasource.dart'
+    as _i210;
 import '../../features/sessions/data/repositories/sessions_repository_impl.dart'
     as _i808;
 import '../../features/sessions/domain/repositories/sessions_repository.dart'
@@ -212,8 +214,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i649.TherapyCaseRemoteDataSource>(
       () => _i649.TherapyCaseRemoteDataSource(gh<_i361.Dio>()),
     );
-    gh.lazySingleton<_i374.SessionsRepository>(
-      () => _i808.SessionsRepositoryImpl(gh<_i954.SessionsRemoteDataSource>()),
+    gh.lazySingleton<_i210.TherapistAvailabilityRemoteDataSource>(
+      () => _i210.TherapistAvailabilityRemoteDataSource(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i787.AuthRepository>(
       () => _i153.AuthRepositoryImpl(
@@ -235,6 +237,12 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i867.PatientProfileRepository>(
       () => _i69.PatientProfileRepositoryImpl(
         gh<_i704.PatientProfileRemoteDataSource>(),
+      ),
+    );
+    gh.lazySingleton<_i374.SessionsRepository>(
+      () => _i808.SessionsRepositoryImpl(
+        gh<_i954.SessionsRemoteDataSource>(),
+        gh<_i210.TherapistAvailabilityRemoteDataSource>(),
       ),
     );
     gh.lazySingleton<_i680.LookupsRepository>(

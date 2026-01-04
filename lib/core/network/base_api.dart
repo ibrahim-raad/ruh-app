@@ -31,6 +31,9 @@ abstract class BaseApi<T> {
       return fromJson(response.data);
     } on DioException catch (e) {
       throw handleDioError(e);
+    } catch (e) {
+      log(e.toString(), name: 'create error');
+      rethrow;
     }
   }
 
@@ -41,6 +44,9 @@ abstract class BaseApi<T> {
       return fromJson(response.data);
     } on DioException catch (e) {
       throw handleDioError(e);
+    } catch (e) {
+      log(e.toString(), name: 'update error');
+      rethrow;
     }
   }
 
@@ -50,6 +56,9 @@ abstract class BaseApi<T> {
       await dio.delete('$endpoint/$id');
     } on DioException catch (e) {
       throw handleDioError(e);
+    } catch (e) {
+      log(e.toString(), name: 'delete error');
+      rethrow;
     }
   }
 
@@ -75,6 +84,9 @@ abstract class BaseApi<T> {
       );
     } on DioException catch (e) {
       throw handleDioError(e);
+    } catch (e) {
+      log(e.toString(), name: 'getAll error');
+      rethrow;
     }
   }
 }

@@ -10,7 +10,7 @@ _Patient _$PatientFromJson(Map<String, dynamic> json) => _Patient(
   id: json['id'] as String,
   version: (json['version'] as num).toInt(),
   user: User.fromJson(json['user'] as Map<String, dynamic>),
-  userId: json['user_id'] as String,
+  userId: json['user_id'] as String?,
   createdAt: DateTime.parse(json['created_at'] as String),
   updatedAt: DateTime.parse(json['updated_at'] as String),
 );

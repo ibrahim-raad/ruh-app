@@ -93,12 +93,18 @@ class _SessionsPageState extends State<SessionsPage> {
   }
 
   void _openReschedule(Session s) {
+    final therapistId =
+        s.therapyCase?.therapist.id ?? s.therapyCase?.therapistId;
+    if (therapistId == null || therapistId.trim().isEmpty) {
+      AppToast.showError(context, 'Could not determine therapist for session');
+      return;
+    }
     context.push(
       AppRoutes.scheduleSession,
       extra: ScheduleSessionPageArgs(
         mode: ScheduleSessionMode.reschedule,
-        // TODO: Show real therapist name when therapy case is wired.
-        therapistName: 'your therapist',
+        therapistName: s.therapyCase?.therapist.user?.fullName ?? 'therapist',
+        therapistId: therapistId,
         currentSessionDateTime: s.startTime,
         currentSessionDuration: s.endTime.difference(s.startTime),
       ),

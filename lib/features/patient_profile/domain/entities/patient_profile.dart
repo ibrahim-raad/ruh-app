@@ -10,7 +10,7 @@ abstract class Patient with _$Patient {
     required String id,
     required int version,
     required User user,
-    @JsonKey(name: 'user_id') required String userId,
+    @JsonKey(name: 'user_id') String? userId,
     @JsonKey(name: 'created_at') required DateTime createdAt,
     @JsonKey(name: 'updated_at') required DateTime updatedAt,
   }) = _Patient;

@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'app_error.dart';
 import 'exceptions.dart';
 
 Exception handleDioError(DioException e) {
+  log(e.toString(), name: 'handleDioError');
   final response = e.response;
   final statusCode = response?.statusCode;
 

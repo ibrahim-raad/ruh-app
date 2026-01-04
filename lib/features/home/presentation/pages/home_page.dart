@@ -139,6 +139,8 @@ class HomePage extends StatelessWidget {
                                 extra: ScheduleSessionPageArgs(
                                   mode: ScheduleSessionMode.book,
                                   therapistName: therapistName,
+                                  therapistId: tc.therapist.id,
+                                  therapyCaseId: tc.id,
                                 ),
                               ),
                               onTransferRequest: () => context.push(
