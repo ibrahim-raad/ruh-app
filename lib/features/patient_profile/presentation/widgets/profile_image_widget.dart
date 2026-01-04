@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:ruh/core/config/env_config.dart';
 import 'package:ruh/core/utils/theme_extensions.dart';
+import 'package:ruh/shared/widgets/app_loader.dart';
 
 class ProfileImageWidget extends StatelessWidget {
   final String? imageUrl;
@@ -47,7 +48,7 @@ class ProfileImageWidget extends StatelessWidget {
                       imageUrl: EnvConfig.baseImageUrl + imageUrl!,
                       fit: BoxFit.cover,
                       placeholder: (context, url) =>
-                          const Center(child: CircularProgressIndicator()),
+                          const Center(child: AppLoader()),
                       errorWidget: (context, url, error) =>
                           const Icon(Icons.person),
                     )

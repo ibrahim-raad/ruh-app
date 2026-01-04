@@ -161,11 +161,6 @@ class _SessionsPageState extends State<SessionsPage> {
                                     subtitle: isUpcoming
                                         ? 'book a session with a therapist and it will appear here.'
                                         : 'once you complete sessions, you’ll see them here.',
-                                    primaryActionLabel: isUpcoming
-                                        ? 'find a therapist'
-                                        : 'browse therapists',
-                                    onPrimaryAction: () =>
-                                        context.push(AppRoutes.therapists),
                                   ),
                                 ],
                               );
