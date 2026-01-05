@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:ruh/core/di/injection.dart';
+import 'package:ruh/core/router/app_routes.dart';
 import 'package:ruh/core/utils/app_toast.dart';
+import 'package:ruh/core/utils/failure_extensions.dart';
 import 'package:ruh/core/utils/theme_extensions.dart';
+import 'package:ruh/features/therapists/domain/dtos/create_therapist_transfer_request_dto.dart';
+import 'package:ruh/features/therapists/domain/repositories/therapists_repository.dart';
+import 'package:ruh/shared/widgets/app_loader.dart';
 
 class TransferTherapistRequestPageArgs {
   final String? currentTherapistName;
   final String selectedTherapistId;
   final String selectedTherapistName;
+  final String fromTherapyCaseId;
 
   const TransferTherapistRequestPageArgs({
     this.currentTherapistName,
     required this.selectedTherapistId,
     required this.selectedTherapistName,
+    required this.fromTherapyCaseId,
   });
 }
 
@@ -30,6 +39,7 @@ class _TransferTherapistRequestPageState
   final _formKey = GlobalKey<FormState>();
   final _reasonController = TextEditingController();
   final _detailsController = TextEditingController();
+  bool _isSubmitting = false;
 
   @override
   void dispose() {
@@ -38,15 +48,42 @@ class _TransferTherapistRequestPageState
     super.dispose();
   }
 
-  void _submit() {
-    if (!_formKey.currentState!.validate()) return;
+  String _buildTransferReason() {
+    final reason = _reasonController.text.trim();
+    final details = _detailsController.text.trim();
+    if (details.isEmpty) return reason;
+    return '$reason\n\n$details';
+  }
 
-    // TODO: Wire to backend transfer request endpoint.
-    // payload should include:
-    // - selectedTherapistId: widget.args.selectedTherapistId
-    // - reason: _reasonController.text.trim()
-    AppToast.showSuccess(context, 'Request submitted');
-    Navigator.of(context).maybePop();
+  Future<void> _submit() async {
+    if (!_formKey.currentState!.validate()) return;
+    if (_isSubmitting) return;
+
+    setState(() => _isSubmitting = true);
+    final repo = getIt<TherapistsRepository>();
+    final dto = CreateTherapistTransferRequestDto(
+      transferReason: _buildTransferReason(),
+      therapistId: widget.args.selectedTherapistId,
+      fromTherapyCaseId: widget.args.fromTherapyCaseId,
+    );
+
+    final result = await repo.createTransferRequest(dto);
+    if (!mounted) return;
+
+    result.fold(
+      (failure) {
+        setState(() => _isSubmitting = false);
+        AppToast.showError(context, failure.getErrorMessage(context));
+      },
+      (_) {
+        setState(() => _isSubmitting = false);
+        AppToast.showSuccess(
+          context,
+          'Request sent. You will receive an email once it is processed.',
+        );
+        context.go(AppRoutes.home);
+      },
+    );
   }
 
   @override
@@ -116,13 +153,33 @@ class _TransferTherapistRequestPageState
                   },
                 ),
 
+                SizedBox(height: 14.h),
+                Text(
+                  'details (optional)',
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w800,
+                    color: context.onSurfaceVariant,
+                  ),
+                ),
+                SizedBox(height: 8.h),
+                TextFormField(
+                  controller: _detailsController,
+                  maxLines: 4,
+                  decoration: const InputDecoration(
+                    hintText:
+                        'add more context to help us review your request...',
+                  ),
+                ),
                 SizedBox(height: 18.h),
                 SizedBox(
                   width: double.infinity,
                   height: 52.h,
                   child: ElevatedButton(
-                    onPressed: _submit,
-                    child: const Text('submit request'),
+                    onPressed: _isSubmitting ? null : _submit,
+                    child: _isSubmitting
+                        ? const AppLoader(size: 20)
+                        : const Text('submit request'),
                   ),
                 ),
               ],

@@ -148,6 +148,7 @@ class HomePage extends StatelessWidget {
                                 extra: FindTherapistPageArgs(
                                   isTransferFlow: true,
                                   currentTherapistName: therapistName,
+                                  fromTherapyCaseId: tc.id,
                                 ),
                               ),
                             );

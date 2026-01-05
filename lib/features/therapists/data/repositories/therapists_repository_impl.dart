@@ -4,6 +4,7 @@ import 'package:ruh/core/errors/exceptions.dart';
 import 'package:ruh/core/errors/failures.dart';
 import 'package:ruh/core/network/models/paginated_response.dart';
 import 'package:ruh/core/network/models/pagination_query_params_dto.dart';
+import 'package:ruh/features/therapists/domain/dtos/create_therapist_transfer_request_dto.dart';
 import '../../domain/entities/therapist.dart';
 import '../../domain/repositories/therapists_repository.dart';
 import '../datasources/therapists_remote_datasource.dart';
@@ -21,6 +22,22 @@ class TherapistsRepositoryImpl implements TherapistsRepository {
     try {
       final page = await _remote.getAll(paginationQueryParamsDto: dto);
       return Right(page);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
+    } on NetworkException catch (e) {
+      return Left(NetworkFailure(e.message));
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> createTransferRequest(
+    CreateTherapistTransferRequestDto dto,
+  ) async {
+    try {
+      await _remote.createTransferRequest(dto);
+      return const Right(null);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
     } on NetworkException catch (e) {

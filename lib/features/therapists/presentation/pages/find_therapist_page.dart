@@ -24,10 +24,12 @@ import '../widgets/therapist_card.dart';
 class FindTherapistPageArgs {
   final bool isTransferFlow;
   final String? currentTherapistName;
+  final String? fromTherapyCaseId;
 
   const FindTherapistPageArgs({
     this.isTransferFlow = false,
     this.currentTherapistName,
+    this.fromTherapyCaseId,
   });
 }
 
@@ -133,6 +135,20 @@ class _FindTherapistPageState extends State<FindTherapistPage> {
   @override
   Widget build(BuildContext context) {
     final isTransferFlow = widget.args.isTransferFlow;
+    if (isTransferFlow &&
+        (widget.args.fromTherapyCaseId == null ||
+            widget.args.fromTherapyCaseId!.trim().isEmpty)) {
+      // Safety: backend requires from_therapy_case_id.
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Missing therapy case. Please try again from Home.'),
+          ),
+        );
+        context.pop();
+      });
+    }
     return BlocProvider.value(
       value: _cubit,
       child: Scaffold(
@@ -230,6 +246,8 @@ class _FindTherapistPageState extends State<FindTherapistPage> {
                                         selectedTherapistId: t.id,
                                         selectedTherapistName:
                                             selectedTherapistName,
+                                        fromTherapyCaseId:
+                                            widget.args.fromTherapyCaseId!,
                                       ),
                                     )
                                   : null,
