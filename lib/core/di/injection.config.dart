@@ -23,6 +23,8 @@ import '../../features/auth/domain/repositories/auth_repository.dart' as _i787;
 import '../../features/auth/domain/usecases/login_user.dart' as _i778;
 import '../../features/auth/domain/usecases/logout_user.dart' as _i419;
 import '../../features/auth/domain/usecases/register_user.dart' as _i198;
+import '../../features/auth/domain/usecases/request_password_reset.dart'
+    as _i956;
 import '../../features/auth/presentation/bloc/auth_bloc.dart' as _i797;
 import '../../features/journal/data/datasource/reflection_remote_datasource.dart'
     as _i24;
@@ -270,6 +272,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i198.RegisterUser>(
       () => _i198.RegisterUser(gh<_i787.AuthRepository>()),
+    );
+    gh.lazySingleton<_i956.RequestPasswordReset>(
+      () => _i956.RequestPasswordReset(gh<_i787.AuthRepository>()),
     );
     gh.lazySingleton<_i366.QuestionnaireRepository>(
       () => _i555.QuestionnaireRepositoryImpl(

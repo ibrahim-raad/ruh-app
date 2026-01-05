@@ -133,13 +133,8 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                                 Spacer(),
                                 InkWell(
-                                  // TODO: Implement forgot password navigation
-                                  onTap: () => {
-                                    AppToast.showError(
-                                      context,
-                                      context.tr.forgot_your_password,
-                                    ),
-                                  },
+                                  onTap: () =>
+                                      context.push(AppRoutes.forgotPassword),
                                   child: Text(
                                     context.tr.forgot_your_password,
                                     style: TextStyle(

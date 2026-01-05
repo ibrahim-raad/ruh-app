@@ -87,7 +87,7 @@ class AppTheme {
         fontSize: 20.sp,
         fontWeight: FontWeight.bold,
       ),
-      iconTheme: const IconThemeData(color: _lightForeground),
+      iconTheme: const IconThemeData(color: _lightOnPrimary),
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
@@ -187,7 +187,7 @@ class AppTheme {
         fontSize: 20.sp,
         fontWeight: FontWeight.bold,
       ),
-      iconTheme: const IconThemeData(color: _darkForeground),
+      iconTheme: const IconThemeData(color: _darkOnPrimary),
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,

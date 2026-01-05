@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'dart:async';
 import 'package:ruh/features/auth/presentation/pages/register_page.dart';
+import 'package:ruh/features/auth/presentation/pages/forgot_password_page.dart';
 import 'package:ruh/features/home/presentation/pages/home_page.dart';
 import 'package:ruh/features/journal/presentation/pages/journal_page.dart';
 import 'package:ruh/features/patient_profile/presentation/pages/edit_profile_page.dart';
@@ -36,6 +37,7 @@ GoRouter createAppRouter(AuthBloc authBloc) => GoRouter(
       AppRoutes.onboarding,
       AppRoutes.login,
       AppRoutes.register,
+      AppRoutes.forgotPassword,
     ];
     final isPublicRoute = publicRoutes.contains(loc);
 
@@ -66,6 +68,10 @@ GoRouter createAppRouter(AuthBloc authBloc) => GoRouter(
     GoRoute(
       path: AppRoutes.login,
       builder: (context, state) => const LoginPage(),
+    ),
+    GoRoute(
+      path: AppRoutes.forgotPassword,
+      builder: (context, state) => const ForgotPasswordPage(),
     ),
     GoRoute(
       path: AppRoutes.register,

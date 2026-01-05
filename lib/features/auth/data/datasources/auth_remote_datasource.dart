@@ -47,4 +47,12 @@ class AuthRemoteDataSource extends BaseApi<User> {
       throw handleDioError(e);
     }
   }
+
+  Future<void> requestPasswordReset({required String email}) async {
+    try {
+      await dio.post('$endpoint/forgot-password', data: {'email': email});
+    } on DioException catch (e) {
+      throw handleDioError(e);
+    }
+  }
 }
