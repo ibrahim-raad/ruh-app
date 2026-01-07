@@ -14,13 +14,13 @@ class TransferTherapistRequestPageArgs {
   final String? currentTherapistName;
   final String selectedTherapistId;
   final String selectedTherapistName;
-  final String fromTherapyCaseId;
+  final String? fromTherapyCaseId;
 
   const TransferTherapistRequestPageArgs({
     this.currentTherapistName,
     required this.selectedTherapistId,
     required this.selectedTherapistName,
-    required this.fromTherapyCaseId,
+    this.fromTherapyCaseId,
   });
 }
 

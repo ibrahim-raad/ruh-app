@@ -9,7 +9,7 @@ abstract class CreateTherapistTransferRequestDto
   const factory CreateTherapistTransferRequestDto({
     @JsonKey(name: 'transfer_reason') required String transferReason,
     @JsonKey(name: 'therapist_id') required String therapistId,
-    @JsonKey(name: 'from_therapy_case_id') required String fromTherapyCaseId,
+    @JsonKey(name: 'from_therapy_case_id') String? fromTherapyCaseId,
   }) = _CreateTherapistTransferRequestDto;
 
   factory CreateTherapistTransferRequestDto.fromJson(

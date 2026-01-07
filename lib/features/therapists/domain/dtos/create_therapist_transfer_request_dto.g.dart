@@ -11,7 +11,7 @@ _CreateTherapistTransferRequestDto _$CreateTherapistTransferRequestDtoFromJson(
 ) => _CreateTherapistTransferRequestDto(
   transferReason: json['transfer_reason'] as String,
   therapistId: json['therapist_id'] as String,
-  fromTherapyCaseId: json['from_therapy_case_id'] as String,
+  fromTherapyCaseId: json['from_therapy_case_id'] as String?,
 );
 
 Map<String, dynamic> _$CreateTherapistTransferRequestDtoToJson(

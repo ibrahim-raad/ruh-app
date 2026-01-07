@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CreateTherapistTransferRequestDto {
 
-@JsonKey(name: 'transfer_reason') String get transferReason;@JsonKey(name: 'therapist_id') String get therapistId;@JsonKey(name: 'from_therapy_case_id') String get fromTherapyCaseId;
+@JsonKey(name: 'transfer_reason') String get transferReason;@JsonKey(name: 'therapist_id') String get therapistId;@JsonKey(name: 'from_therapy_case_id') String? get fromTherapyCaseId;
 /// Create a copy of CreateTherapistTransferRequestDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $CreateTherapistTransferRequestDtoCopyWith<$Res>  {
   factory $CreateTherapistTransferRequestDtoCopyWith(CreateTherapistTransferRequestDto value, $Res Function(CreateTherapistTransferRequestDto) _then) = _$CreateTherapistTransferRequestDtoCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: 'transfer_reason') String transferReason,@JsonKey(name: 'therapist_id') String therapistId,@JsonKey(name: 'from_therapy_case_id') String fromTherapyCaseId
+@JsonKey(name: 'transfer_reason') String transferReason,@JsonKey(name: 'therapist_id') String therapistId,@JsonKey(name: 'from_therapy_case_id') String? fromTherapyCaseId
 });
 
 
@@ -65,12 +65,12 @@ class _$CreateTherapistTransferRequestDtoCopyWithImpl<$Res>
 
 /// Create a copy of CreateTherapistTransferRequestDto
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? transferReason = null,Object? therapistId = null,Object? fromTherapyCaseId = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? transferReason = null,Object? therapistId = null,Object? fromTherapyCaseId = freezed,}) {
   return _then(_self.copyWith(
 transferReason: null == transferReason ? _self.transferReason : transferReason // ignore: cast_nullable_to_non_nullable
 as String,therapistId: null == therapistId ? _self.therapistId : therapistId // ignore: cast_nullable_to_non_nullable
-as String,fromTherapyCaseId: null == fromTherapyCaseId ? _self.fromTherapyCaseId : fromTherapyCaseId // ignore: cast_nullable_to_non_nullable
-as String,
+as String,fromTherapyCaseId: freezed == fromTherapyCaseId ? _self.fromTherapyCaseId : fromTherapyCaseId // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
@@ -155,7 +155,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'transfer_reason')  String transferReason, @JsonKey(name: 'therapist_id')  String therapistId, @JsonKey(name: 'from_therapy_case_id')  String fromTherapyCaseId)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'transfer_reason')  String transferReason, @JsonKey(name: 'therapist_id')  String therapistId, @JsonKey(name: 'from_therapy_case_id')  String? fromTherapyCaseId)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CreateTherapistTransferRequestDto() when $default != null:
 return $default(_that.transferReason,_that.therapistId,_that.fromTherapyCaseId);case _:
@@ -176,7 +176,7 @@ return $default(_that.transferReason,_that.therapistId,_that.fromTherapyCaseId);
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'transfer_reason')  String transferReason, @JsonKey(name: 'therapist_id')  String therapistId, @JsonKey(name: 'from_therapy_case_id')  String fromTherapyCaseId)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'transfer_reason')  String transferReason, @JsonKey(name: 'therapist_id')  String therapistId, @JsonKey(name: 'from_therapy_case_id')  String? fromTherapyCaseId)  $default,) {final _that = this;
 switch (_that) {
 case _CreateTherapistTransferRequestDto():
 return $default(_that.transferReason,_that.therapistId,_that.fromTherapyCaseId);case _:
@@ -196,7 +196,7 @@ return $default(_that.transferReason,_that.therapistId,_that.fromTherapyCaseId);
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'transfer_reason')  String transferReason, @JsonKey(name: 'therapist_id')  String therapistId, @JsonKey(name: 'from_therapy_case_id')  String fromTherapyCaseId)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'transfer_reason')  String transferReason, @JsonKey(name: 'therapist_id')  String therapistId, @JsonKey(name: 'from_therapy_case_id')  String? fromTherapyCaseId)?  $default,) {final _that = this;
 switch (_that) {
 case _CreateTherapistTransferRequestDto() when $default != null:
 return $default(_that.transferReason,_that.therapistId,_that.fromTherapyCaseId);case _:
@@ -211,12 +211,12 @@ return $default(_that.transferReason,_that.therapistId,_that.fromTherapyCaseId);
 @JsonSerializable()
 
 class _CreateTherapistTransferRequestDto implements CreateTherapistTransferRequestDto {
-  const _CreateTherapistTransferRequestDto({@JsonKey(name: 'transfer_reason') required this.transferReason, @JsonKey(name: 'therapist_id') required this.therapistId, @JsonKey(name: 'from_therapy_case_id') required this.fromTherapyCaseId});
+  const _CreateTherapistTransferRequestDto({@JsonKey(name: 'transfer_reason') required this.transferReason, @JsonKey(name: 'therapist_id') required this.therapistId, @JsonKey(name: 'from_therapy_case_id') this.fromTherapyCaseId});
   factory _CreateTherapistTransferRequestDto.fromJson(Map<String, dynamic> json) => _$CreateTherapistTransferRequestDtoFromJson(json);
 
 @override@JsonKey(name: 'transfer_reason') final  String transferReason;
 @override@JsonKey(name: 'therapist_id') final  String therapistId;
-@override@JsonKey(name: 'from_therapy_case_id') final  String fromTherapyCaseId;
+@override@JsonKey(name: 'from_therapy_case_id') final  String? fromTherapyCaseId;
 
 /// Create a copy of CreateTherapistTransferRequestDto
 /// with the given fields replaced by the non-null parameter values.
@@ -251,7 +251,7 @@ abstract mixin class _$CreateTherapistTransferRequestDtoCopyWith<$Res> implement
   factory _$CreateTherapistTransferRequestDtoCopyWith(_CreateTherapistTransferRequestDto value, $Res Function(_CreateTherapistTransferRequestDto) _then) = __$CreateTherapistTransferRequestDtoCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: 'transfer_reason') String transferReason,@JsonKey(name: 'therapist_id') String therapistId,@JsonKey(name: 'from_therapy_case_id') String fromTherapyCaseId
+@JsonKey(name: 'transfer_reason') String transferReason,@JsonKey(name: 'therapist_id') String therapistId,@JsonKey(name: 'from_therapy_case_id') String? fromTherapyCaseId
 });
 
 
@@ -268,12 +268,12 @@ class __$CreateTherapistTransferRequestDtoCopyWithImpl<$Res>
 
 /// Create a copy of CreateTherapistTransferRequestDto
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? transferReason = null,Object? therapistId = null,Object? fromTherapyCaseId = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? transferReason = null,Object? therapistId = null,Object? fromTherapyCaseId = freezed,}) {
   return _then(_CreateTherapistTransferRequestDto(
 transferReason: null == transferReason ? _self.transferReason : transferReason // ignore: cast_nullable_to_non_nullable
 as String,therapistId: null == therapistId ? _self.therapistId : therapistId // ignore: cast_nullable_to_non_nullable
-as String,fromTherapyCaseId: null == fromTherapyCaseId ? _self.fromTherapyCaseId : fromTherapyCaseId // ignore: cast_nullable_to_non_nullable
-as String,
+as String,fromTherapyCaseId: freezed == fromTherapyCaseId ? _self.fromTherapyCaseId : fromTherapyCaseId // ignore: cast_nullable_to_non_nullable
+as String?,
   ));
 }
 
