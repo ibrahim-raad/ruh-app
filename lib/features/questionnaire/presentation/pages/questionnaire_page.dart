@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:ruh/core/router/app_routes.dart';
 import 'package:ruh/core/utils/app_toast.dart';
 import 'package:ruh/core/utils/failure_extensions.dart';
 import 'package:ruh/core/utils/l10n_extensions.dart';
@@ -78,7 +80,7 @@ class QuestionnaireView extends StatelessWidget {
           },
           completed: (_) {
             onCompleted?.call();
-            Navigator.of(context).maybePop();
+            context.go(AppRoutes.home);
           },
         );
       },
@@ -187,11 +189,13 @@ class QuestionnaireView extends StatelessWidget {
                                   const QuestionnaireEvent.backPressed(),
                                 )
                               : null,
-                          onNext: () => context.read<QuestionnaireBloc>().add(
-                            isFinish
-                                ? const QuestionnaireEvent.finishPressed()
-                                : const QuestionnaireEvent.nextPressed(),
-                          ),
+                          onNext: () => {
+                            context.read<QuestionnaireBloc>().add(
+                              isFinish
+                                  ? const QuestionnaireEvent.finishPressed()
+                                  : const QuestionnaireEvent.nextPressed(),
+                            ),
+                          },
                         ),
                         SizedBox(height: 8.h),
                       ],

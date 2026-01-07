@@ -59,6 +59,7 @@ class _RegisterPageState extends State<RegisterPage> {
           state.mapOrNull(
             authenticated: (_) {
               AppToast.showSuccess(context, context.tr.register_success);
+              context.go(AppRoutes.editProfileGoToQuestionnaire(true));
             },
             failure: (state) {
               final message = state.failure.getErrorMessage(context);

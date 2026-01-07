@@ -10,7 +10,7 @@ _QuestionWithAnswers _$QuestionWithAnswersFromJson(Map<String, dynamic> json) =>
     _QuestionWithAnswers(
       question: Question.fromJson(json['question'] as Map<String, dynamic>),
       possibleAnswers:
-          (json['possibleAnswers'] as List<dynamic>?)
+          (json['possible_answers'] as List<dynamic>?)
               ?.map((e) => PossibleAnswer.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
@@ -20,5 +20,5 @@ Map<String, dynamic> _$QuestionWithAnswersToJson(
   _QuestionWithAnswers instance,
 ) => <String, dynamic>{
   'question': instance.question,
-  'possibleAnswers': instance.possibleAnswers,
+  'possible_answers': instance.possibleAnswers,
 };

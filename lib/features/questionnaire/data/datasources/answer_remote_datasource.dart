@@ -6,5 +6,5 @@ import 'package:ruh/features/questionnaire/domain/entities/patient_answer.dart';
 @lazySingleton
 class AnswerRemoteDataSource extends BaseApi<PatientAnswer> {
   AnswerRemoteDataSource(Dio dio)
-    : super(dio, '/patient-answers', PatientAnswer.fromJson);
+    : super(dio, '/patients-answers', PatientAnswer.fromJson);
 }

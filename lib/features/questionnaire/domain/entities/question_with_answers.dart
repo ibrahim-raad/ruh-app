@@ -9,7 +9,9 @@ part 'question_with_answers.g.dart';
 abstract class QuestionWithAnswers with _$QuestionWithAnswers {
   const factory QuestionWithAnswers({
     required Question question,
-    @Default([]) List<PossibleAnswer> possibleAnswers,
+    @JsonKey(name: 'possible_answers')
+    @Default([])
+    List<PossibleAnswer> possibleAnswers,
   }) = _QuestionWithAnswers;
 
   factory QuestionWithAnswers.fromJson(Map<String, dynamic> json) =>

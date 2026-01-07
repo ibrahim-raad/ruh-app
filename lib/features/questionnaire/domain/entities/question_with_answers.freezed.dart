@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$QuestionWithAnswers {
 
- Question get question; List<PossibleAnswer> get possibleAnswers;
+ Question get question;@JsonKey(name: 'possible_answers') List<PossibleAnswer> get possibleAnswers;
 /// Create a copy of QuestionWithAnswers
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $QuestionWithAnswersCopyWith<$Res>  {
   factory $QuestionWithAnswersCopyWith(QuestionWithAnswers value, $Res Function(QuestionWithAnswers) _then) = _$QuestionWithAnswersCopyWithImpl;
 @useResult
 $Res call({
- Question question, List<PossibleAnswer> possibleAnswers
+ Question question,@JsonKey(name: 'possible_answers') List<PossibleAnswer> possibleAnswers
 });
 
 
@@ -163,7 +163,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Question question,  List<PossibleAnswer> possibleAnswers)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Question question, @JsonKey(name: 'possible_answers')  List<PossibleAnswer> possibleAnswers)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _QuestionWithAnswers() when $default != null:
 return $default(_that.question,_that.possibleAnswers);case _:
@@ -184,7 +184,7 @@ return $default(_that.question,_that.possibleAnswers);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Question question,  List<PossibleAnswer> possibleAnswers)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Question question, @JsonKey(name: 'possible_answers')  List<PossibleAnswer> possibleAnswers)  $default,) {final _that = this;
 switch (_that) {
 case _QuestionWithAnswers():
 return $default(_that.question,_that.possibleAnswers);case _:
@@ -204,7 +204,7 @@ return $default(_that.question,_that.possibleAnswers);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Question question,  List<PossibleAnswer> possibleAnswers)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Question question, @JsonKey(name: 'possible_answers')  List<PossibleAnswer> possibleAnswers)?  $default,) {final _that = this;
 switch (_that) {
 case _QuestionWithAnswers() when $default != null:
 return $default(_that.question,_that.possibleAnswers);case _:
@@ -219,12 +219,12 @@ return $default(_that.question,_that.possibleAnswers);case _:
 @JsonSerializable()
 
 class _QuestionWithAnswers implements QuestionWithAnswers {
-  const _QuestionWithAnswers({required this.question, final  List<PossibleAnswer> possibleAnswers = const []}): _possibleAnswers = possibleAnswers;
+  const _QuestionWithAnswers({required this.question, @JsonKey(name: 'possible_answers') final  List<PossibleAnswer> possibleAnswers = const []}): _possibleAnswers = possibleAnswers;
   factory _QuestionWithAnswers.fromJson(Map<String, dynamic> json) => _$QuestionWithAnswersFromJson(json);
 
 @override final  Question question;
  final  List<PossibleAnswer> _possibleAnswers;
-@override@JsonKey() List<PossibleAnswer> get possibleAnswers {
+@override@JsonKey(name: 'possible_answers') List<PossibleAnswer> get possibleAnswers {
   if (_possibleAnswers is EqualUnmodifiableListView) return _possibleAnswers;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_possibleAnswers);
@@ -264,7 +264,7 @@ abstract mixin class _$QuestionWithAnswersCopyWith<$Res> implements $QuestionWit
   factory _$QuestionWithAnswersCopyWith(_QuestionWithAnswers value, $Res Function(_QuestionWithAnswers) _then) = __$QuestionWithAnswersCopyWithImpl;
 @override @useResult
 $Res call({
- Question question, List<PossibleAnswer> possibleAnswers
+ Question question,@JsonKey(name: 'possible_answers') List<PossibleAnswer> possibleAnswers
 });
 
 

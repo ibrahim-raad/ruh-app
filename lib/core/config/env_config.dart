@@ -8,5 +8,5 @@ class EnvConfig {
   static int get receiveTimeout =>
       int.parse(dotenv.env['RECEIVE_TIMEOUT'] ?? '30000');
   static String get baseImageUrl =>
-      dotenv.env['PROFILE_IMAGE_URL'] ?? 'http://localhost:3000';
+      dotenv.env['IMAGE_URL'] ?? 'http://localhost:3000';
 }

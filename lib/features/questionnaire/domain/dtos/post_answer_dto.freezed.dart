@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PostAnswerDto {
 
- String get questionId;@JsonKey(name: 'possible_answer_id') String? get possibleAnswerId; String? get answer;
+@JsonKey(name: 'question_id') String get questionId;@JsonKey(name: 'possible_answer_id') String? get possibleAnswerId; String? get answer;
 /// Create a copy of PostAnswerDto
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $PostAnswerDtoCopyWith<$Res>  {
   factory $PostAnswerDtoCopyWith(PostAnswerDto value, $Res Function(PostAnswerDto) _then) = _$PostAnswerDtoCopyWithImpl;
 @useResult
 $Res call({
- String questionId,@JsonKey(name: 'possible_answer_id') String? possibleAnswerId, String? answer
+@JsonKey(name: 'question_id') String questionId,@JsonKey(name: 'possible_answer_id') String? possibleAnswerId, String? answer
 });
 
 
@@ -155,7 +155,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String questionId, @JsonKey(name: 'possible_answer_id')  String? possibleAnswerId,  String? answer)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'question_id')  String questionId, @JsonKey(name: 'possible_answer_id')  String? possibleAnswerId,  String? answer)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PostAnswerDto() when $default != null:
 return $default(_that.questionId,_that.possibleAnswerId,_that.answer);case _:
@@ -176,7 +176,7 @@ return $default(_that.questionId,_that.possibleAnswerId,_that.answer);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String questionId, @JsonKey(name: 'possible_answer_id')  String? possibleAnswerId,  String? answer)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'question_id')  String questionId, @JsonKey(name: 'possible_answer_id')  String? possibleAnswerId,  String? answer)  $default,) {final _that = this;
 switch (_that) {
 case _PostAnswerDto():
 return $default(_that.questionId,_that.possibleAnswerId,_that.answer);case _:
@@ -196,7 +196,7 @@ return $default(_that.questionId,_that.possibleAnswerId,_that.answer);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String questionId, @JsonKey(name: 'possible_answer_id')  String? possibleAnswerId,  String? answer)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'question_id')  String questionId, @JsonKey(name: 'possible_answer_id')  String? possibleAnswerId,  String? answer)?  $default,) {final _that = this;
 switch (_that) {
 case _PostAnswerDto() when $default != null:
 return $default(_that.questionId,_that.possibleAnswerId,_that.answer);case _:
@@ -211,10 +211,10 @@ return $default(_that.questionId,_that.possibleAnswerId,_that.answer);case _:
 @JsonSerializable()
 
 class _PostAnswerDto implements PostAnswerDto {
-  const _PostAnswerDto({required this.questionId, @JsonKey(name: 'possible_answer_id') this.possibleAnswerId, this.answer});
+  const _PostAnswerDto({@JsonKey(name: 'question_id') required this.questionId, @JsonKey(name: 'possible_answer_id') this.possibleAnswerId, this.answer});
   factory _PostAnswerDto.fromJson(Map<String, dynamic> json) => _$PostAnswerDtoFromJson(json);
 
-@override final  String questionId;
+@override@JsonKey(name: 'question_id') final  String questionId;
 @override@JsonKey(name: 'possible_answer_id') final  String? possibleAnswerId;
 @override final  String? answer;
 
@@ -251,7 +251,7 @@ abstract mixin class _$PostAnswerDtoCopyWith<$Res> implements $PostAnswerDtoCopy
   factory _$PostAnswerDtoCopyWith(_PostAnswerDto value, $Res Function(_PostAnswerDto) _then) = __$PostAnswerDtoCopyWithImpl;
 @override @useResult
 $Res call({
- String questionId,@JsonKey(name: 'possible_answer_id') String? possibleAnswerId, String? answer
+@JsonKey(name: 'question_id') String questionId,@JsonKey(name: 'possible_answer_id') String? possibleAnswerId, String? answer
 });
 
 

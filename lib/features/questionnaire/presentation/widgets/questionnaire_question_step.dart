@@ -29,6 +29,8 @@ class QuestionnaireQuestionStep extends StatelessWidget {
   Widget build(BuildContext context) {
     final question = questionWithAnswers.question;
     final type = question.type;
+    debugPrint('question: ${question.toJson()}');
+    debugPrint('questionWithAnswers: ${questionWithAnswers.toJson()}');
 
     String? helper;
     if (type == QuestionType.singleSelect) {

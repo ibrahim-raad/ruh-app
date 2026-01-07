@@ -23,7 +23,8 @@ import '../widgets/profile_form_widget.dart';
 import '../widgets/profile_image_widget.dart';
 
 class EditProfilePage extends StatelessWidget {
-  const EditProfilePage({super.key});
+  const EditProfilePage({super.key, this.shouldGoToQuestionnaire = false});
+  final bool shouldGoToQuestionnaire;
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +32,14 @@ class EditProfilePage extends StatelessWidget {
       create: (context) =>
           getIt<PatientProfileBloc>()
             ..add(const PatientProfileEvent.getProfile()),
-      child: const EditProfileView(),
+      child: EditProfileView(shouldGoToQuestionnaire: shouldGoToQuestionnaire),
     );
   }
 }
 
 class EditProfileView extends StatelessWidget {
-  const EditProfileView({super.key});
+  const EditProfileView({super.key, this.shouldGoToQuestionnaire = false});
+  final bool shouldGoToQuestionnaire;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +55,7 @@ class EditProfileView extends StatelessWidget {
               state.mapOrNull(
                 failure: (s) {
                   final msg = s.failure.getErrorMessage(context);
-                  AppToast.showError(context, msg);
+                  // AppToast.showError(context, msg);
                 },
               );
             },
@@ -143,11 +145,13 @@ class EditProfileView extends StatelessWidget {
                               context.read<PatientProfileBloc>().add(
                                 PatientProfileEvent.updateProfile(dto),
                               );
-                              context.go(
-                                AppRoutes.questionnaire(
-                                  QuestionnaireType.onboarding.name,
-                                ),
-                              );
+                              if (shouldGoToQuestionnaire) {
+                                context.go(
+                                  AppRoutes.questionnaire(
+                                    QuestionnaireType.onboarding.name,
+                                  ),
+                                );
+                              }
                             },
                       ),
                     ],

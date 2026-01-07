@@ -128,7 +128,14 @@ GoRouter createAppRouter(AuthBloc authBloc) => GoRouter(
           routes: [
             GoRoute(
               path: AppRoutes.profile,
-              builder: (context, state) => const EditProfilePage(),
+              builder: (context, state) {
+                final shouldGoToQuestionnaire =
+                    state.uri.queryParameters['shouldGoToQuestionnaire'] ==
+                    'true';
+                return EditProfilePage(
+                  shouldGoToQuestionnaire: shouldGoToQuestionnaire,
+                );
+              },
             ),
           ],
         ),
@@ -136,7 +143,13 @@ GoRouter createAppRouter(AuthBloc authBloc) => GoRouter(
     ),
     GoRoute(
       path: AppRoutes.editProfile,
-      builder: (context, state) => const EditProfilePage(),
+      builder: (context, state) {
+        final shouldGoToQuestionnaire =
+            state.uri.queryParameters['shouldGoToQuestionnaire'] == 'true';
+        return EditProfilePage(
+          shouldGoToQuestionnaire: shouldGoToQuestionnaire,
+        );
+      },
     ),
     GoRoute(
       path: AppRoutes.questionnaire(':type'),
